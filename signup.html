@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins"
     />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <title>Login</title>
   </head>
@@ -15,8 +16,10 @@
     <h1>Sign Up</h1>
     <input type='textbox' placeholder='Username' class='loginbox'></input>
     <input type='password' placeholder='Password' class='loginbox'>
-    <button id="submitBut">Sign Up</button>
-
+    
+    <div class="g-recaptcha" id='captcha' data-sitekey="6LcNVF8pAAAAABOE0DCykNQ-Zmni7UjgDOgDDaxL"></div>
+    
+    <button id="submitBut" >Sign Up</button>
     <script src="script.js"></script>
   </body>
 </html>
