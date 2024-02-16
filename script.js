@@ -29,9 +29,16 @@ function initiate() {
   console.log('Start')
 }
 
+let finalRedir =  null
 function urlparam() {
   const urlParams = new URLSearchParams(window.location.search);
   let target = urlParams.get('redir');
-  document.getElementById('redirP').innerHTML = 'After logging in, you will be redirected to ' + '<u>' + target + '</u>'
+  if (target != null) {
+    finalRedir = target
+    document.getElementById('redirP').innerHTML = 'After logging in, you will be redirected to ' + '<u>' + target + '</u>'
+  } else {
+    finalRedir = null
+    document.getElementById('redirP').innerHTML = 'You are logging in to <u>account management</u>.'
+  }
 }
 urlparam()
