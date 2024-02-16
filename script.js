@@ -28,3 +28,10 @@ function getCookie(cname) {
 function initiate() {
   console.log('Start')
 }
+
+function urlparam() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let target = urlParams.get('redir');
+  document.getElementById('redirP').innerHTML = 'After logging in, you will be redirected to ' + '<u>' + target + '</u>'
+}
+urlparam()
