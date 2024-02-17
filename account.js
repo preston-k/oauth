@@ -2,7 +2,7 @@ function urlparam() {
   const urlParams = new URLSearchParams(window.location.search);
   let userId = urlParams.get('id');
   if (userId != null) {
-    // Run username check function here
+    console.log('UserID: ' + userId)
   } else {
     console.log('USERID BLANK')
     document.getElementById('center').style.display = 'none'
@@ -11,3 +11,4 @@ function urlparam() {
   }
 }
 urlparam()
+

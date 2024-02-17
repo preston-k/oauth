@@ -76,3 +76,54 @@ h1 {
   margin-right: auto;
   margin-top: 20px;
 }
+
+h4 {
+  font-family: 'Poppins';
+  text-align: center;
+}
+.p {
+  font-family: 'Poppins';
+  text-align: center;
+}
+#optionbox {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+a.optiondiv-link {
+  text-decoration: none;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 15%;
+  aspect-ratio: 1 / 1;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.optionimg {
+  width: 10vw;
+  margin-bottom: 10px;
+}
+
+a.optiondiv-link:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.04);
+  cursor: pointer;
+}
+
+a.optiondiv-link p {
+  text-decoration: none;
+}
+
+.optiondiv:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.04);
+  cursor: pointer;
+}

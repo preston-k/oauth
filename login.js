@@ -10,9 +10,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 let database = firebase.database();
+// DO NOT EDIT ANYTHING ABOVE^^^
 
 function loginGo() {
   console.log('Logging In')
+  let email = document.getElementById('email').value
+  console.log(email)
+  let pw = document.getElementById('password').value
+  console.log(pw)
 }
 function signupGo() {
   console.log('Signing Up')
