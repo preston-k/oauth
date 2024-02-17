@@ -9,6 +9,7 @@ function urlparam() {
     document.getElementById('center').style.height = '0'
     document.getElementById('center').style.width = '0'
     document.getElementById('noperms').style.display = 'block'
+    document.getElementById("error").innerHTML = 'Error: Missing Perms'
   }
   
 }
