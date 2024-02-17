@@ -42,3 +42,11 @@ function urlparam() {
   }
 }
 urlparam()
+console.log(finalRedir)
+
+function loginGo() {
+  console.log('Logging In')
+}
+function signupGo() {
+  console.log('Signing Up')
+}
