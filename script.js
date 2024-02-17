@@ -2,8 +2,8 @@
 const data = await fetch("/static.json").then((x) => x.json())
 
 let version = data.version
-
-document.getElementById("static").innerHTML = 'Version ' + version /**'·' */
+let sessid = self.crypto.randomUUID();
+document.getElementById("static").innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid;
 function makeCookie(cname, cvalue, days) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
