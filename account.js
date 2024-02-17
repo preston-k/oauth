@@ -8,7 +8,9 @@ function urlparam() {
     document.getElementById('center').style.display = 'none'
     document.getElementById('center').style.height = '0'
     document.getElementById('center').style.width = '0'
+    document.getElementById('noperms').style.display = 'block'
   }
+  
 }
 urlparam()
 

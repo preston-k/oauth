@@ -68,6 +68,8 @@ h1 {
 }
 #center {
   width: 100%;
+  font-family: 'Poppins';
+  text-align: center;
 }
 #iconpng {
   width: 7%;
@@ -95,7 +97,7 @@ a.optiondiv-link {
   text-decoration: none;
   color: black;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 15px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -127,3 +129,25 @@ a.optiondiv-link p {
   transform: scale(1.04);
   cursor: pointer;
 }
+#noperms {
+  display: none;
+}
+#blueunderline {
+  text-decoration: underline;
+  text-decoration-color: blue;
+  text-decoration-thickness: 3px;
+}
+.pinfobox {
+  width: 20%;
+  height: 50px;
+  border: 0;
+  border-bottom: 3px solid blue;
+  font-family: 'Poppins';
+  font-size: 24px;
+  text-align: center;
+  margin: 10px;
+}
+.pinfobox:focus {
+  outline: 0px solid black;
+}
+
