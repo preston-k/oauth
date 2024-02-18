@@ -158,3 +158,21 @@ a.optiondiv-link p {
   position: absolute;
   bottom: 0;
 }
+a {
+  margin: 15px;
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-family: 'Poppins';
+  text-align: center;
+  font-size: 11.5px;
+}
+
+a .hlink {
+  color: blue;
+  text-decoration: underline;
+}
+
+.non-link {
+  color: black;
+}
