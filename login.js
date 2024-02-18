@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 let useruuid = self.crypto.randomUUID() 
 document.addEventListener('DOMContentLoaded', (event) => {
-  document.getElementById('signupBut').addEventListener('click', async function () { // Mark function as async
+  document.getElementById('signupBut').addEventListener('click', async function () {
     console.log('Signing Up');
     document.getElementById('signupemail').disabled = true;
     document.getElementById('signuppw').disabled = true;
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     try {
       const snapshot = await database.ref('users/' + firebaseEmail).once('value');
       if (snapshot.exists()) {
-        alert('Email already in system. Please login.'); // EMAIL EXISTS
+        alert('Email already in system. Please login.'); 
       } else {
         const hashedPassword = await hashPassword(pw); 
         await database.ref('users/' + firebaseEmail).update({ 
