@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           let target = urlParams.get('redir');
           if (target != null) {
             finalRedir = target
-            window.location.replace(finalRedir + '?id=' + uid)
+            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail)
           } else {
             window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail)
           }
