@@ -8,16 +8,18 @@
     <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="script.js" type='module'></script>
-    <script src='login.js'></script>
-    <script src='random.js'></script>
+    <script src='login.js' type='module'></script>
+    <script src='random.js' type='module'></script>
     <title>Login</title>
   </head>
-  <body onload='initiate()'>
+  <body>
+    <!-- url should be in the format, oauth.prestonkwei.com/login.html?redir=URLTOREDIRECTTO -->
+    
     <h1 text-align='center' id='loginh1'>Login</h1>
     <p id='redirP'></p>
     <input type='textbox' placeholder='Email' autocomplete='off' class='loginbox' id='email'></input>
     <input type='password' placeholder='Password' class='loginbox' id='password'></input>
-    <button class='formbut' id='loginBut' onclick='loginGo()'>Login</button>
+    <button class='formbut' id='loginBut'>Login</button>
     <!-- LEAVE AT BOTTOM -->
     <div id='static'></div>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>

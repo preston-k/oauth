@@ -8,17 +8,20 @@
     <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="script.js"></script>
-    <script src='login.js'></script>
+    <script src="script.js" type='module'></script>
+    <script src='login.js' type='module'></script>
     <title>Login</title>
   </head>
-  <body onload='initiate()'>
+  <body>
     <h1>Sign Up</h1>
-    <input type='textbox' placeholder='Username' class='loginbox'></input>
-    <input type='password' placeholder='Password' class='loginbox'>
+    <input type='textbox' placeholder='Email' class='loginbox' id='signupemail'></input>
+    <input type='password' placeholder='Password' class='loginbox' id='signuppw'></input>
 
     <div class="g-recaptcha" id='captcha' data-sitekey="6LcNVF8pAAAAABOE0DCykNQ-Zmni7UjgDOgDDaxL" background-color='white'></div>
     
-    <button class='formbut' id='signupBut' onclick='signupGo()'>Login</button>
+    <button class='formbut' id='signupBut'>Login</button>
+    <div id='static'></div>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
   </body>
 </html>

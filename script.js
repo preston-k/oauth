@@ -24,10 +24,7 @@ function getCookie(cname) {
     }
   }
   return "";
-}
-function initiate() {
-  console.log('Start')
-}
+} 
 
 let finalRedir =  null
 function urlparam() {

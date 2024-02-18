@@ -151,3 +151,10 @@ a.optiondiv-link p {
   outline: 0px solid black;
 }
 
+
+#error { 
+  font-family: 'Poppins';
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+}
