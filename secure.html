@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Practices</title>
+  <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <u><h1><strong>Your Information is Secure</strong></h1></u>
+  <h3>We take privacy and security seriously. Read about our efforts to keep your information secure.</h3>
+  <hr class='hr'>
+  <h3><u>1. We Use 256-bit Hashing for Passwords</u></h3>
+  <p>In our system, passwords are secured using SHA-256 hashing. This is a cryptographic hashing algorithm that produces a 256-bit (32-byte) hash value, often rendered as a hexadecimal number with 64 characters. It's a one-way process, meaning that once a password is converted into its hash code, it cannot be reversed back to the original password. This method ensures that even if someone gains access to the hashed password data, they cannot easily decipher the actual password. Additionally, the hashing process is performed in a secure, asynchronous manner, utilizing the Web Cryptography API, which provides a strong foundation for security in web applications.</p>
+  <u><p>For example, this is what passwords look like in our database:</p></u>
+  <img width='50%' src='https://cdn.prestonkwei.com/hashedpw.png'>
+  <hr class='hr'>
+  <h3><u>2. We Utilize Anti-Robot Systems to Prevent Robotic Cyber Attacks</u></h3>
+  <p>Our website utilizes reCAPTCHA to prevent robots from spamming the website. It also prevents user movements that may be rendered as robotic to prevent cyber attacks. Please note that third-party companies such as reCAPTHA have their own privacy polciies and terms of use. Please review them before continuing on our site.</p></u>
+  <hr class='hr'>
+  <h3><u>3. HTTPS Means Secure</u></h3>
+  <p>Our site uses HTTPS, the secure version of HTTP, ensuring all data exchanged between your browser and our website is encrypted. This means any information you submit, from passwords to personal details, is protected against unauthorized access. HTTPS is a key security feature that guards against eavesdropping and ensures your data remains confidential and secure during transmission.</p></u>
+  <hr class='hr'>
+</body>
+</html>

@@ -26,6 +26,7 @@ h1 {
 #static {
   font-family: 'Poppins';
   font-size: 12px;
+  display: block;
   position: absolute;
   bottom: 0;
 }
@@ -175,4 +176,24 @@ a .hlink {
 
 .non-link {
   color: black;
+}
+
+h3 {
+  font-family: 'Poppins';
+  text-align: center;
+}
+body {
+  font-family: 'Poppins';
+  text-align: center;
+}
+.hr {
+  height: 3px;
+  width: 15%;
+  background-color: black;
+  border: 0px solid black;
+}
+#info {
+  text-align: right;
+  position: fixed;
+  bottom: 0;
 }
