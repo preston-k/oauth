@@ -20,7 +20,7 @@ async function hashPassword(password) {
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('') 
 }
 
-let d = new Date();
+let d = new Date().toString().replace(/ /g, "").replace(/GMT/g, "UTC")
 
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
