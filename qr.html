@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login with QR Code</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <h2>SSO Login with QR Code</h2>
+  <p>Visit <u>oauth.prestonkwei.com/scan.html</u> and scan this QR code.</p>
+  <div id="qrcode"></div>
+  
+  
+  <script>
+    let d = new Date().toString()
+    let sessid = self.crypto.randomUUID()
+    let qrValue = '?s=' + sessid + '?d=' + d
+    let qrSize = '200x200'
+    let qrUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrValue)}&chs=${qrSize}`;
+    document.getElementById('qrcode').innerHTML = `<img id='lqrcode' src="${qrUrl}" alt="QR Code"/>`
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Login</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<button id="btn">Scan QR Code</button>
+<div id="qr-reader" style="width:500px"></div>
+<div id='text'></div>
+
+<script>
+document.getElementById('btn').addEventListener('click', function() {
+    const html5QrCode = new Html5Qrcode('qr-reader');
+    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start(
+        { facingMode: 'environment' },
+        config,
+        (decodedText, decodedResult) => {
+            console.log(`QR Code detected: ${decodedText}`);
+            document.getElementById('text').innerHTML = decodedText
+            html5QrCode.stop().then(() => {
+                document.getElementById('qr-reader').innerHTML = '';
+            }).catch(err => {
+                console.error(`Error stopping QR Scanner: ${err}`);
+            });
+        })
+        .catch(err => {
+            console.error(`Error starting QR Scanner: ${err}`);
+        });
+});
+</script>
+
+</body>
+</html>

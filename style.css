@@ -197,3 +197,14 @@ body {
   position: fixed;
   bottom: 0;
 }
+#qr-reader {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#lqrcode {
+  width: 20vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
