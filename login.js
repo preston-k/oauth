@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             finalRedir = target 
             
             let time = d.getTime();
-            window.location.href(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           } else {
-            window.location.href('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           }
         } else {
           alert('Incorrect Email or Password') 
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           id: useruuid,
           pw: hashedPassword
         }) 
-        window.location.href('/account.html?id='+useruuid) 
+        window.location.replace('/account.html?id='+useruuid) 
       }
     } catch (error) {
       console.error('Error:', error) 
