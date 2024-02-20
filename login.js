@@ -20,7 +20,7 @@ async function hashPassword(password) {
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('') 
 }
 
-
+let d = new Date();
 
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -48,9 +48,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
           let target = urlParams.get('redir') 
           if (target != null) {
             finalRedir = target 
-            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail) 
+            
+            let time = d.getTime();
+            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           } else {
-            window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail) 
+            window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           }
         } else {
           alert('Incorrect Email or Password') 
