@@ -32,10 +32,10 @@ document.getElementById('btn').addEventListener('click', function() {
         { facingMode: 'environment' },
         config,
         async (decodedText, decodedResult) => { 
-            let checkstr = decodedText.split('?s=')[1].split('?d=')[0];
-            const snapshot = await database.ref('sso/' + decodedText).once('value');
+            let checkstr = decodedText.includes('?s=') && decodedText.includes('?d=') ? decodedText.split('?s=')[1].split('?d=')[0] : '';
+            const snapshot = await database.ref('sso/' + checkstr).once('value');
             if (snapshot.exists()) {
-                alert('Email already in system. Please login.');  
+                alert('Found');
             } else {
                 console.log(`QR Code detected: ${decodedText}`);
                 document.getElementById('text').innerHTML = decodedText;
