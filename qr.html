@@ -6,17 +6,39 @@
 </head>
 <body>
   <h2>SSO Login with QR Code</h2>
-  <p>Visit <u>oauth.prestonkwei.com/scan.html</u> and scan this QR code.</p>
+  <p>Visit <u>oauth.prestonkwei.com/scan.html</u> and scan this QR code. This QR code CANNOT be scanned with your camera app.</p>
   <div id="qrcode"></div>
   
-  
-  <script>
-    let d = new Date().toString()
-    let sessid = self.crypto.randomUUID()
-    let qrValue = '?s=' + sessid + '?d=' + d
-    let qrSize = '200x200'
-    let qrUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrValue)}&chs=${qrSize}`;
-    document.getElementById('qrcode').innerHTML = `<img id='lqrcode' src="${qrUrl}" alt="QR Code"/>`
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script type='module'>
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8",
+    authDomain: "oauth-page-ad3c2.firebaseapp.com",
+    databaseURL: "https://oauth-page-ad3c2-default-rtdb.firebaseio.com",
+    projectId: "oauth-page-ad3c2",
+    storageBucket: "oauth-page-ad3c2.appspot.com",
+    messagingSenderId: "401481049573",
+    appId: "1:401481049573:web:f1f9ca852e96d580cf3b0c"
+  } 
+  firebase.initializeApp(firebaseConfig) 
+
+  let database = firebase.database() 
+// FIREBASE INIT
+  let d = new Date().toString()
+  let sessid = self.crypto.randomUUID()
+  let qrValue = '?s=' + sessid + '?d=' + d
+  let qrSize = '200x200'
+  let qrUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrValue)}&chs=${qrSize}`;
+  await database.ref('sso/' + sessid).update({ 
+          id: sessid,
+          ts: d
+        }) 
+  document.getElementById('qrcode').innerHTML = `<img id='lqrcode' src="${qrUrl}" alt="QR Code"/>`
+
+
   </script>
 </body>
 </html>

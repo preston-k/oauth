@@ -9,26 +9,46 @@
 <button id="btn">Scan QR Code</button>
 <div id="qr-reader" style="width:500px"></div>
 <div id='text'></div>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script type='module'>
+const firebaseConfig = {
+    apiKey: "AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8",
+    authDomain: "oauth-page-ad3c2.firebaseapp.com",
+    databaseURL: "https://oauth-page-ad3c2-default-rtdb.firebaseio.com",
+    projectId: "oauth-page-ad3c2",
+    storageBucket: "oauth-page-ad3c2.appspot.com",
+    messagingSenderId: "401481049573",
+    appId: "1:401481049573:web:f1f9ca852e96d580cf3b0c"
+}; 
+firebase.initializeApp(firebaseConfig);
 
-<script>
+let database = firebase.database();
 document.getElementById('btn').addEventListener('click', function() {
     const html5QrCode = new Html5Qrcode('qr-reader');
     const config = { fps: 10, qrbox: { width: 250, height: 250 } };
     html5QrCode.start(
         { facingMode: 'environment' },
         config,
-        (decodedText, decodedResult) => {
-            console.log(`QR Code detected: ${decodedText}`);
-            document.getElementById('text').innerHTML = decodedText
+        async (decodedText, decodedResult) => { 
+            let checkstr = decodedText.split('?s=')[1].split('?d=')[0];
+            const snapshot = await database.ref('sso/' + decodedText).once('value');
+            if (snapshot.exists()) {
+                alert('Email already in system. Please login.');  
+            } else {
+                console.log(`QR Code detected: ${decodedText}`);
+                document.getElementById('text').innerHTML = decodedText;
+            }
             html5QrCode.stop().then(() => {
                 document.getElementById('qr-reader').innerHTML = '';
             }).catch(err => {
                 console.error(`Error stopping QR Scanner: ${err}`);
             });
-        })
-        .catch(err => {
-            console.error(`Error starting QR Scanner: ${err}`);
-        });
+        }
+    ).catch(err => {
+        console.error(`Error starting QR Scanner: ${err}`);
+    });
 });
 </script>
 
