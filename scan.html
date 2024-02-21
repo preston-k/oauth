@@ -36,9 +36,9 @@ document.getElementById('btn').addEventListener('click', function() {
             const snapshot = await database.ref('sso/' + checkstr).once('value');
             if (snapshot.exists()) {
                 alert('Found');
+                window.location.replace()
             } else {
-                console.log(`QR Code detected: ${decodedText}`);
-                document.getElementById('text').innerHTML = decodedText;
+                alert('That is not a valid QR code. Please create another SSO code at oauth.prestonkwei.com/qr.html')
             }
             html5QrCode.stop().then(() => {
                 document.getElementById('qr-reader').innerHTML = '';
