@@ -36,7 +36,7 @@ document.getElementById('btn').addEventListener('click', function() {
             const snapshot = await database.ref('sso/' + checkstr).once('value');
             if (snapshot.exists()) {
                 alert('Found');
-                window.location.replace()
+                window.location.replace('/account.html?id=')
             } else {
                 alert('That is not a valid QR code. Please create another SSO code at oauth.prestonkwei.com/qr.html')
             }
