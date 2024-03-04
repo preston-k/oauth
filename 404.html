@@ -1,2 +1,74 @@
-<h1>404</h1>
-<h3>Ummmm, we know you weren't trying to go here, but we can't find your page!</h3>
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>404 Not Found</title>
+  <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins">
+  <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
+</head>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 10px;
+    font-family: 'Poppins';
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    text-align: center;
+  }
+  h1 {
+    font-size: 10rem;
+    margin: 0;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  a:hover {
+    background-color: white;
+    color: black;
+  }
+  #static {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  #scontent {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+
+</style>
+<script type='module'>
+  /** @type {typeof import("./static.json")} */
+  const data = await fetch("/static.json").then((x) => x.json());
+  const v = data.version;
+  document.getElementById('scontent').innerHTML = 'Error: 404 Not Found ⋅ Version ' + v 
+</script>
+</head>
+<body>
+  <div class='container'>
+    <h1>404</h1>
+    <p>Oops! It looks like your lost. The page you are looking for isn't here!</p>
+    <a href='/'>Go Home</a>
+  </div>
+  <div id='static'>
+    <p id='scontent'>Static Data Loading...</p>
+  </div>
+</body>
+</html>
