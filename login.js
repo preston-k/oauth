@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             finalRedir = target 
             let time = d.getTime()
             createCookie('loggedin=true', uid, 0.1666666)
-            window.location(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           } else {
             createCookie('loggedin=true', uid, 0.1666666)
-            window.location('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
           }
         } else { // Wrong Password
           const userRef = database.ref('users/' + firebaseEmail);
@@ -97,11 +97,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
           });
           await userRef.update({ failedAttempts: fa });
           alert('Incorrect Email or Password') 
-          window.location('/login.html')
+          window.location.replace('/login.html')
         }
       } else {
         alert('Incorrect Email or Password') 
-        window.location('/login.html')
+        window.location.replace('/login.html')
       }
     } catch (error) {
       console.error('Error during login:', error) 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           id: useruuid,
           pw: hashedPassword
         }) 
-        window.location('/account.html?id='+useruuid) 
+        window.location.replace('/account.html?id='+useruuid) 
       }
     } catch (error) {
       console.error('Error:', error) 
