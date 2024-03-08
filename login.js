@@ -51,9 +51,15 @@ async function hashPassword(password) {
 
 let d = new Date().toString().replace(/ /g, "").replace(/GMT/g, "UTC")
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    login()
+  }
+});
+
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
-  document.getElementById('loginBut').addEventListener('click', async function () {
+  document.getElementById('loginBut').addEventListener('click', async function login() {
     console.log('Logging In') 
     let emailInput = document.getElementById('email') 
     let passwordInput = document.getElementById('password') 
@@ -92,7 +98,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
               if (userData && userData.failedAttempts != null) {
                 fa = userData.failedAttempts + 1;
               } else {
-                fa = 1; // Initialize to 1 if failedAttempts doesn't exist
+                fa = 1; // set to 1 if fa is noexisitent in databse
               }
           });
           await userRef.update({ failedAttempts: fa });
