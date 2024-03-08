@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             finalRedir = target 
             let time = d.getTime()
             createCookie('loggedin=true', uid, 0.1666666)
-            window.location.replace(finalRedir + '?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace(finalRedir + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + d) 
           } else {
             createCookie('loggedin=true', uid, 0.1666666)
-            window.location.replace('/account.html?id=' + uid + '?e=' + firebaseEmail + '?s=true' + '?ts=' + d) 
+            window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + d) 
           }
         } else { // Wrong Password
           const userRef = database.ref('users/' + firebaseEmail);
@@ -123,7 +123,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let email = document.getElementById('signupemail').value 
     let pw = document.getElementById('signuppw').value 
     let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_') 
-
     try {
       const snapshot = await database.ref('users/' + firebaseEmail).once('value') 
       if (snapshot.exists()) {

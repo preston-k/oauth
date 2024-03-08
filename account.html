@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins"/>
-    <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="account.js"></script>
-    <script src="script.js"></script>
-    <title>Account Management</title>
-  </head>
-  <body onload='urlparam()'>
-    <div id='center'>
-      <img id='iconpng' src='https://cdn.prestonkwei.com/usericon.png'>
-      <h2>Account Management</h2>
-      <p>Click to edit any of the fields with a <span id='blueunderline'>blue underline</span>.</p>
-      <div id='personalinfo'>
-        <input type='textbox' class='pinfobox' placeholder='First Name'></input>
-        <input type='textbox' class='pinfobox' placeholder='Last Name'></input>
-        <br>
-        <button id='sc'>Save Changes</button>
-      </div>
-    </div>
-    <div id='noperms'>
-      <u><h1><b>Access Denied</b></h1></u>
-      <h4>You don't have the required permissions to view this page.</h4>
-      <div id='optionbox'>
-        <a href='https://oauth.prestonkwei.com/login.html' class='optiondiv-link'>
-          <img class='optionimg' src='https://cdn.prestonkwei.com/backarrow.png'>
-          <p>Go Back and Login</p>
-        </a>
-        <a href='https://prestonkwei.com' class='optiondiv-link'>
-          <img class='optionimg' src='https://cdn.prestonkwei.com/home.png'>
-          <p>Go To: PrestonKwei.com</p>
-        </a>
-      </div>      
-    </div>
-    <!-- LEAVE AT BOTTOM -->
-    <div id='static'></div>
-    <div id='error'></div>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins"/>
+<link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="account.js"></script>
+<script src="script.js"></script>
+<title>Account Management</title>
+</head>
+<body onload="urlparam()">
+<div id="center">
+  <img id="iconpng" src="https://cdn.prestonkwei.com/usericon.png">
+  <h2>Account Management</h2>
+  <p>Click to edit any of the fields with a <span id="blueunderline">blue underline</span>.</p>
+  <div id="personalinfo">
+    <input type="text" class="pinfobox" placeholder="First Name" id="fnhtml">
+    <input type="text" class="pinfobox" placeholder="Last Name" id="lnhtml">
+    <br>
+    <button onclick="updateInfo()">Save Changes</button>
+  </div>
+</div>
+<div id="noperms">
+  <u><h1><b>Access Denied</b></h1></u>
+  <h4>You don't have the required permissions to view this page.</h4>
+  <div id="optionbox">
+    <a href="https://oauth.prestonkwei.com/login.html" class="optiondiv-link">
+      <img class="optionimg" src="https://cdn.prestonkwei.com/backarrow.png">
+      <p>Go Back and Login</p>
+    </a>
+    <a href="https://prestonkwei.com" class="optiondiv-link">
+      <img class="optionimg" src="https://cdn.prestonkwei.com/home.png">
+      <p>Go To: PrestonKwei.com</p>
+    </a>
+  </div>      
+</div>
+<!-- LEAVE AT BOTTOM -->
+<div id="static"></div>
+<div id="error"></div>
+</body>
 </html>
