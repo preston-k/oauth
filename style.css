@@ -74,6 +74,7 @@ h1 {
 }
 #iconpng {
   width: 7%;
+  min-width: 100px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -140,6 +141,7 @@ a.optiondiv-link p {
 }
 .pinfobox {
   width: 20%;
+  min-width: 250px;
   height: 50px;
   border: 0;
   border-bottom: 3px solid blue;
@@ -210,4 +212,38 @@ body {
 }
 #formdiv {
   border: 0px solid black;
+}
+
+@media (max-width: 408px) {
+  #static {
+    font-size: 10px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#desktopTools {
+  background-color: #7EC8E3;
+  height: 90%;
+  width: 55px;
+  border-radius: 0 0 15px 0;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.toolbaricon {
+  width: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 }
