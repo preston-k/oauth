@@ -149,6 +149,7 @@ a.optiondiv-link p {
   font-size: 24px;
   text-align: center;
   margin: 10px;
+  border-radius: 0px;
 }
 .pinfobox:focus {
   outline: 0px solid black;
@@ -227,7 +228,6 @@ body {
 #mo {
   display: none;
 }
-
 #overlay {
   position: fixed;
   top: 0;
@@ -252,6 +252,7 @@ body {
   bottom: 0;
 }
 #desktopTools {
+  padding-top: 5px;
   background-color: #7EC8E3;
   height: 90%;
   width: 55px;
