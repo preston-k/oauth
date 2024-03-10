@@ -187,6 +187,7 @@ h3 {
 body {
   font-family: 'Poppins';
   text-align: center;
+  overflow-x: hidden;
 }
 .hr {
   height: 3px;
@@ -223,14 +224,32 @@ body {
     margin-right: auto;
   }
 }
+#mo {
+  display: none;
+}
 
 #overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 60px;
   height: 100%;
+  /* pointer-events: none; */
+}
+#mOverlay {
+  display: block;
+  position: absolute;
+  bottom: 0;
   pointer-events: none;
+}
+#mobileTool {
+  height: 55px; 
+  width: 100vw;
+  border: 2px solid black;
+  background-color: #7EC8E3;
+  display: block;
+  position: absolute;
+  bottom: 0;
 }
 #desktopTools {
   background-color: #7EC8E3;
@@ -246,4 +265,34 @@ body {
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+}
+@media (max-width: 1000px) {
+  #mo {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background-color: #7EC8E3;
+    width: 100%;
+  }
+  #do {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .optionbox {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50vw !important;
+  }
+  #desktopTools {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  #mobileTool {
+    display: none !important;
+  }
 }
