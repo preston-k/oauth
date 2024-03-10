@@ -67,8 +67,18 @@ function updateInfo() {
               fn: fnbox,
               ln: lnbox
           });
+          document.getElementById('progress').innerHTML = ('Sucess! Your changes have been saved!')
+          setTimeout(() => {
+            document.getElementById('progress').innerHTML = ('')
+          }, 3000);
+          
       } else {
           console.error('Email not found in URL parameters.');
+          document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+          setTimeout(() => {
+            document.getElementById('progress').innerHTML = ('')
+          }, 3000);
+          
       }
   }
 }

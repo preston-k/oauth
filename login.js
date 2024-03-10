@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     let email = emailInput.value.toLowerCase() 
     let pw = passwordInput.value 
-    console.log(pw) 
     let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_') 
     
     try {

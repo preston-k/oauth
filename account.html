@@ -23,13 +23,14 @@
     <input type="text" class="pinfobox" placeholder="First Name" id="fnhtml">
     <input type="text" class="pinfobox" placeholder="Last Name" id="lnhtml">
     <br>
-    <button onclick="updateInfo()">Save Changes</button>
+    <button id='savebut' onclick="updateInfo()">Save Changes</button>
+    <p id='progress'></p>
   </div>
 </div>
-<button onclick="logout()" id='logOutBut'>Log Out</button>
 <div id="overlay">
   <div id='desktopTools'>
     <img onclick='logout()' src='https://cdn.prestonkwei.com/75b169a0-cbad-4ce8-9937-79a52a20dcb2.png' title='Log Out' class='toolbaricon'>
+    <p class='toolbarsub' onclick='logout()'>Log Out</p>
   </div>
 </div>
 <div id='#mOverlay'>

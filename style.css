@@ -188,7 +188,8 @@ h3 {
 body {
   font-family: 'Poppins';
   text-align: center;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  margin: 0;
 }
 .hr {
   height: 3px;
@@ -243,9 +244,11 @@ body {
   pointer-events: none;
 }
 #mobileTool {
+  padding-top: 5px;
   height: 55px; 
-  width: 100vw;
-  border: 2px solid black;
+  width: 100%;
+  border: 0px solid black;
+  border-top: 2px solid black;
   background-color: #7EC8E3;
   display: block;
   position: absolute;
@@ -296,4 +299,27 @@ body {
   #mobileTool {
     display: none !important;
   }
+}
+.toolbarsub {
+  font-size: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-top: 2px;
+}
+#progress {
+  font-size: 12px;
+  margin: 0;
+  margin-top: 5px;
+  color: #036b01;
+}
+#savebut {
+  width: 15%;
+  min-width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  font-family: 'Poppins';
+  font-size: 16px;
+  background-color: #7EC8E3;
+  cursor: pointer;
 }
