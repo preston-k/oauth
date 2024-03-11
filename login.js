@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           id: useruuid,
           pw: hashedPassword
         }) 
-        window.location.replace('/account.html?id='+useruuid) 
+        window.location.replace('/account.html?id='+useruuid+'&e='+firebaseEmail) 
       }
     } catch (error) {
       console.error('Error:', error) 
