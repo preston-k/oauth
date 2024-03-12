@@ -28,6 +28,25 @@ function urlparam() {
   }
 }
 urlparam();
+function checkURL() {
+  console.log('Checking URL')
+  const urlParams = new URLSearchParams(window.location.search);
+  let e = urlParams.get('e');
+  let id = urlParams.get('id');
+  console.log('URL CHECK INIT COMPLETE')
+  if (e == null || e == '' || id == null || id == '') {
+    document.getElementById('center').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('mobileTool').style.display = 'none';
+    console.log('URL Issue Detected')
+    let modal = new bootstrap.Modal(document.getElementById('loggedoutmod'), {
+      backdrop: 'static',
+      keyboard: false 
+    });
+    modal.show();
+  }
+}
+checkURL() 
 function onload() {
   console.log('Onload');
   const urlParams = new URLSearchParams(window.location.search);
