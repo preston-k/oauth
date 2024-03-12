@@ -28,14 +28,8 @@ function urlparam() {
   }
 }
 urlparam();
-function checkURL() {
-  console.log('Checking URL')
-  const urlParams = new URLSearchParams(window.location.search);
-  let e = urlParams.get('e');
-  let id = urlParams.get('id');
-  console.log('URL CHECK INIT COMPLETE')
-  if (e == null || e == '' || id == null || id == '') {
-    document.getElementById('center').style.display = 'none';
+function logoutmod() {
+  document.getElementById('center').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('mobileTool').style.display = 'none';
     console.log('URL Issue Detected')
@@ -44,9 +38,53 @@ function checkURL() {
       keyboard: false 
     });
     modal.show();
+}
+function checkURL() {
+  console.log('Checking URL')
+  const urlParams = new URLSearchParams(window.location.search);
+  let e = urlParams.get('e');
+  let id = urlParams.get('id');
+  console.log('URL CHECK INIT COMPLETE')
+  if (e == null || e == '' || id == null || id == '') {
+    logoutmod()
   }
 }
 checkURL() 
+function tscheck() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const timestampParam = urlParams.get('ts');
+
+  if (timestampParam) {
+    let decodedTimestamp = decodeURIComponent(timestampParam);
+    const match = decodedTimestamp.match(/(\w{3})(\w{3})(\d{2})(\d{4})(\d{2}):(\d{2}):(\d{2})UTC([+-]\d{4})/);
+
+    if (match) {
+      const year = match[4];
+      const month = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(match[2]) / 3 + 1;
+      const day = match[3];
+      const time = `${match[5]}:${match[6]}:${match[7]}`;
+      const timezone = match[8];
+      const dateString = `${year}-${month.toString().padStart(2, '0')}-${day}T${time}${timezone.slice(0, 3)}:${timezone.slice(3)}`;
+
+      const urlTimestamp = new Date(dateString);
+      const now = new Date();
+      const diffInHours = (now - urlTimestamp) / (1000 * 60 * 60);
+
+      if (Math.abs(diffInHours) > 6) {
+        logoutmod()
+      } else {
+        console.log('Timestamp OK');
+      }
+    } else {
+      console.log('Failed to parse timestamp:', timestampParam);
+    }
+  } else {
+    console.log('No timestamp provided in the URL.');
+  }
+}
+
+tscheck();
+
 function onload() {
   console.log('Onload');
   const urlParams = new URLSearchParams(window.location.search);
