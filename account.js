@@ -119,19 +119,48 @@ function updateInfo() {
       let emailParam = urlParams.get('e');
       let email = '';
       if (emailParam) {
-          email = emailParam;
-          firebase.database().ref('users/' + email + '/info/').update({
-              fn: fnbox,
-              ln: lnbox
+        if (email) {
+          firebase.database().ref('users/' + email + '/info/').once('value', snapshot => {
+            if (snapshot.exists()) {
+              firebase.database().ref('users/' + email + '/info/').update({
+                fn: fnbox,
+                ln: lnbox
+              }).then(() => {
+                document.getElementById('progress').innerHTML = ('Sucess! Your changes have been saved!')
+                setTimeout(() => {
+                  document.getElementById('progress').innerHTML = ('')
+                }, 3000);
+              }).catch((error) => {
+                console.error('Email not found in URL parameters.');
+                document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+                document.getElementById('progress').style.color = 'red';
+                setTimeout(() => {
+                  document.getElementById('progress').innerHTML = ('')
+                }, 3000)
+              });
+            } else {
+              console.error('Email not found in URL parameters.');
+                document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+                document.getElementById('progress').style.color = 'red';
+                setTimeout(() => {
+                  document.getElementById('progress').innerHTML = ('')
+                }, 3000)
+              }
           });
-          document.getElementById('progress').innerHTML = ('Sucess! Your changes have been saved!')
-          setTimeout(() => {
-            document.getElementById('progress').innerHTML = ('')
-          }, 3000);
+        } else {
+          console.error('Email not found in URL parameters.');
+                document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+                document.getElementById('progress').style.color = 'red';
+                setTimeout(() => {
+                  document.getElementById('progress').innerHTML = ('')
+                }, 3000)
+        
+        }
           
       } else {
           console.error('Email not found in URL parameters.');
           document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+          document.getElementById('progress').style.color = 'red';
           setTimeout(() => {
             document.getElementById('progress').innerHTML = ('')
           }, 3000);
