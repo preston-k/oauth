@@ -28,7 +28,7 @@ function urlparam() {
   }
 }
 urlparam();
-function logoutmod() {
+function logoutmod(reason) {
   document.getElementById('center').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('mobileTool').style.display = 'none';
@@ -38,6 +38,7 @@ function logoutmod() {
       keyboard: false 
     });
     modal.show();
+    document.getElementById('errorp').innerHTML = 'Error: ' + reason
 }
 function checkURL() {
   console.log('Checking URL')
@@ -46,7 +47,7 @@ function checkURL() {
   let id = urlParams.get('id');
   console.log('URL CHECK INIT COMPLETE')
   if (e == null || e == '' || id == null || id == '') {
-    logoutmod()
+    logoutmod('Missing Perms')
   }
 }
 checkURL() 
@@ -71,7 +72,7 @@ function tscheck() {
       const diffInHours = (now - urlTimestamp) / (1000 * 60 * 60);
 
       if (Math.abs(diffInHours) > 6) {
-        logoutmod()
+        logoutmod('Token Expired')
       } else {
         console.log('Timestamp OK');
       }

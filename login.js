@@ -60,64 +60,64 @@ document.addEventListener('keydown', function(event) {
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('loginBut').addEventListener('click', async function login() {
-    console.log('Logging In') 
-    let emailInput = document.getElementById('email') 
-    let passwordInput = document.getElementById('password') 
-    emailInput.disabled = true 
-    passwordInput.disabled = true 
+    console.log('Logging In'); 
+    let emailInput = document.getElementById('email'); 
+    let passwordInput = document.getElementById('password'); 
+    emailInput.disabled = true; 
+    passwordInput.disabled = true; 
     
-    let email = emailInput.value.toLowerCase() 
-    let pw = passwordInput.value 
-    let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_') 
+    let email = emailInput.value.toLowerCase(); 
+    let pw = passwordInput.value; 
+    let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_'); 
     
     try {
-      const hashedInputPassword = await hashPassword(pw) 
+      const hashedInputPassword = await hashPassword(pw); 
       
-      const snapshot = await database.ref('users/' + firebaseEmail).once('value') 
+      const snapshot = await database.ref('users/' + firebaseEmail).once('value'); 
       if (snapshot.exists()) {
-        let userData = snapshot.val() 
+        let userData = snapshot.val(); 
         if (userData.pw === hashedInputPassword) {
-          let uid = userData.id 
-          const urlParams = new URLSearchParams(window.location.search) 
-          let target = urlParams.get('redir') 
+          let uid = userData.id; 
+          const urlParams = new URLSearchParams(window.location.search); 
+          let target = urlParams.get('redir'); 
+          let d = new Date();
+          let time = d.getTime();
+          createCookie('loggedin=true', uid, 0.1666666);
           if (target != null) {
-            finalRedir = target 
-            let time = d.getTime()
-            createCookie('loggedin=true', uid, 0.1666666)
-            window.location.replace(finalRedir + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + d) 
+            window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time); 
           } else {
-            createCookie('loggedin=true', uid, 0.1666666)
-            window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + d) 
+            window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time); 
           }
-        } else { // Wrong Password
+        } else {
           const userRef = database.ref('users/' + firebaseEmail);
           let fa = 0;
           await userRef.once('value', (snapshot) => {
-              const userData = snapshot.val();
-              if (userData && userData.failedAttempts != null) {
-                fa = userData.failedAttempts + 1;
-              } else {
-                fa = 1; // set to 1 if fa is noexisitent in databse
-              }
+            const userData = snapshot.val();
+            if (userData && userData.failedAttempts != null) {
+              fa = userData.failedAttempts + 1;
+            } else {
+              fa = 1;
+            }
           });
           await userRef.update({ failedAttempts: fa });
-          alert('Incorrect Email or Password') 
-          window.location.replace('/login.html')
+          alert('Incorrect Email or Password'); 
+          window.location.replace('/login.html');
         }
       } else {
-        alert('Incorrect Email or Password') 
-        window.location.replace('/login.html')
+        alert('Incorrect Email or Password'); 
+        window.location.replace('/login.html');
       }
     } catch (error) {
-      console.error('Error during login:', error) 
-      alert('An error occurred, please try again.') 
-      window.reload()
+      console.error('Error during login:', error); 
+      alert('An error occurred, please try again.'); 
+      window.location.reload();
     } finally {
-      emailInput.disabled = false 
-      passwordInput.disabled = false 
+      emailInput.disabled = false; 
+      passwordInput.disabled = false; 
     }
-  }) 
-}) 
+  }); 
+});
+
 
 let useruuid = self.crypto.randomUUID() 
 document.addEventListener('DOMContentLoaded', (event) => {
