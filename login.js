@@ -138,6 +138,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
           id: useruuid,
           pw: hashedPassword
         }) 
+        await database.ref('users/' + firebaseEmail + '/info').update({ 
+          fn: '',
+          ln: ''
+        }) 
         window.location.replace('/account.html?id='+useruuid+'&e='+firebaseEmail+'&ts=') 
       }
     } catch (error) {
