@@ -238,6 +238,14 @@ body {
   height: 100%;
   /* pointer-events: none; */
 }
+#securityOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  /* pointer-events: none; */
+}
 #mOverlay {
   display: block;
   position: absolute;
@@ -246,7 +254,8 @@ body {
 }
 #mobileTool {
   padding-top: 5px;
-  height: 55px; 
+  padding-bottom: 5px;
+  height: 60px; 
   width: 100%;
   border: 0px solid black;
   border-top: 2px solid black;
@@ -270,6 +279,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 @media (max-width: 1000px) {
   #mo {
@@ -325,7 +335,7 @@ body {
   cursor: pointer;
 }
 
-/* #resetemail, #questionOpt {
+#emailreset, #questionOpt {
   width: 50%;
   height: 50px;
   text-align: center;
@@ -344,11 +354,12 @@ body {
   font-weight: bolder;
   text-decoration: underline;
 }
-#email {
+#emailink {
   font-size: 12px;
   margin: 0;
   color: #0000EE;
   text-decoration: underline;
+  display: inline;
 }
 #passwordresetinfo {
   margin-top: 5px;
@@ -359,4 +370,31 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-} */
+  width: 100%;
+}
+#resetDiv {
+  display: none;
+}
+#answer {
+  height: 50px;
+  width: 20%;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 15px;
+  min-width: 200px;
+  display: none;
+  margin-left: auto;
+  margin-left: auto;
+}
+#resetSubmit {
+  width: 20%;
+  min-width: 155px;
+  height: 45px;
+  border: 2px solid black;
+  background-color: #7EC8E3;
+  border-radius: 15px;
+}
+
+input:focus {
+  outline: none;
+}

@@ -40,5 +40,3 @@ function urlparam() {
 }
 urlparam()
 console.log(finalRedir)
-
-
