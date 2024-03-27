@@ -324,3 +324,39 @@ body {
   background-color: #7EC8E3;
   cursor: pointer;
 }
+
+/* #resetemail, #questionOpt {
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  font-family: 'Poppins';
+  border-radius: 15px;
+  border: 2px solid black;
+  min-width: 300px;
+}
+.pNobMargin {
+  margin-bottom: 0px;
+}
+#qPlaceholder {
+  color: #757575;
+}
+.bold {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+#email {
+  font-size: 12px;
+  margin: 0;
+  color: #0000EE;
+  text-decoration: underline;
+}
+#passwordresetinfo {
+  margin-top: 5px;
+  font-size: 12px;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
