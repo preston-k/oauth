@@ -20,6 +20,10 @@ let questiontext = document.querySelector('#squestion')
 let question = document.querySelector('#questionOpt')
 console.log(question.value)
 question.addEventListener('input', () => {
+  while (answerSelect.children.length > 1) {
+    answerSelect.removeChild(answerSelect.lastChild);
+  }
+
   if (question.value == 'vacation') {
     vacationQ.forEach(function(option) {
       let newOption = document.createElement('option');
@@ -30,7 +34,6 @@ question.addEventListener('input', () => {
     answerSelect.style.display = 'block';
     answerSelect.style.marginLeft = 'auto';
     answerSelect.style.marginRight = 'auto';
-    // questiontext.innerHTML = ('What is favorite type of vacation?')
   } else if (question.value == 'fruit') {
     fruitQ.forEach(function(option) {
       let newOption = document.createElement('option');
@@ -38,7 +41,6 @@ question.addEventListener('input', () => {
       newOption.innerHTML = option;
       answerSelect.appendChild(newOption);
     });
-    // questiontext.innerHTML = ('What was your favorite fruit as a child?')
     answerSelect.style.display = 'block';
     answerSelect.style.marginLeft = 'auto';
     answerSelect.style.marginRight = 'auto';
@@ -49,9 +51,12 @@ question.addEventListener('input', () => {
       newOption.innerHTML = option;
       answerSelect.appendChild(newOption);
     });
-    // questiontext.innerHTML = ('What was your least favorite vegetable as a child?')
     answerSelect.style.display = 'block';
     answerSelect.style.marginLeft = 'auto';
     answerSelect.style.marginRight = 'auto';
   }
 })
+
+function resetCheck() {
+  console.log('Reset Password Check')
+}
