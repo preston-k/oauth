@@ -42,7 +42,7 @@ h1 {
   width: 20%;
   height: 35px;
   border-radius: 10px;
-  min-width: 75px;
+  min-width: 150px;
 }
 
 .formbut:hover {
@@ -400,4 +400,30 @@ body {
 
 input:focus {
   outline: none;
+}
+.resetHead {
+  font-size: 32px;
+  line-height: normal;
+  font-weight: 700;
+  margin-top: 21px;
+}
+#newPW{ 
+  display: none;
+}
+#fullPw {
+  color: red;
+  font-size: 12px;
+  font-weight: 1000;
+  display: none;
+}
+
+#nomatch {
+  color: red;
+  font-size: 12px;
+  font-weight: 1000;
+  margin-bottom: 5px;
+  /* display: none; */
+}
+#reset-known {
+  display: none;
 }

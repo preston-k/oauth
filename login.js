@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }); 
 });
 
+let captchaStatus = false
 
 let useruuid = self.crypto.randomUUID() 
 document.addEventListener('DOMContentLoaded', (event) => {
