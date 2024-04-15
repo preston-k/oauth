@@ -154,3 +154,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }) 
 }) 
+
+
+
+function resetKnown() {
+  event.preventDefault()
+  console.log('Reset-Known')
+}

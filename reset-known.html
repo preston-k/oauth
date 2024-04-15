@@ -15,7 +15,7 @@
 <body>
   <h1 class='resetHead'>Reset Your Password</h1>
   <h6>Complete the form in full to reset your password. The form will automatically advance once all fields are complete.</h3>
-  <form>
+  <form onsubmit='resetKnown()'>
     <input type='email' placeholder='Email' class='loginbox' autocomplete='off' id='resetEmail'></input>
     <input type='password' placeholder='Current Password' autocomplete='off' id='curPW' class='loginbox'></input>
     <p id='fullPw'>Please enter a valid email in the format, you@yourdomain.com.</p>
@@ -25,6 +25,7 @@
     </span>
     <button type='submit' class='formbut' id='reset-known'>Reset Password</button>
   </form>
+  <a href='/login.html' class='link'><span class='non-link'>Nevermind, I remembered my password.</span> <span class='hlink'>Sign In!</span></a>
   <script src="classic.js"></script>
   <script src="script.js"></script>
 </body>

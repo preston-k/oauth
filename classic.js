@@ -57,10 +57,11 @@ let path = url.pathname;
 console.log(url)
 console.log(hostname)
 console.log(path)
-if (hostname == 'oauth.prestonkwei.com') {
+if (hostname.includes('oauth.prestonkwei.com')) {
   if (path.includes('.html')) {
     let newPath = path.replace('.html', '');
     window.location.replace('https://' + hostname + newPath);
     console.log(newPath)
   }
 }
+

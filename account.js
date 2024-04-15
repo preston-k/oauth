@@ -54,7 +54,7 @@ checkURL()
 function tscheck() {
   const urlParams = new URLSearchParams(window.location.search);
   const timestampParam = urlParams.get('ts');
-
+  
   if (timestampParam) {
     let decodedTimestamp = decodeURIComponent(timestampParam);
     const match = decodedTimestamp.match(/(\w{3})(\w{3})(\d{2})(\d{4})(\d{2}):(\d{2}):(\d{2})UTC([+-]\d{4})/);
