@@ -210,9 +210,11 @@ body {
 }
 #lqrcode {
   width: 20vw;
+  min-width: 200px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border: 3px solid black;
 }
 #formdiv {
   border: 0px solid black;
@@ -426,4 +428,9 @@ input:focus {
 }
 #reset-known {
   display: none;
+}
+
+#left {
+  text-align: left;
+  margin-left: 10px;
 }

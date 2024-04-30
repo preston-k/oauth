@@ -163,3 +163,7 @@ function logout() {
   document.cookie = "loggedin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.replace('/')
 }
+
+document.querySelector('#policylink').addEventListener('click', () => {
+  location.replace('https://legal.prestonkwei.com/policies/pick')
+})

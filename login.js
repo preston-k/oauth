@@ -13,30 +13,30 @@ let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
 
 function createCookie(name, value, days) {
-  let expires = '';
+  let expires = ''
   if (days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = '; expires=' + date.toUTCString();
+      const date = new Date()
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
+      expires = '; expires=' + date.toUTCString()
   }
-  document.cookie = name + '=' + value + expires + '; path=/';
+  document.cookie = name + '=' + value + expires + '; path=/'
   console.log('Cookie Created: '+name+value+expires)
 }
 let cd = null
 function readCookie(cookieName) {
-  const nameEQ = cookieName + '=';
-  const cookiesArray = document.cookie.split(';');
+  const nameEQ = cookieName + '='
+  const cookiesArray = document.cookie.split(';')
   let cd = null;
   for (let i = 0; i < cookiesArray.length; i++) {
       let cookie = cookiesArray[i];
       while (cookie.charAt(0) === ' ') {
-          cookie = cookie.substring(1, cookie.length);
+          cookie = cookie.substring(1, cookie.length)
       }
       if (cookie.indexOf(nameEQ) === 0) {
           cd = cookie.substring(nameEQ.length, cookie.length);
           break;
       }
-  }
+  }``
   return cd;
 }
 
@@ -62,61 +62,61 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('loginBut').addEventListener('click', async function login() {
     console.log('Logging In'); 
     let emailInput = document.getElementById('email'); 
-    let passwordInput = document.getElementById('password'); 
-    emailInput.disabled = true; 
-    passwordInput.disabled = true; 
+    let passwordInput = document.getElementById('password')
+    emailInput.disabled = true
+    passwordInput.disabled = true
     
-    let email = emailInput.value.toLowerCase(); 
-    let pw = passwordInput.value; 
-    let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_'); 
+    let email = emailInput.value.toLowerCase()
+    let pw = passwordInput.value 
+    let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_')
     
     try {
       const hashedInputPassword = await hashPassword(pw); 
       
-      const snapshot = await database.ref('users/' + firebaseEmail).once('value'); 
+      const snapshot = await database.ref('users/' + firebaseEmail).once('value') 
       if (snapshot.exists()) {
-        let userData = snapshot.val(); 
+        let userData = snapshot.val() 
         if (userData.pw === hashedInputPassword) {
-          let uid = userData.id; 
-          const urlParams = new URLSearchParams(window.location.search); 
-          let target = urlParams.get('redir'); 
-          let d = new Date();
-          let time = d.getTime();
-          createCookie('loggedin=true', uid, 0.1666666);
+          let uid = userData.id 
+          const urlParams = new URLSearchParams(window.location.search)
+          let target = urlParams.get('redir')
+          let d = new Date()
+          let time = d.getTime()
+          createCookie('loggedin=true', uid, 0.1666666)
           if (target != null) {
-            window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time); 
+            window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           } else {
-            window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time); 
+            window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           }
         } else {
-          const userRef = database.ref('users/' + firebaseEmail);
-          let fa = 0;
+          const userRef = database.ref('users/' + firebaseEmail)
+          let fa = 0
           await userRef.once('value', (snapshot) => {
-            const userData = snapshot.val();
+            const userData = snapshot.val()
             if (userData && userData.failedAttempts != null) {
-              fa = userData.failedAttempts + 1;
+              fa = userData.failedAttempts + 1
             } else {
-              fa = 1;
+              fa = 1
             }
           });
-          await userRef.update({ failedAttempts: fa });
-          alert('Incorrect Email or Password'); 
-          window.location.replace('/login.html');
+          await userRef.update({ failedAttempts: fa })
+          alert('Incorrect Email or Password')
+          window.location.replace('/login.html')
         }
       } else {
-        alert('Incorrect Email or Password'); 
-        window.location.replace('/login.html');
+        alert('Incorrect Email or Password')
+        window.location.replace('/login.html')
       }
     } catch (error) {
-      console.error('Error during login:', error); 
-      alert('An error occurred, please try again.'); 
-      window.location.reload();
+      console.error('Error during login:', error)
+      alert('An error occurred, please try again.')
+      window.location.reload()
     } finally {
-      emailInput.disabled = false; 
-      passwordInput.disabled = false; 
+      emailInput.disabled = false
+      passwordInput.disabled = false
     }
-  }); 
-});
+  })
+})
 
 let captchaStatus = false
 

@@ -64,4 +64,3 @@ if (hostname.includes('oauth.prestonkwei.com')) {
     console.log(newPath)
   }
 }
-

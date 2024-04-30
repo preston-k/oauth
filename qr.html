@@ -5,9 +5,9 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <h2>SSO Login with QR Code</h2>
-  <p>Visit <u>oauth.prestonkwei.com/scan.html</u> and scan this QR code. This QR code CANNOT be scanned with your camera app.</p>
-  <div id="qrcode"></div>
+  <h2>Login with a QR Code</h2>
+  <p>Scan this QR code using your device's camera app to log in using your device.</p>
+  <div id="qrcode">QR Code Loading...</div>
   
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
@@ -29,14 +29,14 @@
 // FIREBASE INIT
   let d = new Date().toString()
   let sessid = self.crypto.randomUUID()
-  let qrValue = '?s=' + sessid + '?d=' + d
-  let qrSize = '200x200'
-  let qrUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrValue)}&chs=${qrSize}`;
+  let qrValue = 'https://oauth.prestonkwei.com/redirlog.html?s=' + sessid + '?d=' + d
   await database.ref('sso/' + sessid).update({ 
-          id: sessid,
-          ts: d
-        }) 
-  document.getElementById('qrcode').innerHTML = `<img id='lqrcode' src="${qrUrl}" alt="QR Code"/>`
+    id: sessid,
+    ts: d
+  }) 
+  
+  let imageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=${encodeURIComponent(qrValue)}`
+  document.getElementById('qrcode').innerHTML = `<img id='lqrcode' src="${imageUrl}" alt="Login QR Code"/>`
 
   function readCookie(cookieName) {
   const nameEQ = cookieName + '=';
@@ -54,6 +54,11 @@
   }
   return cd;
   
+}
+
+let img = document.getElementById('lqrcode')
+img.onload = function() {
+  img.style.border = '0px solid black'
 }
 
   </script>
