@@ -1,3 +1,6 @@
+// TO DO LIST:
+// Integrate Amazon S3 to store profile photos.
+
 const firebaseConfig = {
   apiKey: 'AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8',
   authDomain: 'oauth-page-ad3c2.firebaseapp.com',
@@ -7,24 +10,24 @@ const firebaseConfig = {
   messagingSenderId: '401481049573',
   appId: '1:401481049573:web:f1f9ca852e96d580cf3b0c'
 }; 
-firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
+firebase.initializeApp(firebaseConfig)
+let database = firebase.database()
 
 function urlparam() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let userId = urlParams.get('id');
+  const urlParams = new URLSearchParams(window.location.search)
+  let userId = urlParams.get('id')
   if (userId != null) {
-    console.log('UserID: ' + userId);
+    console.log('UserID: ' + userId)
   } else {
     console.log('USERID BLANK');
     document.getElementById('center').style.display = 'none';
     document.getElementById('desktopTools').style.display = 'none';
     document.getElementById('mobileTool').style.display = 'none';
-    document.getElementById('logOutBut').style.display = 'none';
+    // document.getElementById('logOutBut').style.display = 'none';
     document.getElementById('center').style.height = '0';
     document.getElementById('center').style.width = '0';
     document.getElementById('noperms').style.display = 'block';
-    document.getElementById('error').innerHTML = 'Error: Missing Perms';
+    // document.getElementById('error').innerHTML = 'Error: Missing Perms';
   }
 }
 urlparam();
@@ -95,16 +98,16 @@ function onload() {
       firebase.database().ref('users/' + email + '/info').once('value').then(function(snapshot) {
           let userInfo = snapshot.val();
           if (userInfo) {
-              document.getElementById('fnhtml').value = userInfo.fn;
-              document.getElementById('lnhtml').value = userInfo.ln;
+              document.getElementById('fnhtml').value = userInfo.fn
+              document.getElementById('lnhtml').value = userInfo.ln
           } else {
-              console.error('User info not found in database for email: ' + email);
+              console.error('User info not found in database for email: ' + email)
           }
       }).catch(function(error) {
-          console.error('Error fetching user info from database:', error);
+          console.error('Error fetching user info from database:', error)
       });
   } else {
-      console.error('Email not found in URL parameters.');
+      console.error('Email not found in URL parameters.')
   }
 }
 
