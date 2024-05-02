@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             data.set('subject','A New Login Has Been Detected')
             data.set('html','')
             data.set('content', 'Hi! A new login has been detected in your account. If this was you, please disrequard this email. If this was not you, please change your password immediately. For any questions, please email infosec@prestonkwei.com. Thank you!')
-            fetch("https://astro-emails.vercel.app/email", {
+            fetch("https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/email", {
               method: "POST",
               body:data
             })
