@@ -86,6 +86,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
           if (target != null) {
             window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           } else {
+            const urlParams = new URLSearchParams(window.location.search)
+            const data = new FormData()
+            data.set("sendto",email)
+            data.set("subject","A New Login Has Been Detected")
+            data.set("content","A new login has been detected.")
+            fetch("https://astro-emails.vercel.app/email", {
+              method: "POST",
+              body:data
+            })
             window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           }
         } else {

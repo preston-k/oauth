@@ -12,7 +12,10 @@ const firebaseConfig = {
 }; 
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
+// Initialize User Information
 
+let useremail = ''
+let userid = ''
 function urlparam() {
   const urlParams = new URLSearchParams(window.location.search)
   let userId = urlParams.get('id')

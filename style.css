@@ -437,3 +437,18 @@ input:focus {
 #ad {
   margin-top: 10px;
 }
+.fullpinfobox {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(40% + 20px);
+  min-width: 250px;
+  height: 50px;
+  margin-top: 10px;
+  border: 0;
+  border-bottom: 3px solid blue;
+  font-family: 'Poppins';
+  font-size: 24px;
+  text-align: center;
+  border-radius: 0px;
+}
