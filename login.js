@@ -26,7 +26,7 @@ let cd = null
 function readCookie(cookieName) {
   const nameEQ = cookieName + '='
   const cookiesArray = document.cookie.split(';')
-  let cd = null;
+  let cd = null
   for (let i = 0; i < cookiesArray.length; i++) {
       let cookie = cookiesArray[i];
       while (cookie.charAt(0) === ' ') {
@@ -37,7 +37,7 @@ function readCookie(cookieName) {
           break;
       }
   }``
-  return cd;
+  return cd
 }
 
 let hashPass = '' 
@@ -88,9 +88,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
           } else {
             const urlParams = new URLSearchParams(window.location.search)
             const data = new FormData()
-            data.set("sendto",email)
-            data.set("subject","A New Login Has Been Detected")
-            data.set("content","A new login has been detected.")
+            data.set('sendto',email)
+            data.set('subject','A New Login Has Been Detected')
+            data.set('html','')
+            data.set('content', 'Hi! A new login has been detected in your account. If this was you, please disrequard this email. If this was not you, please change your password immediately. For any questions, please email infosec@prestonkwei.com. Thank you!')
             fetch("https://astro-emails.vercel.app/email", {
               method: "POST",
               body:data
