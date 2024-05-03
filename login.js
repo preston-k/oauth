@@ -50,18 +50,44 @@ async function hashPassword(password) {
 }
 
 let d = new Date().toString().replace(/ /g, "").replace(/GMT/g, "UTC")
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    login()
+let ipAuthToken = ''
+let emailAuthToken = ''
+let tsAuthToken = ''
+let statusAuthToken = true
+let uuidAuthToken = self.crypto.randomUUID() 
+async function authToken(email) {
+  console.log('Creating Auth Token')
+  let tsAuthToken = Math.floor(Date.now() / 1000);
+  emailAuthToken = email
+  let expiration = new Date(Date.now() + 6 * 60 * 60 * 1000)
+  try {
+    const response = await fetch('https://api.ipify.org?format=json')
+    const data = await response.json()
+    ipAuthToken = data.ip
+    console.log(ipAuthToken)
+    await database.ref('auth-tokens/' + uuidAuthToken).update({ 
+      id: uuidAuthToken,
+      status: statusAuthToken,
+      ts: tsAuthToken,
+      email: emailAuthToken,
+      ip: ipAuthToken
+    }) 
+    // SUCCESS!
+    // ENDING -- NOTHING ELSE SHOULD HAPPEN PAST THIS POINT:
+    document.cookie = 'auth-token=id='+uuidAuthToken+'&ip='+ipAuthToken+'&ts='+tsAuthToken+'&status='+statusAuthToken+'&e='+emailAuthToken+'; expires=' + expiration.toUTCString()
+    console.log('Auth Token Created!')
+  } catch (error) {
+    ipAuthToken = 'ERROR'
   }
-});
+}
+
 
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('loginform').addEventListener('submit', async function login(event) {
     event.preventDefault()
-    console.log('Logging In'); 
+    console.log('Logging In')
+    document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
     let emailInput = document.getElementById('email'); 
     let passwordInput = document.getElementById('password')
     emailInput.disabled = true
@@ -97,6 +123,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
               method: "POST",
               body:data
             })
+            await authToken(email)
             window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           }
         } else {
@@ -136,6 +163,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('signupform').addEventListener('submit', async function (event) {
     event.preventDefault()
     console.log('Signing Up') 
+    document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
     document.getElementById('signupemail').disabled = true 
     document.getElementById('signuppw').disabled = true 
     let email = document.getElementById('signupemail').value 
@@ -155,6 +183,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           fn: '',
           ln: ''
         }) 
+        await authToken(email)
         window.location.replace('/account.html?id='+useruuid+'&e='+firebaseEmail+'&ts=') 
       }
     } catch (error) {

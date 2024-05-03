@@ -14,6 +14,63 @@ firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
 
+function getCookie(name) {
+  let cookieArr = document.cookie.split(';')
+  for (let i = 0; i < cookieArr.length; i++) {
+    let cookiePair = cookieArr[i].split('=')
+    if (name === cookiePair[0].trim()) {
+      return cookiePair.slice(1).join('=')
+    }
+  }
+  console.log('Cookie not found')
+}
+let ipCookie = ''
+let idCookie = ''
+let tsCookie = ''
+let statusCookie = ''
+let eCookie = ''
+const urlParams = new URLSearchParams(window.location.search)
+async function checkAuthStat() {
+  let cookieData = getCookie('auth-token')
+  let cookieUrl = new URL('https://oauth.prestonkwei.com/account')
+  cookieUrl.search = cookieData
+  let ipCookie = cookieUrl.searchParams.get('ip')
+  let idCookie = cookieUrl.searchParams.get('id')
+  let eCookie = cookieUrl.searchParams.get('e')
+  let statusCookie = cookieUrl.searchParams.get('e')
+  let tsCookie = cookieUrl.searchParams.get('ts')
+  console.log(ipCookie, idCookie, tsCookie, statusCookie, eCookie)
+  firebase.database().ref(`auth-tokens/${idCookie}`).once('value')
+  .then(snapshot => {
+    const data = snapshot.val();
+    if (data) {
+      const { id, ts, email, status, ip } = data;
+      if (ip == ipCookie) {
+        if (ts == tsCookie) {
+          if (email == eCookie) {
+            if (id == idCookie) {
+              console.log('All Ok!')
+            }
+          }
+        }
+      }
+    } else {
+      // alert('Sorry, you have been logged out!') // Logged Out!
+      document.getElementById('center').style.display = 'none';
+      document.getElementById('desktopTools').style.display = 'none';
+      document.getElementById('mobileTool').style.display = 'none';
+      // document.getElementById('logOutBut').style.display = 'none';
+      document.getElementById('center').style.height = '0';
+      document.getElementById('center').style.width = '0';
+      document.getElementById('noperms').style.display = 'block';
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+}
+checkAuthStat()
 let useremail = ''
 let userid = ''
 function urlparam() {
@@ -167,6 +224,7 @@ function updateInfo() {
 
 function logout() {
   document.cookie = "loggedin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
   window.location.replace('/')
 }
 
