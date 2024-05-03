@@ -59,7 +59,8 @@ document.addEventListener('keydown', function(event) {
 
 let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
-  document.getElementById('loginBut').addEventListener('click', async function login() {
+  document.getElementById('loginform').addEventListener('submit', async function login(event) {
+    event.preventDefault()
     console.log('Logging In'); 
     let emailInput = document.getElementById('email'); 
     let passwordInput = document.getElementById('password')
@@ -132,7 +133,8 @@ let captchaStatus = false
 
 let useruuid = self.crypto.randomUUID() 
 document.addEventListener('DOMContentLoaded', (event) => {
-  document.getElementById('signupBut').addEventListener('click', async function () {
+  document.getElementById('signupform').addEventListener('submit', async function (event) {
+    event.preventDefault()
     console.log('Signing Up') 
     document.getElementById('signupemail').disabled = true 
     document.getElementById('signuppw').disabled = true 
