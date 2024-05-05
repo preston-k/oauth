@@ -115,7 +115,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
           } else {
             const urlParams = new URLSearchParams(window.location.search)
             await authToken(email)
-            window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
+            function prompt2FA() {
+              return Math.random() < 0.1
+            }
+            
+            if (prompt2FA()) {
+              window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
+            } else {
+              window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
+            }
+              
           }
         } else {
           const userRef = database.ref('users/' + firebaseEmail)
