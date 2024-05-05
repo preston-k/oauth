@@ -114,15 +114,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           } else {
             const urlParams = new URLSearchParams(window.location.search)
-            const data = new FormData()
-            data.set('sendto',email)
-            data.set('subject','A New Login Has Been Detected')
-            data.set('html','')
-            data.set('content', 'Hi! A new login has been detected in your account. If this was you, please disrequard this email. If this was not you, please change your password immediately. For any questions, please email infosec@prestonkwei.com. Thank you!')
-            fetch("https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/email", {
-              method: "POST",
-              body:data
-            })
             await authToken(email)
             window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
           }
