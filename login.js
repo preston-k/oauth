@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const urlParams = new URLSearchParams(window.location.search)
             await authToken(email)
             function prompt2FA() {
-              return Math.random() < 0.1
+              return Math.random() < 0.3
             }
             
             if (prompt2FA()) {
