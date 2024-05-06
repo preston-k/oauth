@@ -143,11 +143,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
           });
           await userRef.update({ failedAttempts: fa })
           alert('Incorrect Email or Password')
-          window.location.replace('/login.html')
+          window.location.replace('/login?f2fa=true')
         }
       } else {
         alert('Incorrect Email or Password')
-        window.location.replace('/login.html')
+        window.location.replace('/login')
       }
     } catch (error) {
       console.error('Error during login:', error)
