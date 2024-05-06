@@ -58,7 +58,7 @@ async function checkAuthStat() {
           if (email == eCookie) {
             if (id == idCookie) {
               if (urlParams.get('e') != eCookie) {
-                denyaccess()
+                // denyaccess()
               }
             }
           }
