@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             await authToken(email)
             let force2fa = urlParams.get('f2fa')
             console.log('Force 2FA: '+force2fa)
-            if (force2fa == true) {
+            if (force2fa == 'true') {
               window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
             } else {
               function prompt2FA() {
