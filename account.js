@@ -13,7 +13,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
-
+function denyaccess() {
+  document.getElementById('center').style.display = 'none'
+  document.getElementById('desktopTools').style.display = 'none'
+  document.getElementById('mobileTool').style.display = 'none'
+  // document.getElementById('logOutBut').style.display = 'none'
+  document.getElementById('center').style.height = '0'
+  document.getElementById('center').style.width = '0'
+  document.getElementById('noperms').style.display = 'block'
+}
 function getCookie(name) {
   let cookieArr = document.cookie.split(';')
   for (let i = 0; i < cookieArr.length; i++) {
@@ -49,20 +57,15 @@ async function checkAuthStat() {
         if (ts == tsCookie) {
           if (email == eCookie) {
             if (id == idCookie) {
-              console.log('All Ok!')
+              if (urlParams.get('e') != eCookie) {
+                denyaccess()
+              }
             }
           }
         }
       }
     } else {
-      // alert('Sorry, you have been logged out!') // Logged Out!
-      document.getElementById('center').style.display = 'none';
-      document.getElementById('desktopTools').style.display = 'none';
-      document.getElementById('mobileTool').style.display = 'none';
-      // document.getElementById('logOutBut').style.display = 'none';
-      document.getElementById('center').style.height = '0';
-      document.getElementById('center').style.width = '0';
-      document.getElementById('noperms').style.display = 'block';
+      denyaccess()
     }
   })
   .catch(error => {
@@ -80,14 +83,7 @@ function urlparam() {
     console.log('UserID: ' + userId)
   } else {
     console.log('USERID BLANK');
-    document.getElementById('center').style.display = 'none';
-    document.getElementById('desktopTools').style.display = 'none';
-    document.getElementById('mobileTool').style.display = 'none';
-    // document.getElementById('logOutBut').style.display = 'none';
-    document.getElementById('center').style.height = '0';
-    document.getElementById('center').style.width = '0';
-    document.getElementById('noperms').style.display = 'block';
-    // document.getElementById('error').innerHTML = 'Error: Missing Perms';
+    denyaccess()
   }
 }
 urlparam();
