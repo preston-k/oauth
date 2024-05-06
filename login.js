@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
               window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
             } else {
               function prompt2FA() {
-                return Math.random() < 0.3
+                return Math.random() < 0.15
               }
               if (prompt2FA()) {
                 window.location.replace('https://3400659c-5937-4c08-b29b-33fb25dac89a.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
