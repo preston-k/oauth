@@ -227,3 +227,10 @@ function logout() {
 document.querySelector('#policylink').addEventListener('click', () => {
   location.replace('https://legal.prestonkwei.com/policies/pick')
 })
+
+// document.querySelector('#pfpform').files[0]
+document.querySelector('#pfpform').addEventListener('change', () => {
+  console.log('PFP UPLOADED')
+
+  
+})

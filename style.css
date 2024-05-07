@@ -74,8 +74,7 @@ h1 {
   text-align: center;
 }
 #iconpng {
-  width: 7%;
-  min-width: 100px;
+  width: 150px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -451,4 +450,24 @@ input:focus {
   font-size: 24px;
   text-align: center;
   border-radius: 0px;
+}
+
+#pfpup {
+  width: 150px;
+  height: 150px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  display: block;
+  color: red;
+  top: 0;
+  margin-top: 30px;
+  right: calc(50% - 75px);
+  color: transparent;
+  opacity: 0;
+  border-radius: 5%;
+  border: 2px solid black;
+}
+
+#pfpform {
+  height: 10px;
 }
