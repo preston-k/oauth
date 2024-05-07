@@ -57,7 +57,7 @@ let statusAuthToken = true
 let uuidAuthToken = self.crypto.randomUUID() 
 async function authToken(email) {
   console.log('Creating Auth Token')
-  let tsAuthToken = Math.floor(Date.now() / 1000);
+  let tsAuthToken = Math.floor(Date.now() / 1000)
   emailAuthToken = email
   let expiration = new Date(Date.now() + 6 * 60 * 60 * 1000)
   try {
@@ -199,10 +199,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }) 
 }) 
-
-
-
 function resetKnown() {
-  event.preventDefault()
+  preventDefault()
   console.log('Reset-Known')
 }

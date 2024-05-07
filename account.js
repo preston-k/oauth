@@ -50,9 +50,9 @@ async function checkAuthStat() {
   console.log(ipCookie, idCookie, tsCookie, statusCookie, eCookie)
   firebase.database().ref(`auth-tokens/${idCookie}`).once('value')
   .then(snapshot => {
-    const data = snapshot.val();
+    const data = snapshot.val()
     if (data) {
-      const { id, ts, email, status, ip } = data;
+      const { id, ts, email, status, ip } = data
       if (ip == ipCookie) {
         if (ts == tsCookie) {
           if (email == eCookie) {
@@ -101,9 +101,9 @@ function logoutmod(reason) {
 }
 function checkURL() {
   console.log('Checking URL')
-  const urlParams = new URLSearchParams(window.location.search);
-  let e = urlParams.get('e');
-  let id = urlParams.get('id');
+  const urlParams = new URLSearchParams(window.location.search)
+  let e = urlParams.get('e')
+  let id = urlParams.get('id')
   console.log('URL CHECK INIT COMPLETE')
   if (e == null || e == '' || id == null || id == '') {
     logoutmod('Missing Perms')
@@ -115,31 +115,32 @@ function tscheck() {
   const timestampParam = urlParams.get('ts');
   
   if (timestampParam) {
-    let decodedTimestamp = decodeURIComponent(timestampParam);
-    const match = decodedTimestamp.match(/(\w{3})(\w{3})(\d{2})(\d{4})(\d{2}):(\d{2}):(\d{2})UTC([+-]\d{4})/);
+    let decodedTimestamp = decodeURIComponent(timestampParam)
+    const match = decodedTimestamp.match(/(\w{3})(\w{3})(\d{2})(\d{4})(\d{2}):(\d{2}):(\d{2})UTC([+-]\d{4})/)
 
     if (match) {
-      const year = match[4];
-      const month = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(match[2]) / 3 + 1;
-      const day = match[3];
-      const time = `${match[5]}:${match[6]}:${match[7]}`;
-      const timezone = match[8];
-      const dateString = `${year}-${month.toString().padStart(2, '0')}-${day}T${time}${timezone.slice(0, 3)}:${timezone.slice(3)}`;
+      const year = match[4]
+      const month = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(match[2]) / 3 + 1
+      const day = match[3]
+      const time = `${match[5]}:${match[6]}:${match[7]}`
+      const timezone = match[8]
+      const dateString = `${year}-${month.toString().padStart(2, '0')}-${day}T${time}${timezone.slice(0, 3)}:${timezone.slice(3)}`
 
-      const urlTimestamp = new Date(dateString);
-      const now = new Date();
-      const diffInHours = (now - urlTimestamp) / (1000 * 60 * 60);
+      const urlTimestamp = new Date(dateString)
+      const now = new Date()
+      const diffInHours = (now - urlTimestamp) / (1000 * 60 * 60)
 
       if (Math.abs(diffInHours) > 6) {
         logoutmod('Token Expired')
       } else {
-        console.log('Timestamp OK');
+        console.log('Timestamp OK')
       }
     } else {
-      console.log('Failed to parse timestamp:', timestampParam);
+      console.log('Failed to parse timestamp:', timestampParam)
     }
   } else {
-    console.log('No timestamp provided in the URL.');
+    console.log('No timestamp provided in the URL.')
+    denyaccess()
   }
 }
 
@@ -147,12 +148,12 @@ tscheck();
 
 function onload() {
   console.log('Onload');
-  const urlParams = new URLSearchParams(window.location.search);
-  let emailParam = urlParams.get('e');
+  const urlParams = new URLSearchParams(window.location.search)
+  let emailParam = urlParams.get('e')
   if (emailParam) {
-      let email = emailParam;
+      let email = emailParam
       firebase.database().ref('users/' + email + '/info').once('value').then(function(snapshot) {
-          let userInfo = snapshot.val();
+          let userInfo = snapshot.val()
           if (userInfo) {
               document.getElementById('fnhtml').value = userInfo.fn
               document.getElementById('lnhtml').value = userInfo.ln
@@ -170,23 +171,23 @@ function onload() {
 onload()
 function updateInfo() {
   console.log('Update Info');
-  let fnbox = document.getElementById('fnhtml').value;
-  let lnbox = document.getElementById('lnhtml').value;
-  const urlParams = new URLSearchParams(window.location.search);
-  let emailParam = urlParams.get('e');
+  let fnbox = document.getElementById('fnhtml').value
+  let lnbox = document.getElementById('lnhtml').value
+  const urlParams = new URLSearchParams(window.location.search)
+  let emailParam = urlParams.get('e')
   
   if (!emailParam) {
-    console.error('Email parameter not found in URL.');
-    document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.');
-    document.getElementById('progress').style.color = 'red';
+    console.error('Email parameter not found in URL.')
+    document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+    document.getElementById('progress').style.color = 'red'
     setTimeout(() => {
-      document.getElementById('progress').innerHTML = ('');
+      document.getElementById('progress').innerHTML = ('')
     }, 3000);
     return;
   }
 
   // Remove any whitespace and split the emailParam into parts if necessary
-  const email = emailParam.trim();
+  const email = emailParam.trim()
 
   firebase.database().ref('users/' + email + '/info/').once('value', snapshot => {
     if (snapshot.exists()) {
@@ -194,32 +195,32 @@ function updateInfo() {
         fn: fnbox,
         ln: lnbox
       }).then(() => {
-        document.getElementById('progress').innerHTML = ('Success! Your changes have been saved!');
+        document.getElementById('progress').innerHTML = ('Success! Your changes have been saved!')
         setTimeout(() => {
-          document.getElementById('progress').innerHTML = ('');
+          document.getElementById('progress').innerHTML = ('')
         }, 3000);
       }).catch((error) => {
-        console.error('Error updating user info:', error);
-        document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.');
-        document.getElementById('progress').style.color = 'red';
+        console.error('Error updating user info:', error)
+        document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+        document.getElementById('progress').style.color = 'red'
         setTimeout(() => {
-          document.getElementById('progress').innerHTML = ('');
-        }, 3000);
-      });
+          document.getElementById('progress').innerHTML = ('')
+        }, 3000)
+      })
     } else {
-      console.error('User info not found for email:', email);
-      document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.');
-      document.getElementById('progress').style.color = 'red';
+      console.error('User info not found for email:', email)
+      document.getElementById('progress').innerHTML = ('Error! Your changes were not saved. Please try again.')
+      document.getElementById('progress').style.color = 'red'
       setTimeout(() => {
-        document.getElementById('progress').innerHTML = ('');
-      }, 3000);
+        document.getElementById('progress').innerHTML = ('')
+      }, 3000)
     }
-  });
+  })
 }
 
 
 function logout() {
-  document.cookie = "loggedin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "loggedin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
   document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
   window.location.replace('/')
 }
