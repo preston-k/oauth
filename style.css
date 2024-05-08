@@ -471,3 +471,13 @@ input:focus {
 #pfpform {
   height: 10px;
 }
+#resetlink {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  margin: 0px;
+  margin-right: 5px;
+  text-decoration: underline;
+  color: blue;
+}
