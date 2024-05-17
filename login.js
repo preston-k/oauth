@@ -118,14 +118,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let force2fa = urlParams.get('f2fa')
             console.log('Force 2FA: '+force2fa)
             if (force2fa == 'true') {
+              localStorage.setItem('sent-2fa', true)
+              localStorage.setItem('newdevice', false)
               window.location.replace('https://emailserver.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
             } else {
               function prompt2FA() {
-                return Math.random() < 0.15
+                let newDevice = localStorage.getItem('newdevice')
+                if (newDevice != 'false') {
+                  console.log('False')
+                  return true
+                } else {
+                  // return Math.random() < 0.15
+                  return false
+                }
               }
               if (prompt2FA()) {
+                localStorage.setItem('sent-2fa', true)
+                localStorage.setItem('newdevice', false)
                 window.location.replace('https://emailserver.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
               } else {
+                localStorage.setItem('newdevice', false)
                 window.location.replace('/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
               }
             }
