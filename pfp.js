@@ -21,12 +21,14 @@ function addPhoto() {
   let file = files[0]
   let id = self.crypto.randomUUID()
   photoid = id
+  let email = urlParams.get('e')
   let upload = new AWS.S3.ManagedUpload({
     params: {
       Bucket: albumBucketName,
       Key: `pfp-${id}.png`,
       Body: file,
       ContentType: 'image/png',
+      // Tagging: 'email=' + email,
     },
   })
 
