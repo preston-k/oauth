@@ -1,6 +1,3 @@
-// TO DO LIST:
-// Integrate Amazon S3 to store profile photos.
-
 const firebaseConfig = {
   apiKey: 'AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8',
   authDomain: 'oauth-page-ad3c2.firebaseapp.com',
@@ -9,7 +6,7 @@ const firebaseConfig = {
   storageBucket: 'oauth-page-ad3c2.appspot.com',
   messagingSenderId: '401481049573',
   appId: '1:401481049573:web:f1f9ca852e96d580cf3b0c'
-}; 
+}
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
@@ -229,9 +226,7 @@ document.querySelector('#policylink').addEventListener('click', () => {
   location.replace('https://legal.prestonkwei.com/policies/pick')
 })
 
-// document.querySelector('#pfpform').files[0]
 document.querySelector('#pfpform').addEventListener('change', () => {
-  console.log('PFP UPLOADED')
 
   
 })
