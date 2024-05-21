@@ -34,18 +34,22 @@ function addPhoto() {
 
   promise.then(
     function (data) {
-      alert('Successfully uploaded photo.')
+      const event = new CustomEvent('sendpfp', {
+        detail: id,
+      })
+      document.dispatchEvent(event)
     },
     function (err) {
       console.log(err)
-      return alert('There was an error uploading your photo: ', err.message)
+      return alert(
+        'Sorry, we ran into an error uploading your profile photo.\n\nRef: ',
+        err.message
+      )
     }
   )
 }
 
 document.querySelector('#pfpup').addEventListener('change', () => {
-  console.log('PFP UPLOADED')
+  document.querySelector('#loaddivparent').style.display = 'flex'
   addPhoto()
-  // Ensure photoid is used correctly in the URL.
-  document.querySelector('#temppfpbox').innerHTML = `<img src='https://profilephotosprestonkwei.s3.us-east-2.amazonaws.com/pfp-${photoid}.png'>`
 })

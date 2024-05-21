@@ -3,7 +3,7 @@ html {
   height: 100%;
 }
 h1 {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   text-align: center;
 }
 
@@ -12,7 +12,7 @@ h1 {
   width: 40%;
   max-width: 500px;
   height: 50px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-size: 18px;
   text-align: center;
   margin-left: auto;
@@ -29,14 +29,14 @@ h1 {
   display: block;
   position: absolute;
   bottom: 0;
-  margin-left: 5px
+  margin-left: 5px;
 }
 .formbut {
   display: block;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Poppins';
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   font-size: 16px;
   border: 2px solid black;
   width: 20%;
@@ -79,6 +79,9 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
+  border-radius: 50%;
+  /* border: 2px solid black; */
+  margin-bottom: 15px;
 }
 
 h4 {
@@ -155,8 +158,7 @@ a.optiondiv-link p {
   outline: 0px solid black;
 }
 
-
-#error { 
+#error {
   font-family: 'Poppins';
   font-size: 12px;
   position: absolute;
@@ -256,18 +258,18 @@ body {
 #mobileTool {
   padding-top: 5px;
   padding-bottom: 5px;
-  height: 60px; 
+  height: 60px;
   width: 100%;
   border: 0px solid black;
   border-top: 2px solid black;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   display: block;
   position: absolute;
   bottom: 0;
 }
 #desktopTools {
   padding-top: 5px;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   height: 90%;
   width: 55px;
   border-radius: 0 0 15px 0;
@@ -287,11 +289,14 @@ body {
     display: block;
     position: absolute;
     bottom: 0;
-    background-color: #7EC8E3;
+    background-color: #7ec8e3;
     width: 100%;
   }
   #do {
     display: none;
+  }
+  #loaddivparent {
+    height: calc(100vh - 60px) !important;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -335,11 +340,12 @@ body {
   border: 2px solid black;
   font-family: 'Poppins';
   font-size: 16px;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   cursor: pointer;
 }
 
-#emailreset, #questionOpt {
+#emailreset,
+#questionOpt {
   width: 50%;
   height: 50px;
   text-align: center;
@@ -361,7 +367,7 @@ body {
 #emailink {
   font-size: 12px;
   margin: 0;
-  color: #0000EE;
+  color: #0000ee;
   text-decoration: underline;
   display: inline;
 }
@@ -395,7 +401,7 @@ body {
   min-width: 155px;
   height: 45px;
   border: 2px solid black;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   border-radius: 15px;
 }
 
@@ -408,7 +414,7 @@ input:focus {
   font-weight: 700;
   margin-top: 21px;
 }
-#newPW{ 
+#newPW {
   display: none;
 }
 #fullPw {
@@ -480,4 +486,63 @@ input:focus {
   margin-right: 5px;
   text-decoration: underline;
   color: blue;
+}
+#pfploading {
+  width: 80%;
+  border: 2px solid black;
+  height: 80vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+#loaddivparent {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+#ub {
+  text-decoration: underline;
+  font-weight: 800;
+}
+.pfp-loader {
+  width: 100px;
+  aspect-ratio: 1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  --c: no-repeat linear-gradient(#7ec8e3 0 0);
+  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+@keyframes l1 {
+  0% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
+  33% {
+    background-size: 20% 10%, 20% 100%, 20% 100%;
+  }
+  50% {
+    background-size: 20% 100%, 20% 10%, 20% 100%;
+  }
+  66% {
+    background-size: 20% 100%, 20% 100%, 20% 10%;
+  }
+  100% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
+}
+#pfploaderparent {
+  width: 100%;
+}
+#loaddivparent {
+  display: none;
 }
