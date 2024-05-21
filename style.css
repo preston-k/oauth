@@ -82,6 +82,7 @@ h1 {
   border-radius: 50%;
   /* border: 2px solid black; */
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 h4 {
@@ -472,6 +473,7 @@ input:focus {
   opacity: 0;
   border-radius: 5%;
   border: 2px solid black;
+  cursor: pointer;
 }
 
 #pfpform {
