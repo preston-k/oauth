@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let time = d.getTime()
             console.log('Rate Limit: ' + ratelimitCookie)
             let newrate = parseInt(ratelimitCookie) + 1
-            alert(newrate)
+            // alert(newrate)
             document.cookie = `ratelimit=${newrate}; max-age=300; path=/`
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
