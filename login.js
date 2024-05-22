@@ -11,14 +11,13 @@ firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
-let ratelimitCookie = document.cookie
-  .split(';')
-  .find((row) => row.startsWith('ratelimit='))
-if (ratelimitCookie) {
-  ratelimitCookie = ratelimitCookie.split('=')[1]
-} else {
-  ratelimitCookie = 0
-}
+let ratelimitCookie = parseInt(
+  document.cookie.replace(
+    /(?:(?:^|.*;\s*)ratelimit\s*\=\s*([^;]*).*$)|^.*$/,
+    '$1'
+  ),
+  10
+)
 console.log(ratelimitCookie)
 function createCookie(name, value, days) {
   let expires = ''
@@ -147,6 +146,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let time = d.getTime()
             console.log('Rate Limit: ' + ratelimitCookie)
             let newrate = parseInt(ratelimitCookie) + 1
+            alert(newrate)
             document.cookie = `ratelimit=${newrate}; max-age=300; path=/`
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
