@@ -15,7 +15,7 @@ let ratelimitCookie = document.cookie.split(';').find(row => row.startsWith('rat
 if (ratelimitCookie) {
   ratelimitCookie = ratelimitCookie.split('=')[1]
 } else {
-  ratelimitCookie = null
+  ratelimitCookie = 0
 }
 console.log(ratelimitCookie)
 function createCookie(name, value, days) {
