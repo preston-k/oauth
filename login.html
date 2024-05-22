@@ -14,6 +14,19 @@
   </head>
   <body>
     <!-- url should be in the format, oauth.prestonkwei.com/login.html?redir=URLTOREDIRECTTO -->
+    <div id='blocked-parent'>
+      <div id='blocked'>
+        <div id='blocked-content'>
+          <h1 class='bigh1'>Hold Up!</h1>
+          <p class='ratelimit-text'>Not so fast...To prevent abuse on our site, we have temporarily blocked you from creating any more login attempts.</p>
+          <i id='handicon' class='fa-regular fa-hand fa-10x'></i>
+          <p id='ratelimittimer'>You will be redirected <u><span id='rate-limit-time'>soon</span></u>, where you can try again.</p>
+        </div>
+        <img id='ratelimit-why' src='https://cdn.prestonkwei.com/questionmark-icon-circle.png'>
+      </div>
+    </div>
+    <script src='https://kit.fontawesome.com/c947e2382a.js' crossorigin='anonymous'></script>
+    
     <div id='formdiv'>
       <form id='loginform'>
         <h1 text-align='center' id='loginh1'>Login</h1>

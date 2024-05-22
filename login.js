@@ -11,7 +11,13 @@ firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database() 
 // DO NOT EDIT ANYTHING ABOVE^^^
-
+let ratelimitCookie = document.cookie.split(';').find(row => row.startsWith('ratelimit='))
+if (ratelimitCookie) {
+  ratelimitCookie = ratelimitCookie.split('=')[1]
+} else {
+  ratelimitCookie = null
+}
+console.log(ratelimitCookie)
 function createCookie(name, value, days) {
   let expires = ''
   if (days) {
@@ -87,7 +93,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('loginform').addEventListener('submit', async function login(event) {
     event.preventDefault()
     console.log('Logging In')
-    document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
+    let newRate = parseInt(ratelimitCookie) + 1
+    document.cookie.split(';').forEach(c => document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/') // CLEAR ALL COOKIES
+    document.cookie = `ratelimit=${newRate}; max-age=300; path=/`
     let emailInput = document.getElementById('email'); 
     let passwordInput = document.getElementById('password')
     emailInput.disabled = true
@@ -109,6 +117,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
           let target = urlParams.get('redir')
           let d = new Date()
           let time = d.getTime()
+          console.log(ratelimit)
+          document.cookie = `ratelimit=${ratelimit}; max-age=300; path=/`
           createCookie('loggedin=true', uid, 0.1666666)
           if (target != null) {
             window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
@@ -170,7 +180,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       passwordInput.disabled = false
     }
   })
-})
+}) 
 
 let captchaStatus = false
 

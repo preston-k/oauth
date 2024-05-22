@@ -42,14 +42,23 @@ urlparam()
 console.log(finalRedir)
 
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8',
-  authDomain: 'oauth-page-ad3c2.firebaseapp.com',
-  databaseURL: 'https://oauth-page-ad3c2-default-rtdb.firebaseio.com',
-  projectId: 'oauth-page-ad3c2',
-  storageBucket: 'oauth-page-ad3c2.appspot.com',
-  messagingSenderId: '401481049573',
-  appId: '1:401481049573:web:f1f9ca852e96d580cf3b0c'
-}; 
-firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
+let ratelimitCookie = document.cookie.split(';').find(row => row.startsWith('ratelimit='))
+if (ratelimitCookie) {
+  ratelimitCookie = ratelimitCookie.split('=')[1]
+} else {
+  ratelimitCookie = null
+}
+console.log(ratelimitCookie)
+if (ratelimitCookie == null) {
+  document.cookie = 'ratelimit=0; max-age=300; path=/'
+}
+if (ratelimitCookie >= 5) {
+  // Rate limiting in place
+  document.querySelector('#formdiv').remove()
+  document.querySelector('#resetlink').remove()
+  document.querySelector('#blocked-parent').style.display = 'flex'
+  let currentTime = new Date()
+  let fiveminutes = new Date(currentTime.getTime() + 5 * 60000)
+  localStorage.setItem('ratelimit', fiveminutes)
+  ratelimit()
+}
