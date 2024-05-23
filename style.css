@@ -699,7 +699,7 @@ input:focus {
   margin-left: auto;
   margin-right: auto;
 }
-@keyframes fade {
+@keyframes fadeIn {
 	0% {
 		opacity: 0;
 	}
@@ -714,7 +714,7 @@ input:focus {
   z-index: 999;
   opacity: 0.8;
   display: none;
-  animation-name: fade;
+  animation-name: fadeIn;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
 	animation-duration: 0.2s;
@@ -722,9 +722,77 @@ input:focus {
 #danger-confirm {
   width: 50vw;
   background-color: white;
-  height: 500px;
   opacity: 100%;
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 999999 !important;
   /* LAST */
   display: none;
+  height: max-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+#danger-confirm-hold {
+  position: fixed;
+  z-index: 9999999;
+  padding-bottom: 100px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  display: none;
+}
+#danger-confirm-title {
+  width: 100%;
+  margin: 0;
+  background-color: lightgrey;
+  border-radius: 10px 10px 0 0;
+  font-size: 30px;
+  padding: 5px;
+}
+#danger-confirm-about {
+  text-decoration: underline;
+}
+.danger-confirm-message {
+  margin: 10px;
+}
+#danger-hr {
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: 3px;
+}
+#danger-confirm-type {
+  /* text-decoration: underline; */
+  font-style: italic;
+}
+#danger-confirm-textbox {
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid black;
+  text-align: center;
+  margin-bottom: 10px;
+}
+#danger-proceed {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid red;
+  color: white;
+  background-color: red;
+}
+#danger-proceed:disabled {
+  cursor: not-allowed;
+  background-color: white;
+  border: 2px solid red;
+  color: red;
 }

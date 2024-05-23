@@ -272,8 +272,25 @@ document.addEventListener('sendpfp', async (event) => {
   })
   location.reload()
 })
-document.querySelector('#danger-deletepfp').addEventListener('click', () => {
-  console.log('Delete PFP')
+function dangerOverlay() {
+  document.querySelector('#danger-confirm-hold').style.display = 'flex'
   document.querySelector('#overlay').style.display = 'block'
   document.querySelector('#danger-confirm').style.display = 'block'
+}
+let textvalue = ''
+document.querySelector('#danger-deletepfp').addEventListener('click', () => {
+  console.log('Delete PFP')
+  textvalue = 'deletepfp'
+  document.querySelector('#danger-confirm-about').innerHTML = 'delete your profile picture'
+  document.querySelector('#danger-confirm-type').innerHTML = textvalue
+  document.querySelector('#danger-confirm-textbox').placeholder = textvalue
+  dangerOverlay()
+  document.querySelector('#danger-confirm-textbox').addEventListener('input', () => {
+    console.log(document.querySelector('#danger-confirm-textbox').value)
+    if (document.querySelector('#danger-confirm-textbox').value === textvalue) {
+      document.querySelector('#danger-proceed').disabled = false
+    } else {
+      document.querySelector('#danger-proceed').disabled = true
+    }
+  })
 })

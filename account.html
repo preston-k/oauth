@@ -36,16 +36,22 @@
         </div>
       </div>
     </div>
-    <div id='danger-confirm'>
-
+    <div id='danger-confirm-hold'>
+      <div id='danger-confirm'>
+        <h1 id='danger-confirm-title'>Are You Sure?</h1>
+        <p class='danger-confirm-message'>You are about to <span id='danger-confirm-about'></span>.</p>
+        <p id='danger-perm' style='font-size: 12px;'>This action is <span style='color: red;text-decoration: underline;'>permanent</span> and cannot be undone.</p>
+        <hr id='danger-hr'>
+        <p class='danger-confirm-message'>If you are absolutely sure you would like to proceed, please type <span id='danger-confirm-type'></span> in the box below.</p>
+        <form id='danger-confirm-form'>
+          <input type='text' id='danger-confirm-textbox' autocapitalize='off' autocomplete='off'>
+          <button id='danger-proceed' type='submit' disabled>Proceed</button>
+        </form>
+      </div>
     </div>
+   
     <div id='overlay'></div> 
-    <div
-      class='modal fade'
-      id='loggedoutmod'
-      tabindex='-1'
-      aria-labelledby='staticBackdropLabel'
-      aria-hidden='true'
+    <div class='modal fade' id='loggedoutmod' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'
     >
       <div class='modal-dialog'>
         <div class='modal-content'>
@@ -60,11 +66,7 @@
           </div>
           <div class='modal-footer'>
             <p id='errorp' style='font-size: 12px'></p>
-            <a href='/'
-              ><button type='button' class='btn btn-primary' id='letgobut'>
-                Log In!
-              </button></a
-            >
+            <a href='/'><button type='button' class='btn btn-primary' id='letgobut'>Log In!</button></a>
           </div>
         </div>
       </div>
