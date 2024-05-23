@@ -623,3 +623,108 @@ input:focus {
   cursor: pointer;
   pointer-events: auto !important;
 }
+#dangerzoneinner {
+  all: unset;
+  width: 80vw;
+  border: 2px solid red;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+}
+#dztitle {
+  all: unset;
+  border: 2px solid red;
+  width: max-content;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.dzp {
+  padding-top: 10px;
+  font-size: 14px;
+}
+.danger-button {
+  width: 200px;
+  font-size: 14px;
+  height: 50px;
+  background-color: white;
+  color: red;
+  border-radius: 10px;
+  font-weight: 700;
+  border: 2px solid red !important;
+  border: none;
+  cursor: pointer;
+}
+.danger-button:hover {
+  background-color: red;
+  color: white;
+}
+.dangerzone-setting {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+}
+.dangerzone-right {
+  width: max-content;
+  margin-left: auto;
+}
+.dangerzone-left {
+  width: max-content;
+}
+.danger-h1 {
+  margin: 0;
+  font-size: 24px;
+  text-decoration: underline;
+  text-align: left;
+  width: max-content;
+}
+.danger-p {
+  font-size: 12px;
+  margin: 0;
+  text-align: left;
+  width: max-content;
+  max-width: calc(80vw - 250px);
+}
+.setting-seperator {
+  width: 15%;
+  display: block;
+  height: 3px;
+  background-color: black;
+  border: 0;
+  color: black;
+  margin: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.8;
+	}
+}
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 999;
+  opacity: 0.8;
+  display: none;
+  animation-name: fade;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.2s;
+}
+#danger-confirm {
+  width: 50vw;
+  background-color: white;
+  height: 500px;
+  opacity: 100%;
+  z-index: 999999 !important;
+  /* LAST */
+  display: none;
+}

@@ -272,3 +272,8 @@ document.addEventListener('sendpfp', async (event) => {
   })
   location.reload()
 })
+document.querySelector('#danger-deletepfp').addEventListener('click', () => {
+  console.log('Delete PFP')
+  document.querySelector('#overlay').style.display = 'block'
+  document.querySelector('#danger-confirm').style.display = 'block'
+})
