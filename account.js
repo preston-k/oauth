@@ -312,14 +312,19 @@ document.querySelector('#danger-deletepfp').addEventListener('click', () => {
   })
 })
 
-document.querySelector('#danger-confirm-form').addEventListener('submit', (event) => {
+document.querySelector('#danger-confirm-form').addEventListener('submit', async (event) => {
   event.preventDefault()
   console.log('Form Submitted')
   dangerOverlayHide()
   if (textvalue == 'deletepfp') {
-    // Delete profile picture here;
-
-    alert('Sucess! We have sucessfully deleted your profile picture. Upload a new one by clicking on the profile photo placeholder.')
+    const snapshot = await firebase.database().ref(`users/${urlParams.get('e')}/info/pfp`).once('value')
+    let value = snapshot.val()
+    console.log(value)
+    let ts = new Date()
+    let newPfp = firebase.database().ref(`users/${urlParams.get('e')}/info/oldpfps/${ts.toString()}/`)
+    await newPfp.set(value)
+    await firebase.database().ref(`users/${urlParams.get('e')}/info/pfp`).remove()
+    alert('Success! We have successfully deleted your profile picture. Upload a new one by clicking on the profile photo placeholder.')
+    window.location.replace(window.location.href)
   }
-
 })
