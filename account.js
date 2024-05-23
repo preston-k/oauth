@@ -273,14 +273,31 @@ document.addEventListener('sendpfp', async (event) => {
   location.reload()
 })
 function dangerOverlay() {
+  document.querySelector('#center').style.display = 'none'
+  // document.querySelector('#overlay-grey').style.opacity = 0
+  // document.querySelector('#overlay-grey').style.pointerEvents = 'none'
   document.querySelector('#danger-confirm-hold').style.display = 'flex'
-  document.querySelector('#overlay').style.display = 'block'
+  document.querySelector('#overlay-grey').style.display = 'block'
   document.querySelector('#danger-confirm').style.display = 'block'
+  document.querySelector('#danger-exit').style.display = 'block'
 }
+function dangerOverlayHide() {
+  document.querySelector('#center').style.display = 'block'
+  // document.querySelector('#overlay-grey').style.opacity = 1
+  // document.querySelector('#overlay-grey').style.pointerEvents = 'auto'
+  document.querySelector('#danger-confirm-hold').style.display = 'none'
+  document.querySelector('#overlay-grey').style.display = 'none'
+  document.querySelector('#danger-confirm').style.display = 'none'
+  document.querySelector('#danger-exit').style.display = 'none'
+}
+document.querySelector('#danger-exit').addEventListener('click', () => {
+  dangerOverlayHide()
+})
 let textvalue = ''
 document.querySelector('#danger-deletepfp').addEventListener('click', () => {
   console.log('Delete PFP')
   textvalue = 'deletepfp'
+  document.querySelector('#danger-confirm-textbox').value = ''
   document.querySelector('#danger-confirm-about').innerHTML = 'delete your profile picture'
   document.querySelector('#danger-confirm-type').innerHTML = textvalue
   document.querySelector('#danger-confirm-textbox').placeholder = textvalue
@@ -293,4 +310,16 @@ document.querySelector('#danger-deletepfp').addEventListener('click', () => {
       document.querySelector('#danger-proceed').disabled = true
     }
   })
+})
+
+document.querySelector('#danger-confirm-form').addEventListener('submit', (event) => {
+  event.preventDefault()
+  console.log('Form Submitted')
+  dangerOverlayHide()
+  if (textvalue == 'deletepfp') {
+    // Delete profile picture here;
+
+    alert('Sucess! We have sucessfully deleted your profile picture. Upload a new one by clicking on the profile photo placeholder.')
+  }
+
 })

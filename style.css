@@ -72,6 +72,7 @@ h1 {
   width: 100%;
   font-family: 'Poppins';
   text-align: center;
+  
 }
 #iconpng {
   width: 150px;
@@ -242,6 +243,7 @@ body {
   left: 0;
   width: 60px;
   height: 100%;
+  
   /* pointer-events: none; */
 }
 #securityOverlay {
@@ -707,7 +709,8 @@ input:focus {
 		opacity: 0.8;
 	}
 }
-#overlay {
+#overlay-grey {
+  transition: 5s;
   width: 100vw;
   height: 100vh;
   background-color: black;
@@ -721,12 +724,13 @@ input:focus {
 }
 #danger-confirm {
   width: 50vw;
+  min-width: 400px;
   background-color: white;
   opacity: 100%;
   position: fixed;
   margin-left: auto;
   margin-right: auto;
-  z-index: 999999 !important;
+  z-index: 99999999999 !important;
   /* LAST */
   display: none;
   height: max-content;
@@ -795,4 +799,20 @@ input:focus {
   background-color: white;
   border: 2px solid red;
   color: red;
+}
+#danger-edit {
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: none;
+}
+#danger-exit {
+  margin: 10px;
+  cursor: pointer;
+  z-index: 99999999999999999 !important;
+  opacity: 1;
+  position: fixed;
+  right: 0;
+  display: none;
+  color: white;
 }

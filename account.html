@@ -36,13 +36,14 @@
         </div>
       </div>
     </div>
+    <i class='fa-solid fa-x fa-2x' id='danger-exit'></i>
     <div id='danger-confirm-hold'>
       <div id='danger-confirm'>
         <h1 id='danger-confirm-title'>Are You Sure?</h1>
         <p class='danger-confirm-message'>You are about to <span id='danger-confirm-about'></span>.</p>
         <p id='danger-perm' style='font-size: 12px;'>This action is <span style='color: red;text-decoration: underline;'>permanent</span> and cannot be undone.</p>
         <hr id='danger-hr'>
-        <p class='danger-confirm-message'>If you are absolutely sure you would like to proceed, please type <span id='danger-confirm-type'></span> in the box below.</p>
+        <p class='danger-confirm-message'>If you are absolutely sure you would like to proceed, type <span id='danger-confirm-type'></span> in the box below.</p>
         <form id='danger-confirm-form'>
           <input type='text' id='danger-confirm-textbox' autocapitalize='off' autocomplete='off'>
           <button id='danger-proceed' type='submit' disabled>Proceed</button>
@@ -50,7 +51,7 @@
       </div>
     </div>
    
-    <div id='overlay'></div> 
+    <div id='overlay-grey'></div> 
     <div class='modal fade' id='loggedoutmod' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'
     >
       <div class='modal-dialog'>
@@ -175,6 +176,7 @@
         </a>
       </div>
     </div>
+    <script src="https://kit.fontawesome.com/c947e2382a.js" crossorigin="anonymous"></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
     <script src='account.js'></script>
