@@ -150,16 +150,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.cookie = `ratelimit=${newrate}; max-age=300; path=/`
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
-              window.location.replace(
-                target +
-                  '?id=' +
-                  uid +
-                  '&e=' +
-                  firebaseEmail +
-                  '&s=true' +
-                  '&ts=' +
-                  time
-              )
+              window.location.replace(target +'?id=' +uid +'&e=' +firebaseEmail +'&s=true' +'&ts=' +time)
             } else {
               const urlParams = new URLSearchParams(window.location.search)
               await authToken(email)

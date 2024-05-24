@@ -11,12 +11,14 @@ firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
 function denyaccess() {
+  console.log('Access denied')
   document.getElementById('center').style.display = 'none'
   document.getElementById('desktopTools').style.display = 'none'
   document.getElementById('mobileTool').style.display = 'none'
   // document.getElementById('logOutBut').style.display = 'none'
   document.getElementById('center').style.height = '0'
   document.getElementById('center').style.width = '0'
+  document.getElementById('center').innerHTML = ''
   document.getElementById('noperms').style.display = 'block'
 }
 function getCookie(name) {
@@ -311,6 +313,23 @@ document.querySelector('#danger-deletepfp').addEventListener('click', () => {
     }
   })
 })
+document.querySelector('#danger-deleteacc').addEventListener('click', () => {
+  console.log('Delete Account')
+  textvalue = 'deleteaccount'
+  document.querySelector('#danger-confirm-textbox').value = ''
+  document.querySelector('#danger-confirm-about').innerHTML = 'delete your account'
+  document.querySelector('#danger-confirm-type').innerHTML = textvalue
+  document.querySelector('#danger-confirm-textbox').placeholder = textvalue
+  dangerOverlay()
+  document.querySelector('#danger-confirm-textbox').addEventListener('input', () => {
+    console.log(document.querySelector('#danger-confirm-textbox').value)
+    if (document.querySelector('#danger-confirm-textbox').value === textvalue) {
+      document.querySelector('#danger-proceed').disabled = false
+    } else {
+      document.querySelector('#danger-proceed').disabled = true
+    }
+  })
+})
 
 document.querySelector('#danger-confirm-form').addEventListener('submit', async (event) => {
   event.preventDefault()
@@ -326,5 +345,10 @@ document.querySelector('#danger-confirm-form').addEventListener('submit', async 
     await firebase.database().ref(`users/${urlParams.get('e')}/info/pfp`).remove()
     alert('Success! We have successfully deleted your profile picture. Upload a new one by clicking on the profile photo placeholder.')
     window.location.replace(window.location.href)
+  }
+  if (textvalue == 'deleteaccount') {
+    // DELETE ACCOUNT
+    // SEND TO ANOTHER LOGIN PAGE
+    window.location.replace('/')
   }
 })

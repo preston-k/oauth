@@ -38,6 +38,26 @@
     </div>
     <i class='fa-solid fa-x fa-2x' id='danger-exit'></i>
     <div id='danger-confirm-hold'>
+      <div id='delete-final-confirm'>
+        <h1>You Are About to Delete Your Account</h1>
+        <u><p>To confirm, please acknowledge that:</p></u>
+        <form id='delete-final-confirm-form'>
+          <div class='delete-cb-boxes'>
+            <input class='cb-delete' id='delete1' type='checkbox'>
+            <label for='delete1' class='delete-cb-label'>This action is permanent and cannot be undone</p>
+          </div>
+          <div class='delete-cb-boxes'>
+            <input class='cb-delete' id='delete2' type='checkbox'>
+            <label for='delete2' class='delete-cb-label'>You will no longer be able to login with your current email and password.</p>
+          </div>
+          <div class='delete-cb-boxes'>
+            <div id='inner-delete-label'>
+              <input class='cb-delete' id='delete3' type='checkbox'>
+              <label for='delete3' class='delete-cb-label'>Your information <span class='italic'>may</span> be stored on our servers, according to our <a href='https://legal.prestonkwei.com/policies/privacy'>privacy policy</a>.</p>
+            </div>
+          </div>
+        </form>
+      </div>
       <div id='danger-confirm'>
         <h1 id='danger-confirm-title'>Are You Sure?</h1>
         <p class='danger-confirm-message'>You are about to <span id='danger-confirm-about'></span>.</p>
@@ -92,6 +112,22 @@
           <br />
           <button id='savebut' onclick='updateInfo()'>Save Changes</button>
         </div>
+        <h1 class='h1-head-small'>Now That You're Logged In...</h1>
+        <h4 class='h1-subtitle'>Would you like to visit any of these sites?</h4>
+        <div id='card-holder-main'>
+          <a href='https://whiteboard.prestonkwei.com' class='card-link-tag' target='_blank'>
+            <div class='card-div-outline'>
+              <img src='https://cdn.prestonkwei.com/whiteboard-app-thumb.png' class='card-img-top'>
+              <div class='card-text-div'>
+                <h1 class='card-header'>Whiteboard</h1>
+                <p class='card-desc'>An easy way to collaborate with peers, coworkers, students, and more! Create unlimited boards to share ideas.</p>
+              </div>
+              <a href='https://whiteboard.prestonkwei.com'><button class='card-button-bottom'>Go!</button></a>
+            </div>
+          </a>
+        </div>
+
+
         <p id='progress'></p>
         <fieldset id='dangerzoneinner'>
           <legend id='dztitle'>Danger Zone</legend>
@@ -106,6 +142,7 @@
             </div>
           </div>
           <hr class='setting-seperator'>
+          
           <!-- DO NOT MOVE. NO SETTINGS BELOW THIS. -->
           <div class='dangerzone-setting'>
             <div class='dangerzone-left'>
@@ -113,7 +150,7 @@
               <p class='danger-p'>Deletes your account, and all associated information from our servers. This action is permanent.</p>
             </div>
             <div class='dangerzone-right'>
-              <button class='danger-button'>Delete Account</button>
+              <button class='danger-button' id='danger-deleteacc'>Delete Account</button>
             </div>
           </div>
         </fieldset>
@@ -176,7 +213,7 @@
         </a>
       </div>
     </div>
-    <script src="https://kit.fontawesome.com/c947e2382a.js" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/c947e2382a.js' crossorigin='anonymous'></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
     <script src='account.js'></script>

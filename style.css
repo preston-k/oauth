@@ -258,6 +258,7 @@ body {
   /* pointer-events: none; */
 }
 #mobileTool {
+  margin-top: 50px;
   padding-top: 5px;
   padding-bottom: 5px;
   height: 60px;
@@ -268,6 +269,9 @@ body {
   display: block;
   position: absolute;
   bottom: 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 99999999999999 !important;
 }
 #desktopTools {
   padding-top: 5px;
@@ -630,6 +634,7 @@ input:focus {
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;
+  margin-bottom: 50px;
 }
 #dztitle {
   all: unset;
@@ -818,4 +823,123 @@ input:focus {
   right: 0;
   display: none;
   color: white;
+}
+
+#delete-final-confirm {
+  width: 50vw;
+  min-width: 400px;
+  background-color: white;
+  border: 2px solid black;
+
+}
+.cb-delete {
+  cursor: pointer;
+}
+.delete-cb-label {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+.delete-cb-boxes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.italic {
+  font-style: italic;
+}
+#inner-delete-label {
+  display: inline;
+}
+.card-div-outline {
+  all: unset;
+  width: 300px;
+  height: 400px;
+  border-radius: 15px;
+  border: 3px solid black;
+  transition: 0.5s;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  margin: 10px;
+}
+.card-div-outline:hover{
+  transform: scale(1.01);
+}
+#card-holder-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.card-button-bottom {
+  width: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #7EC8E3;
+  font-family: 'Poppins';
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.card-img-top {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid black;
+  border-radius: 12px 12px 0 0;
+}
+.card-header {
+  all: unset;
+  text-align: left;
+  font-family: 'Poppins';
+  margin: 0;
+  margin-left: 10px;
+  font-size: 30px;
+  margin-right: auto;
+  text-decoration: underline;
+}
+.card-desc {
+  text-align: left;
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: 'Poppins';
+  font-size: 14px;
+  display: block;
+}
+.card-text-div {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+.card-link-tag {
+  padding: 0;
+  margin: 0;
+}
+.h1-head-small {
+  margin: 0;
+  font-size: 36px;
+  text-decoration: underline;
+}
+.h1-subtitle {
+  margin: 0;
+  font-size: 18px;
+}
+@media (max-width: 1050px) {
+  .dangerzone-left {
+    width: 100%;
+  }
+  .dangerzone-right {
+    display: block;
+  }
 }
