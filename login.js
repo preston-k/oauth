@@ -11,14 +11,26 @@ firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
-let ratelimitCookie = parseInt(
-  document.cookie.replace(
-    /(?:(?:^|.*;\s*)ratelimit\s*\=\s*([^;]*).*$)|^.*$/,
-    '$1'
-  ),
-  10
-)
-console.log(ratelimitCookie)
+
+function rateLimit() {
+  let c = document.cookie.split(';')
+  let rl = null
+  for (let i = 0; i < c.length; i++) {
+    let cookie = c[i].trim()
+    if (cookie.startsWith('ratelimit=')) {
+      rl = cookie.substring('ratelimit='.length)
+      break
+    }
+  }
+  rl = parseInt(rl)
+  if (isNaN(rl)) {
+    rl = 0
+  }
+  console.log(rl)
+  let newRateLimit = rl + 1
+  document.cookie = `ratelimit=${newRateLimit}; max-age=300; path=/`
+}
+
 function createCookie(name, value, days) {
   let expires = ''
   if (days) {
@@ -29,7 +41,7 @@ function createCookie(name, value, days) {
   document.cookie = name + '=' + value + expires + '; path=/'
   console.log('Cookie Created: ' + name + value + expires)
 }
-let cd = null
+
 function readCookie(cookieName) {
   const nameEQ = cookieName + '='
   const cookiesArray = document.cookie.split(';')
@@ -44,11 +56,8 @@ function readCookie(cookieName) {
       break
     }
   }
-  ;``
   return cd
 }
-
-let hashPass = ''
 
 async function hashPassword(password) {
   const encoder = new TextEncoder()
@@ -82,44 +91,21 @@ async function authToken(email) {
       email: emailAuthToken,
       ip: ipAuthToken,
     })
-    // SUCCESS!
-    // ENDING -- NOTHING ELSE SHOULD HAPPEN PAST THIS POINT:
-    document.cookie =
-      'auth-token=id=' +
-      uuidAuthToken +
-      '&ip=' +
-      ipAuthToken +
-      '&ts=' +
-      tsAuthToken +
-      '&status=' +
-      statusAuthToken +
-      '&e=' +
-      emailAuthToken +
-      '; expires=' +
-      expiration.toUTCString()
+    document.cookie = 'auth-token=id=' + uuidAuthToken + '&ip=' + ipAuthToken + '&ts=' + tsAuthToken + '&status=' + statusAuthToken + '&e=' + emailAuthToken + '; expires=' + expiration.toUTCString()
     console.log('Auth Token Created!')
   } catch (error) {
     ipAuthToken = 'ERROR'
   }
 }
 
-let finalRedir = null
 document.addEventListener('DOMContentLoaded', (event) => {
   document
     .getElementById('loginform')
     .addEventListener('submit', async function login(event) {
       event.preventDefault()
       console.log('Logging In')
-      let newRate = parseInt(ratelimitCookie) + 1
-      document.cookie
-        .split(';')
-        .forEach(
-          (c) =>
-            (document.cookie =
-              c.trim().split('=')[0] +
-              '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
-        ) // CLEAR ALL COOKIES
-      document.cookie = `ratelimit=${newRate}; max-age=300; path=/`
+      // document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')) // DELETING ALL COOKIES
+      rateLimit()
       let emailInput = document.getElementById('email')
       let passwordInput = document.getElementById('password')
       emailInput.disabled = true
@@ -144,15 +130,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let target = urlParams.get('redir')
             let d = new Date()
             let time = d.getTime()
-            console.log('Rate Limit: ' + ratelimitCookie)
-            let newrate = parseInt(ratelimitCookie) + 1
-            // alert(newrate)
-            document.cookie = `ratelimit=${newrate}; max-age=300; path=/`
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
-              window.location.replace(target +'?id=' +uid +'&e=' +firebaseEmail +'&s=true' +'&ts=' +time)
+              window.location.replace(target + '?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
             } else {
-              const urlParams = new URLSearchParams(window.location.search)
               await authToken(email)
               let force2fa = urlParams.get('f2fa')
               console.log('Force 2FA: ' + force2fa)
@@ -175,7 +156,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     console.log('False')
                     return true
                   } else {
-                    // return Math.random() < 0.15
                     return false
                   }
                 }
@@ -227,7 +207,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       } catch (error) {
         console.error('Error during login:', error)
         alert(error)
-        //alert('An error occurred, please try again.')
         window.location.reload()
       } finally {
         emailInput.disabled = false

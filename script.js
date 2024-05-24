@@ -40,25 +40,23 @@ function urlparam() {
 }
 urlparam()
 console.log(finalRedir)
-
-
-let ratelimitCookie = document.cookie.split(';').find(row => row.startsWith('ratelimit='))
-if (ratelimitCookie) {
-  ratelimitCookie = ratelimitCookie.split('=')[1]
-} else {
-  ratelimitCookie = null
+let cookies = document.cookie.split(';')
+let ratelimit = null
+for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim()
+    if (cookie.startsWith('ratelimit=')) {
+        ratelimit = cookie.substring('ratelimit='.length)
+        break
+    }
 }
-console.log(ratelimitCookie)
-if (ratelimitCookie == null) {
-  document.cookie = 'ratelimit=0; max-age=300; path=/'
+if (ratelimit == null || isNaN(parseInt(ratelimit))) {
+  ratelimit = '0'
+  document.cookie = `ratelimit=${ratelimit}; max-age=300; path=/`
 }
-if (ratelimitCookie >= 5) {
-  // Rate limiting in place
-  document.querySelector('#formdiv').remove()
-  document.querySelector('#resetlink').remove()
+console.log(ratelimit)
+
+if (ratelimit >= 5) {
+  document.querySelector('#loginform').innerHTML = ''
+  document.querySelector('#resetlink').innerHTML = ''
   document.querySelector('#blocked-parent').style.display = 'flex'
-  let currentTime = new Date()
-  let fiveminutes = new Date(currentTime.getTime() + 5 * 60000)
-  localStorage.setItem('ratelimit', fiveminutes)
-  ratelimit()
 }
