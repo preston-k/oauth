@@ -163,25 +163,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                   localStorage.setItem('sent-2fa', true)
                   localStorage.setItem('newdevice', false)
                   window.location.replace(
-                    'https://emailserver.prestonkwei.com/referrer?id=' +
-                      uid +
-                      '&e=' +
-                      firebaseEmail +
-                      '&s=true' +
-                      '&ts=' +
-                      time
+                    'https://emailserver.prestonkwei.com/referrer?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time
                   )
                 } else {
                   localStorage.setItem('newdevice', false)
-                  window.location.replace(
-                    '/account.html?id=' +
-                      uid +
-                      '&e=' +
-                      firebaseEmail +
-                      '&s=true' +
-                      '&ts=' +
-                      time
-                  )
+                  window.location.replace( '/account.html?id=' + uid + '&e=' + firebaseEmail + '&s=true' + '&ts=' + time)
                 }
               }
             }

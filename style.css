@@ -96,8 +96,9 @@ h4 {
 }
 #optionbox {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 a.optiondiv-link {
@@ -113,10 +114,12 @@ a.optiondiv-link {
   aspect-ratio: 1 / 1;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
+  width: 300px;
+  font-size: 1rem;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 .optionimg {
-  width: 10vw;
+  width: 200px;
   margin-bottom: 10px;
 }
 
