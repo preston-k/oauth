@@ -1,4 +1,2 @@
-1. Fix login problem
-2. Add modal when rate limited to click on and explain why they were ratelimited/possible reasons
-3. Add rate limit to signup form.
-4. Add timer to ratelimit for every minute, it checks how many minutes left. Once it gets to 0, it reloads the page for the user.
+1. Fix ratelimit timer
+2. Change card image in account management.
