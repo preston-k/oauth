@@ -11,7 +11,15 @@ firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
+const urlParams = new URLSearchParams(window.location.search)
+let goto = ''
+if (urlParams.get('redir') != null) {
+  goto = urlParams.get('redir')
+  sessionStorage.setItem('target', goto)
+}
 
+console.log('target added')
+console.log(sessionStorage.getItem('target'))
 function rateLimit() {
   let c = document.cookie.split(';')
   let rl = null
@@ -240,9 +248,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             ln: '',
           })
           await authToken(email)
-          window.location.replace(
-            '/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts='
-          )
+          createCookie('loggedin=true', useruuid, 0.1666666)
+          let savedTarget = sessionStorage.getItem('target')
+          console.log(savedTarget)
+          if (savedTarget != 'null') {
+            sessionStorage.removeItem('target')
+            window.location.replace(savedTarget + '?id=' + useruuid + '&e=' + firebaseEmail)
+          } else {
+            sessionStorage.removeItem('target')
+            window.location.replace('/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts=')
+          }
+          
         }
       } catch (error) {
         console.error('Error:', error)
