@@ -251,10 +251,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
           createCookie('loggedin=true', useruuid, 0.1666666)
           let savedTarget = sessionStorage.getItem('target')
           console.log(savedTarget)
-          if (savedTarget != 'null') {
+          if (savedTarget != null) {
             sessionStorage.removeItem('target')
             window.location.replace(savedTarget + '?id=' + useruuid + '&e=' + firebaseEmail)
-          } else if (savedTarget != null) {
+          } else {
             window.location.replace('/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts=')
           }
           
