@@ -10,6 +10,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
+sessionStorage.removeItem('target')
 function denyaccess() {
   console.log('Access denied')
   document.getElementById('center').style.display = 'none'

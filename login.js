@@ -254,8 +254,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           if (savedTarget != 'null') {
             sessionStorage.removeItem('target')
             window.location.replace(savedTarget + '?id=' + useruuid + '&e=' + firebaseEmail)
-          } else {
-            sessionStorage.removeItem('target')
+          } else if (savedTarget != null) {
             window.location.replace('/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts=')
           }
           
