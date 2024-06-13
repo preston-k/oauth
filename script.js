@@ -60,3 +60,6 @@ if (ratelimit >= 5) {
   document.querySelector('#resetlink').innerHTML = ''
   document.querySelector('#blocked-parent').style.display = 'flex'
 }
+document.querySelector('#ratelimit-why').addEventListener('click', () => {
+  alert('Why was I rate limited?\n\nYou were ratelimited because you have created too many login attempts, too fast. This is to protect our user\'s accounts, and to prevent abuse on our sites.')
+})
