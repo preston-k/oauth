@@ -107,11 +107,10 @@ async function authToken(email) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  document
-    .getElementById('loginform')
-    .addEventListener('submit', async function login(event) {
+  document.getElementById('loginform').addEventListener('submit', async function login(event) {
       event.preventDefault()
       console.log('Logging In')
+      document.querySelector('#login-loader-box').style.display = 'flex'
       // document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')) // DELETING ALL COOKIES
       rateLimit()
       let emailInput = document.getElementById('email')
@@ -218,6 +217,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .addEventListener('submit', async function (event) {
       event.preventDefault()
       console.log('Signing Up')
+      document.querySelector('#login-loader-box').style.display = 'flex'
       document.cookie
         .split(';')
         .forEach(
