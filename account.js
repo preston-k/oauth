@@ -206,8 +206,6 @@ function updateInfo() {
     }, 3000)
     return
   }
-
-  // Remove any whitespace and split the emailParam into parts if necessary
   const email = emailParam.trim()
 
   firebase

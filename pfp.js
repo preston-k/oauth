@@ -53,5 +53,6 @@ function addPhoto() {
 
 document.querySelector('#pfpup').addEventListener('change', () => {
   document.querySelector('#loaddivparent').style.display = 'flex'
+  document.querySelector('#main-content').style.display = 'none'
   addPhoto()
 })
