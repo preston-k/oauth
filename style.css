@@ -704,6 +704,7 @@ input:focus {
   margin: 0;
   display: block;
   margin-left: auto;
+  z-index: -100;
   margin-right: auto;
 }
 @keyframes fadeIn {
@@ -868,6 +869,7 @@ input:focus {
   position: relative;
   background-color: white;
   margin: 10px;
+  z-index: -100;
 }
 .card-div-outline:hover{
   transform: scale(1.01);
@@ -878,7 +880,7 @@ input:focus {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  
+  z-index: -100;
 }
 .card-button-bottom {
   width: 100px;
