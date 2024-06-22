@@ -19,7 +19,7 @@ if (currentUrl.includes('%26')) {
 const urlParams = new URLSearchParams(window.location.search)
 
 let loginHint = urlParams.get('loginHint')
-let ssoId = urlParams.get('ssoId')
+let ssoId = urlParams.get('sso')
 console.log(loginHint)
 console.log(ssoId)
 if (loginHint == null || loginHint == '') {
