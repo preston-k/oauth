@@ -877,6 +877,7 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   
 }
 .card-button-bottom {
@@ -937,7 +938,7 @@ input:focus {
 }
 .h1-subtitle {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
 }
 @media (max-width: 1050px) {
   .dangerzone-left {
@@ -961,7 +962,7 @@ input:focus {
   all: unset;
   border: 2px solid black;
   padding: 0 10px;
-  font-size: 24px;
+  font-size: 18px;
   background-color: #7EC8E3;
 }
 .loading-overlay {
@@ -1043,6 +1044,7 @@ input:focus {
 #login-qrcode {
   width: 200px;
   height: 200px;
+  margin: 10px;
 }
 #instant-wrapper {
   width: 100vw;
