@@ -1057,4 +1057,135 @@ input:focus {
   height: 80vh;
   border: 2px solid black;
   display: none;
+  position: relative;
+}
+#instant-error-static {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
+  font-size: 10px;
+}
+.bw-button {
+  width: 150px;
+  height: 50px;
+  border: 2px solid black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  background-color: white;
+  cursor: pointer;
+}
+.bw-button:hover {
+  background-color: black;
+  color: white;
+}
+#instant-optionwrapper {
+  width: 100%;
+}
+.small-hr {
+  width: 10%;
+  border: 2px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#inline-href {
+  all: unset;
+  text-decoration: underline;
+  color: black;
+}
+#inline-href:hover {
+  color: #7EC8E3;
+  cursor: pointer;
+}
+.smallertext {
+  font-size: 12px;
+}
+#instant-confirm-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0,0,0,.2);
+  display: none;
+}
+#instant-confirm {
+  width: 50vw;
+  height: 80vh;
+  min-width: 300px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#instant-confirm-button {
+  width: 85%;
+  height: 50px;
+  font-family: 'Poppins',sans-serif;
+  border: 2px solid black;
+  background-color: white;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 15px;
+  cursor: not-allowed;
+}
+#instant-button-overlay {
+  width: max-content;
+}
+@keyframes shadeGreen {
+  0% {
+    background-position: 0%;
+    color: initial;
+  }
+  50% {
+    color: initial;
+  }
+  100% {
+    background-position: 100%;
+    color: white;
+  }
+}
+
+.buttonshade{
+  background: linear-gradient(to left, green 50%, transparent 50%);
+  border-left: 20px solid green;
+  background-size: 200% 100%;
+  animation: shadeGreen 3s forwards;
+  -webkit-animation: shadeGreen 3s forwards;
+  color: initial;
+}
+#instant-confirm-buttondeny {
+  background-color: black;
+  width: 85%;
+  height: 50px;
+  font-family: 'Poppins',sans-serif;
+  border: 2px solid black;
+  background-color: white;
+  margin: 5px;
+  color: red;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 15px;
+  cursor: pointer;
+}
+#confirm-loader {
+  width: 75px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   50%,
+    var(--c) 50%  50%,
+    var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+  display: none;
+}
+@keyframes l1 {
+  0%  {background-size: 20% 100%,20% 100%,20% 100%}
+  33% {background-size: 20% 10% ,20% 100%,20% 100%}
+  50% {background-size: 20% 100%,20% 10% ,20% 100%}
+  66% {background-size: 20% 100%,20% 100%,20% 10% }
+  100%{background-size: 20% 100%,20% 100%,20% 100%}
 }

@@ -5,6 +5,7 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Logging You In</title>
+  <link rel='stylesheet' href='https://cdn.prestonkwei.com/basecode/basecss.css'>		
   <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins'/>
   <link rel='icon' href='https://cdn.prestonkwei.com/personalwebsitefavicon.png'>
   <link href='style.css' rel='stylesheet' type='text/css' />
@@ -13,11 +14,28 @@
   <div id='instant-lander'>
     <p>Please wait, you will be redirected in a moment.</p>
   </div>
+  <div id='instant-confirm-wrapper'>
+    <div id='confirm-loader'></div>
+    <div id='instant-confirm'>
+      <h1 class='pk-fo-u'>New Login Attempt</h1>
+      <p>We want to make sure it is <span class='pk-fo-u'>you</span> who is attempting to log in.</p>
+      <p>Make sure that YOU created this code. Never scan someone else's code, doing so may give them access to your account.</p>
+      <button id='instant-confirm-button' disabled>Approve Login Attempt</button>
+      <button id='instant-confirm-buttondeny'>This Wasn't Me.</button>  <!-- BUTTON STARTS OUT DISABLED AND MUST BE ENABLED AFTER 2 SECONDS USING JS -->
+    </div>
+  </div>
   <div id='instant-wrapper'>
     <div id='instant-missingperms'>
-      <h1>Sorry, we can't log you in using this method.</h1>
-  
+      <h1 class='pk-fo-u'>Sorry, we can't log you in using this method.</h1>
+      <p class='pk-nm-tb'>Something went wrong, that's all we know!</p>
       <!-- If you have forgot your password, pelase enter it here. Otherwise, please log in here. -->
+      <hr class='small-hr'>
+      <div id='instant-optionwrapper'>
+        <p class='pk-nm-tb'>Please login using your email and password to continue.</p>
+        <a href='/'><button class='bw-button'>Log In</button></a>
+        <p class='pk-nm-tb smallertext'>If you have forgotten your password and would like to reset it, please click <a id='inline-href' href='https://emailserver.prestonkwei.com/reset'>here</a>.</p>
+      </div>
+      <p id='instant-error-static'><span class='pk-fo-u'>Error:</span> Missing perms to complete sso</p>
     </div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
