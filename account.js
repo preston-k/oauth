@@ -13,13 +13,15 @@ let database = firebase.database()
 sessionStorage.removeItem('target')
 function denyaccess() {
   console.log('Access denied')
-  document.getElementById('center').style.display = 'none'
-  document.getElementById('desktopTools').style.display = 'none'
-  document.getElementById('mobileTool').style.display = 'none'
+  document.getElementById('center').innerHTML = ''
+  document.getElementById('desktopTools').innerHTML = ''
+  document.getElementById('mobileTool').innerHTML = ''
   // document.getElementById('logOutBut').style.display = 'none'
   document.getElementById('center').style.height = '0'
   document.getElementById('center').style.width = '0'
   document.getElementById('center').innerHTML = ''
+  document.querySelector('#main-content').innerHTML = ''
+  document.querySelector('#pfpstuff').innerHTML = ''
   document.getElementById('noperms').style.display = 'block'
 }
 function getCookie(name) {
@@ -351,3 +353,24 @@ document.querySelector('#danger-confirm-form').addEventListener('submit', async 
     window.location.replace('/')
   }
 })
+function securityOptions() {
+  console.log('securityoptions')
+  document.querySelector('#security-options').style.display = 'block'
+}
+async function generateQr() {
+  console.log(Date.now())
+  let expTime = Date.now()+ 5 * 60 * 1000
+  let ssoUuid = self.crypto.randomUUID()
+  document.querySelector('#qrlogin').style.display='block'
+  document.querySelector('#center').style.display='none'
+  await database.ref(`sso/${ssoUuid}`).update({
+    ssoId: ssoUuid,
+    expires: expTime,
+    email: urlParams.get('e'),
+    accUuid: urlParams.get('id'),
+    status:'new'
+  })
+  console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`)
+  document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`
+}
+
