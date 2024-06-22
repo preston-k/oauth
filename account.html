@@ -10,6 +10,7 @@
     />
     <link rel='icon' href='https://cdn.prestonkwei.com/personalwebsitefavicon.png'/>
     <script src='https://cdn.prestonkwei.com/ipblockcheck.js'></script>
+    <link rel='stylesheet' href='https://cdn.prestonkwei.com/basecode/basecss.css'>		
     <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js'></script>
     <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
@@ -73,11 +74,25 @@
         <p class='danger-confirm-message'>If you are absolutely sure you would like to proceed, type <span id='danger-confirm-type'></span> in the box below.</p>
         <form id='danger-confirm-form'>
           <input type='text' id='danger-confirm-textbox' autocapitalize='off' autocomplete='off'>
-          <button id='danger-proceed' type='submit' disabled>Proceed</button>
+          <button id='danger-proceed' type='submit-' disabled>Proceed</button>
         </form>
       </div>
     </div>
-   
+    <div id='qrlogin'>
+      <i class='fa-solid fa-x fa-2x' id='qr-exit'></i>
+      <h1 class='pk-fo-u'>Generate a QR Code</h1>
+      <p>Quickly login using this QR code. Simply open the camera app on your phone, then scan this qr code.</p>
+      <div id='loginqr-holder'>
+        <img src='' id='login-qrcode'>
+      </div>
+      <p>This code will expire in 5 minutes.</p>
+    </div>
+    <div id='security-options'>
+      <h1 class='no-margin' id='h1-security-bold'>Security Center</h1>
+      <p>Here are things you can do to protect your account.</p>
+      <img src='https://cdn.prestonkwei.com/security-checkmark-black.png' id='security-center-icon'>
+      <i class='fa-solid fa-x fa-2x' id='security-exit'></i>
+    </div>
     <div id='overlay-grey'></div> 
     <div class='modal fade' id='loggedoutmod' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'
     >
@@ -184,12 +199,18 @@
           class='toolbaricon'
         />
         <p class='toolbarsub' onclick='logout()'>Log Out</p>
-        <img
+        <img onclick='securityOptions()'
           src='https://cdn.prestonkwei.com/key.png'
           title='Account Security'
           class='toolbaricon'
         />
-        <p class='toolbarsub'>Security</p>
+        <p class='toolbarsub' onclick='securityOptions()'>Security</p>
+        <img onclick='generateQr()'
+          src='https://cdn.prestonkwei.com/qrcode-icon.png'
+          title='Generate a Login QR Code'
+          class='toolbaricon'
+        />
+        <p class='toolbarsub' onclick='generateQr()'>QR Code</p>
         <span id='policylink'
           ><img
             src='https://cdn.prestonkwei.com/policies.png'
