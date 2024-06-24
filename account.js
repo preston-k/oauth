@@ -13,16 +13,19 @@ let database = firebase.database()
 sessionStorage.removeItem('target')
 function denyaccess() {
   console.log('Access denied')
-  document.getElementById('center').innerHTML = ''
-  document.getElementById('desktopTools').innerHTML = ''
-  document.getElementById('mobileTool').innerHTML = ''
-  // document.getElementById('logOutBut').style.display = 'none'
-  document.getElementById('center').style.height = '0'
-  document.getElementById('center').style.width = '0'
-  document.getElementById('center').innerHTML = ''
-  document.querySelector('#main-content').innerHTML = ''
-  document.querySelector('#pfpstuff').innerHTML = ''
-  document.getElementById('noperms').style.display = 'block'
+  // document.getElementById('center').innerHTML = ''
+  // document.getElementById('desktopTools').innerHTML = ''
+  // document.getElementById('mobileTool').innerHTML = ''
+  // // document.getElementById('logOutBut').style.display = 'none'
+  // document.getElementById('center').style.height = '0'
+  // document.getElementById('center').style.width = '0'
+  // document.getElementById('center').innerHTML = ''
+  // document.querySelector('#main-content').innerHTML = ''
+  // document.querySelector('#pfpstuff').innerHTML = ''
+  // document.getElementById('noperms').style.display = 'block'
+  
+  document.querySelectorAll('div').forEach(div => div.innerHTML='')
+  document.body.insertAdjacentHTML('beforeend', `<u><h1 id="ad"><b>Access Denied</b></h1></u> <h4>You don't have the required permissions to view this page.</h4> <div id="optionbox"> <a href="https://oauth.prestonkwei.com/login?f2fa=true" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/backarrow.png"> <p>Go Back and Login</p> </a> <a href="https://prestonkwei.com" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/home.png"> <p>Go To: PrestonKwei.com</p> </a> </div>`)
 }
 function getCookie(name) {
   let cookieArr = document.cookie.split(';')
@@ -33,6 +36,34 @@ function getCookie(name) {
     }
   }
   console.log('Cookie not found')
+}
+function showDiv(divId, displayType) {
+  document.querySelectorAll('div').forEach(div => div.style.display = 'none')
+  console.log('div:'+divId)
+  console.log('display:'+displayType)
+  if (window.innerWidth < 1000) {
+    document.querySelector('#mobileTool').style.display = 'block'
+  } else {
+    document.querySelector('#desktopTool').style.display = 'block'
+  }
+  document.querySelector(divId).style.display = displayType
+}
+function toNormal() {
+  document.querySelectorAll('div').forEach(div => {
+    div.style.display = 'none'
+    console.log(div)
+  })
+  
+  if (window.innerWidth < 1000) {
+    let mobileTool = document.querySelector('#mobileTool')
+    if (mobileTool) mobileTool.style.display = 'block'
+  } else {
+    let desktopTool = document.querySelector('#desktopTool')
+    if (desktopTool) desktopTool.style.display = 'block'
+  }
+  
+  let center = document.querySelector('#center')
+  if (center) center.style.display = 'block'
 }
 let ipCookie = ''
 let idCookie = ''
@@ -114,6 +145,14 @@ function checkURL() {
   }
 }
 checkURL()
+let timesincelogin = Date.now() - urlParams.get('ts') > 21600000
+if (Date.now() - urlParams.get('ts') > 21600000) {
+  console.log('More than 6 hours since login')
+  denyaccess()
+} else {
+  let tslToM = parseInt(Date.now() - urlParams.get('ts'))/ 60000
+  console.log('timesincelogin: '+tslToM)
+}
 function tscheck() {
   const urlParams = new URLSearchParams(window.location.search)
   const timestampParam = urlParams.get('ts')
