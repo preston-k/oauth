@@ -1,6 +1,6 @@
 /** @type {typeof import("./static.json")} */
 const data = await fetch("/static.json").then((x) => x.json())
-
+const urlParams = new URLSearchParams(window.location.search);
 let version = data.version
 let sessid = self.crypto.randomUUID();
 document.getElementById("static").innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid;
@@ -28,8 +28,8 @@ function getCookie(cname) {
 
 let finalRedir =  null
 function urlparam() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let target = urlParams.get('redir');
+  const urlParams = new URLSearchParams(window.location.search)
+  let target = urlParams.get('redir')
   if (target != null) {
     finalRedir = target
     document.getElementById('redirP').innerHTML = 'After logging in, you will be redirected to ' + '<u>' + target + '</u>'
@@ -62,4 +62,20 @@ if (ratelimit >= 5) {
 }
 document.querySelector('#ratelimit-why').addEventListener('click', () => {
   alert('Why was I rate limited?\n\nYou were ratelimited because you have created too many login attempts, too fast. This is to protect our user\'s accounts, and to prevent abuse on our sites.')
+})
+console.log(localStorage.getItem('beenonsitebefore'))
+if (localStorage.getItem('beenonsitebefore') == null) {
+  localStorage.setItem('beenonsitebefore', 'true')
+} else if (localStorage.getItem('beenonsitebefore') != 'true') {
+  localStorage.setItem('beenonsitebefore', 'true')
+}
+
+if (urlParams.get('snackbar') == 'loggedout') {
+  if (localStorage.getItem('beenonsitebefore') == 'true') {
+    document.querySelector('#loggedout-notif').style.display = 'block'
+  }
+}
+document.querySelector('#loggedoutnotif-x').addEventListener('click', () => {
+  document.querySelector('#loggedout-notif').style.display='none'
+  window.location.replace('/')
 })
