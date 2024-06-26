@@ -412,4 +412,54 @@ async function generateQr() {
   console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`)
   document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`
 }
+function autologout() {
 
+}
+let isLoggedOut = false
+function logoutFromInactivity() {
+  isLoggedOut = true
+  let counter = 30
+  console.log('Log out')
+  document.querySelector('#stillthere').style.display = 'flex'
+  let count = 0
+  let interval = setInterval(() => {
+    if (count > 30) {
+      clearInterval(interval)
+    } else {
+      if (counter <= 3) {
+        document.querySelector('#stillthere-countdown').style.color = 'red'
+      }
+      document.querySelector('#stillthere-countdown').innerHTML = counter
+      counter -= 1
+      count++
+
+      if (counter == 0) {
+        console.log('Autologout Required')
+        document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))
+        window.location.replace('/login.html?snackbar=loggedout')
+      }
+    }
+  }, 1000)
+}
+function inactivelogout() {
+  let inactiveTime
+
+  function resetTimer() {
+    if (!isLoggedOut) {
+      clearTimeout(inactiveTime)
+      inactiveTime = setTimeout(logoutFromInactivity, 1800000) // 1800000 = 30 mins
+    }
+  }
+  window.onload = resetTimer
+  window.onmousemove = resetTimer
+  window.ontouchstart = resetTimer
+  window.ontouchmove = resetTimer
+  window.onclick = resetTimer
+  window.onkeydown = resetTimer
+  window.addEventListener('scroll', resetTimer, true)
+}
+inactivelogout()
+
+function stayin() {
+  document.querySelector('#stillthere').style.display = 'none'
+}

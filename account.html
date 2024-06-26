@@ -98,6 +98,10 @@
       </div>
       <p>This code will expire in 5 minutes.</p>
       <p>Do <span class='pk-fo-u'>NOT</span> send this code to anybody. Only scan this code using devices you trust.</p>
+      <p>If you prefer, you can send this link to your devices. Click below to copy it!</p>
+      <div id='sso-link-copy'>
+        <p id='sso-linkcopy-content'>oauth.prestonkwei.com/instant?sso=fjaskdfjaksjdfk&loginHint=prestonkwei_gmail,com</p>
+      </div>
     </div>
     <div id='security-options'>
       <h1 class='no-margin' id='h1-security-bold'>Security Center</h1>
@@ -123,6 +127,18 @@
             <p id='errorp' style='font-size: 12px'></p>
             <a href='/'><button type='button' class='btn btn-primary' id='letgobut'>Log In!</button></a>
           </div>
+        </div>
+      </div>
+    </div>
+    <div id='stillthere'>
+      <div id='stillthere-content'> 
+        <h1 class='pk-fo-u'>Still There?</h1>
+        <p>We've noticed that you've been inactive for a while! <span class='pk-fo-u'>To protect your account,</span> we will automatically log you out in 30 seconds.</p>
+        <p>If you don't do anything, you will be logged out. Any unsaved changes will be lost.</p>
+        <h1 id='stillthere-countdown'>30</h1>
+        <div id='stillthere-options'>
+          <button class='stillthere-optionbut' onclick='stayin()'>Keep me logged in!</button>
+          <button class='stillthere-optionbut' onclick='logout()'>I'm done, log me out.</button>
         </div>
       </div>
     </div>
