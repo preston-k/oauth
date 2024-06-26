@@ -461,5 +461,6 @@ function inactivelogout() {
 inactivelogout()
 
 function stayin() {
+  isLoggedOut = false
   document.querySelector('#stillthere').style.display = 'none'
 }
