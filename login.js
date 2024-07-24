@@ -312,10 +312,10 @@ async function passwordlessLogin(event) {
     body:data,
   }).catch(()=>{})
   // Wait for database
-  database.ref(`noPw/${linkid}/status`).on('value', function(snapshot) {
+  database.ref(`noPw/${linkid}/status`).on('value', async function(snapshot) {
     console.log(snapshot.val())
     if (snapshot.val() == 'sucess') {
-      authToken(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
+      await authToken(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
       window.location.replace(`/account.html?id=${userId}&e=${document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ',')}&s=true&ts=${Date.now()}`)
     }
   })
