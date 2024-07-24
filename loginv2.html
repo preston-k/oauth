@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Passwordless Login</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins'/>
+  <link rel='icon' href='https://cdn.prestonkwei.com/personalwebsitefavicon.png'>
+  <link href='style.css' rel='stylesheet' type='text/css' />
+  <link rel='stylesheet' href='https://cdn.prestonkwei.com/basecode/basecss.css'>
+</head>
+<body>
+  <div id='noPw-email'>
+    <div id='nopw-sucess'>
+      <div class='tb-sucess' id='tb-sucesstop'>
+        <p>Sucess!</p>
+      </div>
+      <img id='sucess-check' src='https://cdn.prestonkwei.com/circlewithcheck.png'>
+      <div class='tb-sucess' id='tb-sucessbottom'>
+        <p>You may now close this tab.<p>
+      </div>
+    </div>
+    <h1>Select the Matching Shape</h1>
+    <p>Check your device, and click the matching shape to finish logging in!</p>
+    <div id='shapes'>
+      <div id='shape1' class='email-shapeselect'>
+        <img src='' class='emailshape' id='shape1-img'>
+        <p class='pk-nm-tb' id='shape1-label'></p>
+      </div>
+      <div id='shape2' class='email-shapeselect'>
+        <img src='' class='emailshape' id='shape2-img'>
+        <p class='pk-nm-tb' id='shape2-label'></p>
+      </div>
+      <div id='shape3' class='email-shapeselect'>
+        <img src='' class='emailshape' id='shape3-img'>
+        <p class='pk-nm-tb' id='shape3-label'></p>
+      </div>
+    </div>
+  </div>
+  <div id='noPw-step2'>
+    <div id='emailcheck-select'>
+      <h1 class='pk-nm-tb'>Check Your Email!</h1>
+      <p>We just sent you an email containing a link to log in! Please click the matching shape in the email.</p>
+      <div id='shapeselect'>
+        <img src='' id='login-shape'>
+      </div>
+      <p class='pk-nm-b' id='shape-id'></p>
+    </div>
+  </div>
+  <form id='noPwLogin'>
+    <h1 text-align='center' id='loginh1'>Passwordless Login</h1>
+    <p id='redirP'></p>
+    <input type='email' placeholder='Email' autocomplete='off' class='loginbox' id='noPwEmailbox' required></input>
+    <button type='submit' class='formbut' id='noPwSubmit'>Login</button>
+  </form>
+  <div id='static'></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js'></script>
+<script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js'></script>
+<script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js'></script>
+<script src='https://kit.fontawesome.com/c947e2382a.js' crossorigin='anonymous'></script>
+  <!-- <script src='classic.js'></script> -->
+  <script src='script.js'></script>
+  <script src='login.js'></script>
+</head>
+</body>
+</html>

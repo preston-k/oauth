@@ -272,3 +272,109 @@ function resetKnown() {
   preventDefault()
   console.log('Reset-Known')
 }
+let shapeGuide = {0:'Circle-Green', 1:'Circle-Purple', 2:'Circle-Yellow',3:'Octagon-Green', 4:'Octagon-Purple', 5:'Octagon-Red', 6:'Square-Blue', 7:'Square-Green', 8:'Square-Orange', 9:'Star-Blue', 10:'Star-Red', 11:'Star-Yellow', 12:'Trapezoid-Blue', 13:'Trapezoid-Green', 14:'Trapezoid-Orange', 15:'Triangle-Blue', 16:'Triangle-Green', 17:'Triangle-Red'}
+let emailSelect
+async function passwordlessLogin(event) {
+  event.preventDefault()
+  document.querySelector('#noPw-step2').style.display = 'flex'
+  let shape = Math.floor((Math.random()*18))
+  let shapeId = shapeGuide[shape]
+  console.log(`https://cdn.prestonkwei.com/${shapeId}.png`)
+  document.querySelector('#login-shape').src = `https://cdn.prestonkwei.com/2fa-shapes/${shapeId}.png`
+  document.querySelector('#shape-id').innerHTML = shapeId
+  let unshuffled = [shapeGuide[Math.floor((Math.random()*18))], shapeId, shapeGuide[Math.floor((Math.random()*18))]]
+  let shuffled = unshuffled.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value)
+  console.log(shuffled)
+  let linkid = self.crypto.randomUUID()
+  let userId
+  let loginLink = `https://oauth.prestonkwei.com/loginv2?now=1&id=${linkid}`
+  await database.ref(`users/${document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ',')}/id`).once('value').then(snapshot => {
+    console.log(snapshot.val())
+    userId = snapshot.val()
+  })
+  let expiration = Date.now() + 900000
+  database.ref(`noPw/${linkid}`).update({
+    email: document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','),
+    uId: userId,
+    status: 'unused',
+    expires: expiration
+  })
+  database.ref(`noPw/${linkid}/shapes`).update({
+    list: shuffled,
+    correct: shapeId
+  })
+  const data = new FormData()
+  data.set('sendto', document.querySelector('#noPwEmailbox').value)
+  data.set('subject', 'Finish Logging In!')
+  data.set('content', `Please finish logging in by clicking this link: ${loginLink}. For your security, this link will expire in 15 minutes. \n \n \nExp: ${expiration}, ID: ${linkid}`)
+  fetch('https://emailserver.prestonkwei.com/email', {
+    method: "post",
+    body:data,
+  }).catch(()=>{})
+  // Wait for database
+  database.ref(`noPw/${linkid}/status`).on('value', function(snapshot) {
+    console.log(snapshot.val())
+    if (snapshot.val() == 'sucess') {
+      authToken(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
+      window.location.replace(`/account.html?id=${userId}&e=${document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ',')}&s=true&ts=${Date.now()}`)
+    }
+  })
+}
+document.querySelector('#noPwLogin').addEventListener('submit', passwordlessLogin)
+if (window.location.pathname == '/loginv2.html') {
+  console.log(window.location.pathname)
+  if (urlParams.get('now') == 1 && urlParams.get('id') != '' && urlParams.get('id') != null) {
+    document.querySelector('#noPw-step2').innerHTML = ''
+    document.querySelector('#noPwLogin').innerHTML = ''
+    document.querySelector('#noPw-email').style.display = 'block'
+    // LOGIN PART
+    database.ref(`noPw/${urlParams.get('id')}`).once('value').then(snapshot => {
+      if (snapshot.val() == null) {
+        console.log('no data')
+        return
+      } else {
+        console.log(snapshot.val())
+        let data = snapshot.val()
+        let list = data['shapes']['list']
+        document.querySelector('#shape1-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
+        document.querySelector('#shape1-label').innerHTML = list[0]
+        document.querySelector('#shape2-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[1]}.png`
+        document.querySelector('#shape2-label').innerHTML = list[1]
+        document.querySelector('#shape3-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[2]}.png`
+        document.querySelector('#shape3-label').innerHTML = list[2]
+        let correct = data['shapes']['correct']
+        let correctId = data['shapes']['list'].indexOf(correct)+1
+        document.querySelector('#shape1').addEventListener('click', () => {
+          if (correctId == 1) {
+            database.ref(`noPw/${urlParams.get('id')}`).update({
+              status: 'sucess'
+            })
+            document.querySelector('#nopw-sucess').style.display = 'flex'
+          } else {
+            console.log('Incorrect Shape')
+          }
+        })
+        document.querySelector('#shape2').addEventListener('click', () => {
+          if (correctId == 2) {
+            database.ref(`noPw/${urlParams.get('id')}`).update({
+              status: 'sucess'
+            })
+            document.querySelector('#nopw-sucess').style.display = 'flex'
+          } else {
+            console.log('Incorrect Shape')
+          }
+        })
+        document.querySelector('#shape3').addEventListener('click', () => {
+          if (correctId == 3) {
+            database.ref(`noPw/${urlParams.get('id')}`).update({
+              status: 'sucess'
+            })
+            document.querySelector('#nopw-sucess').style.display = 'flex'
+          } else {
+            console.log('Incorrect Shape')
+          }
+        })
+      }
+    })
+  }
+}
