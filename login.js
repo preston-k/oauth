@@ -321,7 +321,7 @@ async function passwordlessLogin(event) {
   })
 }
 document.querySelector('#noPwLogin').addEventListener('submit', passwordlessLogin)
-if (window.location.pathname == '/loginv2.html') {
+if (window.location.pathname == '/loginv2.html' || window.location.pathname == '/loginv2') {
   console.log(window.location.pathname)
   if (urlParams.get('now') == 1 && urlParams.get('id') != '' && urlParams.get('id') != null) {
     document.querySelector('#noPw-step2').innerHTML = ''
