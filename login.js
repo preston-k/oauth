@@ -352,6 +352,7 @@ if (window.location.pathname == '/loginv2.html' || window.location.pathname == '
             document.querySelector('#nopw-sucess').style.display = 'flex'
           } else {
             console.log('Incorrect Shape')
+            window.location.replace('/loginv2.html')
           }
         })
         document.querySelector('#shape2').addEventListener('click', () => {
@@ -362,6 +363,7 @@ if (window.location.pathname == '/loginv2.html' || window.location.pathname == '
             document.querySelector('#nopw-sucess').style.display = 'flex'
           } else {
             console.log('Incorrect Shape')
+            window.location.replace('/loginv2.html')
           }
         })
         document.querySelector('#shape3').addEventListener('click', () => {
@@ -372,6 +374,7 @@ if (window.location.pathname == '/loginv2.html' || window.location.pathname == '
             document.querySelector('#nopw-sucess').style.display = 'flex'
           } else {
             console.log('Incorrect Shape')
+            window.location.replace('/loginv2.html')
           }
         })
       }
