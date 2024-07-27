@@ -1332,6 +1332,7 @@ input:focus {
   left: 0;
   z-index: 9999999;
   background-color: white;
+  overflow: auto;
   display: none;
 }
 #shapes {

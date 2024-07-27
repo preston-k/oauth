@@ -284,7 +284,6 @@ async function passwordlessLogin(event) {
   document.querySelector('#shape-id').innerHTML = shapeId
   let unshuffled = [shapeGuide[Math.floor((Math.random()*18))], shapeId, shapeGuide[Math.floor((Math.random()*18))]]
   let shuffled = unshuffled.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value)
-  console.log(shuffled)
   let linkid = self.crypto.randomUUID()
   let userId
   let loginLink = `https://oauth.prestonkwei.com/loginv2?now=1&id=${linkid}`
@@ -333,7 +332,6 @@ if (window.location.pathname == '/loginv2.html' || window.location.pathname == '
         console.log('no data')
         return
       } else {
-        console.log(snapshot.val())
         let data = snapshot.val()
         let list = data['shapes']['list']
         document.querySelector('#shape1-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
