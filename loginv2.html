@@ -56,12 +56,18 @@
       <p class='pk-nm-b' id='shape-id'></p>
     </div>
   </div>
-  <form id='noPwLogin'>
-    <h1 text-align='center' id='loginh1'>Passwordless Login</h1>
-    <p id='redirP'></p>
-    <input type='email' placeholder='Email' autocomplete='off' class='loginbox' id='noPwEmailbox' required></input>
-    <button type='submit' class='formbut' id='noPwSubmit'>Login</button>
-  </form>
+  <div class='login-left'>
+    <form id='noPwLogin'>
+      <h1 text-align='center' id='loginh1'>Passwordless Login</h1>
+      <p id='redirP'></p>
+      <input type='email' placeholder='Email' autocomplete='off' class='loginbox' id='noPwEmailbox' required></input>
+      <button type='submit' class='formbut' id='noPwSubmit'>Login</button>
+      <a href='/login.html' class='link'><span class='non-link'>Want to log in using your password?</span> <span class='hlink'>Click Here!</span></a>
+    </form>
+  </div>
+  <div class='login-right'>
+    <img src='https://cdn.prestonkwei.com/checkemailclipart.svg' alt='Login Clipart' class='loginpage-clipart' draggable='false'>
+  </div>
   <div id='static'></div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js'></script>

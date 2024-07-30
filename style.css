@@ -8,7 +8,7 @@ h1 {
 }
 .loginbox {
   display: block;
-  width: 40%;
+  width: 50%;
   max-width: 500px;
   height: 50px;
   font-family: 'Poppins';
@@ -1425,5 +1425,68 @@ input:focus {
   border-radius: 10px;
   font-family: 'Poppins';
   font-size: 16px;
+  cursor: pointer;
+}
+.login-left {
+  width: 50vw;
+  height: 100vh;
+  display: inline-block;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.login-right {
+  width: 50vw;
+  height: 100vh;
+  background-color: #7EC8E3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  flex-direction: column;
+}
+.signup-left {
+  width: 50vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: #7EC8E3;
+  flex-direction: column;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-right {
+  width: 50vw;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.loginpage-clipart {
+  width: 70%;
+}
+@media (max-width: 800px) {
+  #login-right {
+    display: none;
+  }
+  #login-left {
+    width: 100vw;
+  }
+}
+.half-hr {
+  width: 50%;
+  border: 1px solid black;
+}
+.loginoption-button {
+  width: 50%;
+  height: 35px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
   cursor: pointer;
 }

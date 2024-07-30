@@ -52,17 +52,24 @@
       </div>
     </div>
     <script src='https://kit.fontawesome.com/c947e2382a.js' crossorigin='anonymous'></script>
-    
-    <div id='formdiv'>
-      <form id='loginform'>
-        <h1 text-align='center' id='loginh1'>Login</h1>
-        <p id='redirP'></p>
-        <input type='email' placeholder='Email' autocomplete='off' class='loginbox' id='email'></input>
-        <input type='password' placeholder='Password' class='loginbox' id='password'></input>
-        <button type='submit' class='formbut' id='loginBut'>Login</button>
+    <div class='login-left'>
+      <div id='formdiv'>
+        <form id='loginform'>
+          <h1 text-align='center' id='loginh1'>Login</h1>
+          <p id='redirP'></p>
+          <input type='email' placeholder='Email' autocomplete='off' class='loginbox' id='email'></input>
+          <input type='password' placeholder='Password' class='loginbox' id='password'></input>
+          <button type='submit' class='formbut' id='loginBut'>Login</button>
+        </form>
+        <hr class='half-hr'>
+        <a href='/loginv2.html'><button class='loginoption-button'>Login Without a Password</button></a>
         <a href='/signup.html' class='link'><span class='non-link'>Don't have an account?</span> <span class='hlink'>Create One!</span></a>
-      </form>
+      </div>
     </div>
+    <div class='login-right'>
+      <img src='https://cdn.prestonkwei.com/loginimage.svg' alt='Login Clipart' class='loginpage-clipart' draggable='false'>
+    </div>
+   
     <div id='loggedout-notif'>
       <div id='loggedoutnotif-content'>
         <p class='pk-nm-tb' id='loggedout-content-message'>For your security, we have automatically logged you out.</p>
