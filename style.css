@@ -1393,3 +1393,37 @@ input:focus {
   position: fixed;
   bottom: 0;
 }
+#expiredtoken {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0,.3);
+  z-index: 999999999999999;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+#expiredtokenReason {
+  padding: 10px;
+  width: 50vw;
+  min-width: 300px;
+  height: max-content;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+#error-clipart {
+  width: 80%;
+}
+#newToken {
+  width: 50%;
+  height: 50px;
+  background-color: #7EC8E3;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Poppins';
+  font-size: 16px;
+  cursor: pointer;
+}

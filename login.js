@@ -1,12 +1,4 @@
-const firebaseConfig = {
-  apiKey: 'AIzaSyB-ZYqrpT04a5zOkB5uQYK3lE3CuMhkhC8',
-  authDomain: 'oauth-page-ad3c2.firebaseapp.com',
-  databaseURL: 'https://oauth-page-ad3c2-default-rtdb.firebaseio.com',
-  projectId: 'oauth-page-ad3c2',
-  storageBucket: 'oauth-page-ad3c2.appspot.com',
-  messagingSenderId: '401481049573',
-  appId: '1:401481049573:web:f1f9ca852e96d580cf3b0c',
-}
+import firebaseConfig from './obfuscaedfirebaseconfig.js'
 firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
@@ -332,6 +324,10 @@ async function passwordlessLogin(event) {
     }
   })
 }
+function badToken(reason) {
+  console.log(reason)
+  document.querySelector('#expiredtoken').style.display = 'flex !important'
+}
 document.querySelector('#noPwLogin').addEventListener('submit', passwordlessLogin)
 if (window.location.pathname == '/loginv2.html' || window.location.pathname == '/loginv2') {
   console.log(window.location.pathname)
@@ -340,6 +336,18 @@ if (window.location.pathname == '/loginv2.html' || window.location.pathname == '
     document.querySelector('#noPwLogin').innerHTML = ''
     document.querySelector('#noPw-email').style.display = 'block'
     // LOGIN PART
+    database.ref(`noPw/${urlParams.get('id')}/expires/`).once('value').then(snapshot => {
+      if (Date.now() - snapshot.val() <= 0) {
+        badToken('expired')
+        return
+      }
+    })
+    database.ref(`noPw/${urlParams.get('id')}/status/`).once('value').then(snapshot => {
+      if (snapshot.val() != 'unused') {
+        badToken('used')
+        return
+      }
+    })
     database.ref(`noPw/${urlParams.get('id')}`).once('value').then(snapshot => {
       if (snapshot.val() == null) {
         console.log('no data')
