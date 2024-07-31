@@ -102,6 +102,23 @@
       <h1 class='no-margin' id='h1-security-bold'>Security Center</h1>
       <p>Here are things you can do to protect your account.</p>
       <img src='https://cdn.prestonkwei.com/security-checkmark-black.png' id='security-center-icon'>
+      <div id='securitycenter-questions'>
+        <h3>Answer Security Questions</h3>
+        <p>In case you get locked out of your account, we may ask you for the answers to these security questions.</p>
+        <select id='questionOpt'>
+          <option disabled selected id='qPlaceholder'>Select a Question</option>
+          <option class='resetQuestion' value='vacation'>What is favorite type of vacation?</option>
+          <option class='resetQuestion' value='fruit'>What was your favorite fruit as a child?</option>
+          <option class='resetQuestion' value='vegetable'>What was your least favorite vegetable as a child?</option>
+        </select>
+        <p id='squestion'></p>
+        <select id='answer'>
+          <option disabled selected>Choose</option>
+        </select>
+        <p></p>
+        <button id='resetSubmit' onclick='securityQuestionSubmit()'>Save Answers</button>
+      </div>
+      
       <i class='fa-solid fa-x fa-2x' id='security-exit'></i>
     </div>
     <div id='overlay-grey'></div> 
@@ -153,7 +170,8 @@
         <div id='personalinfo'>
           <input type='text' class='pinfobox' placeholder='First Name' id='fnhtml' />
           <input type='text' class='pinfobox' placeholder='Last Name' id='lnhtml' />
-          <input type='text' class='fullpinfobox' placeholder='Email Address' id='email'/>
+          <input type='text' class='fullpinfobox disabled-textbox' placeholder='Email Address' id='email' disabled='true'/>
+          <p class='pk-nm-tb'>Please contact us to change your email.</p>
           <br />
           <button id='savebut' onclick='updateInfo()'>Save Changes</button>
         </div>

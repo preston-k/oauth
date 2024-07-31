@@ -238,6 +238,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           await database.ref('users/' + firebaseEmail + '/info').update({
             fn: '',
             ln: '',
+            e: email
           })
           const data = new FormData()
           data.set('sendto', email)

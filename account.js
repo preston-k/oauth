@@ -10,6 +10,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 // Initialize User Information
+let urlUserId
+let urlEmail
 sessionStorage.removeItem('target')
 function denyaccess() {
   console.log('Access denied')
@@ -345,7 +347,6 @@ document.querySelector('#danger-deletepfp').addEventListener('click', () => {
   document.querySelector('#danger-confirm-textbox').placeholder = textvalue
   dangerOverlay()
   document.querySelector('#danger-confirm-textbox').addEventListener('input', () => {
-    console.log(document.querySelector('#danger-confirm-textbox').value)
     if (document.querySelector('#danger-confirm-textbox').value === textvalue) {
       document.querySelector('#danger-proceed').disabled = false
     } else {
@@ -362,7 +363,6 @@ document.querySelector('#danger-deleteacc').addEventListener('click', () => {
   document.querySelector('#danger-confirm-textbox').placeholder = textvalue
   dangerOverlay()
   document.querySelector('#danger-confirm-textbox').addEventListener('input', () => {
-    console.log(document.querySelector('#danger-confirm-textbox').value)
     if (document.querySelector('#danger-confirm-textbox').value === textvalue) {
       document.querySelector('#danger-proceed').disabled = false
     } else {
@@ -388,8 +388,26 @@ document.querySelector('#danger-confirm-form').addEventListener('submit', async 
   }
   if (textvalue == 'deleteaccount') {
     // DELETE ACCOUNT
+    let accountInfo
+    await database.ref(`/users/${urlParams.get('e')}/`).once('value').then(snapshot => {
+      accountInfo = snapshot.val()
+    })
+    await database.ref(`/deleted/${urlParams.get('e')}><${Date.now()}/`).update ({
+      accountInfo
+    })
+    await database.ref(`/users/${urlParams.get('e')}/`).remove()
+    const data = new FormData()
+          data.set('sendto', urlParams.get('e').replace(/\,/g, '.').replace(/_/g, '@'))
+          data.set('subject', 'Sorry to see you go!')
+          data.set('html', `<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <title>Sorry to see you go!</title> </head> <body style='width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #7EC8E3; font-family: "Trebuchet MS"; margin: 0;'> <table width='100%' height='100%' align='center' bgcolor='#7EC8E3' style='margin: 0; padding: 0;'> <tr> <td align='center'> <table width='80%' min-width='300px' bgcolor='white' style='padding: 50px; text-align: center;'> <tr> <td> <h1 style='margin: 0;'>Thanks for Creating an Account!</h1> <div style='text-align: left;'> <strong><p>Hi there!</p></strong> <p>We noticed that you just submitted a request to delete your account. </p> <img src='https://cdn.prestonkwei.com/newaccountclipart.png' alt='Image of a new account' style='width: 250px; display: block; margin-left: auto; margin-right: auto;'> <p>Have you explored all of our apps? Check out our <a href='https://chat.prestonkwei.com' style='color: #000080;'>chat app</a> and <a href='https://whiteboard.prestonkwei.com' style='color: #000080;'>collaborative whiteboard</a>!</p> <br> <p>If you did NOT create an account on our website, please <a href='mailto:help@prestonkwei.com' style='color: #000080;'>contact us</a> immediately.</p> </div> <br> <div style='text-align: right;'> <strong><p>Best regards,</p></strong> <p>The team at prestonkwei.com</p> </div> <div style='font-size: 10px;'> <hr style='border: 1px solid #000080;'> <p>You are receiving this email because you signed up for an account on our website.</p> <p>PrestonKwei.com ⋅ PO Box 20987 ⋅ Oakland, CA 94620</p> <p>This is an unmonitored email address. Responses will not be received.</p> <a href='https://prestonkwei.com' style='color: #000080;'>prestonkwei.com</a> </div> </td> </tr> </table> </td> </tr> </table> </body> </html>`)
+          data.set('content', `Hi there! We noticed that you recently created an account for the prestonkwei.com suite of apps. The email and password combination that you used to sign up will be your single login to ALL of our apps. We highly recommend storing your login information in your browser or password manager to login faster. If you did NOT create an account on our website, please email help@prestonkwei.com to contact us. Thank you!`)
+          // fetch('https://emailserver.prestonkwei.com/email', {
+          //   method: "post",
+          //   body:data,
+          // }).catch(()=>{})
+    document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))
     // SEND TO ANOTHER LOGIN PAGE
-    window.location.replace('/')
+    // window.location.replace('/')
   }
 })
 function securityOptions() {
@@ -463,4 +481,68 @@ inactivelogout()
 function stayin() {
   isLoggedOut = false
   document.querySelector('#stillthere').style.display = 'none'
+}
+database.ref(`users/${urlParams.get('e')}/info/e`).once('value').then(snapshot => {
+  document.querySelector('#email').value = snapshot.val()
+})
+
+
+let answerSelect = document.querySelector('#answer')
+let vacationQ = ['Beach', 'Snow', 'Camping', 'Road Trip', 'Cruise', 'Adventure', 'Staycation', 'Volunteer Work']
+let fruitQ = ['Apple', 'Pear', 'Peach', 'Lychee', 'Orange', 'Blueberry', 'Cherry', 'Papaya']
+let leastFavVeg = ['Brocolli', 'Lettuce', 'Carrot', 'Mushrooms', 'Celery', 'Corn', 'Bell Pepper', 'Zucchinni']
+vacationQ = vacationQ.sort(() => 0.5 - Math.random());
+fruitQ = fruitQ.sort(() => 0.5 - Math.random());
+leastFavVeg = leastFavVeg.sort(() => 0.5 - Math.random());
+let questiontext = document.querySelector('#squestion')
+let question = document.querySelector('#questionOpt')
+console.log(question.value)
+question.addEventListener('input', () => {
+  while (answerSelect.children.length > 1) {
+    answerSelect.removeChild(answerSelect.lastChild);
+  }
+
+  if (question.value == 'vacation') {
+    vacationQ.forEach(function(option) {
+      let newOption = document.createElement('option');
+      newOption.value = option;
+      newOption.innerHTML = option;
+      answerSelect.appendChild(newOption);
+    });
+    answerSelect.style.display = 'block';
+    answerSelect.style.marginLeft = 'auto';
+    answerSelect.style.marginRight = 'auto';
+  } else if (question.value == 'fruit') {
+    fruitQ.forEach(function(option) {
+      let newOption = document.createElement('option');
+      newOption.value = option;
+      newOption.innerHTML = option;
+      answerSelect.appendChild(newOption);
+    });
+    answerSelect.style.display = 'block';
+    answerSelect.style.marginLeft = 'auto';
+    answerSelect.style.marginRight = 'auto';
+  } else if (question.value == 'vegetable') {
+    leastFavVeg.forEach(function(option) {
+      let newOption = document.createElement('option');
+      newOption.value = option;
+      newOption.innerHTML = option;
+      answerSelect.appendChild(newOption);
+    });
+    answerSelect.style.display = 'block';
+    answerSelect.style.marginLeft = 'auto';
+    answerSelect.style.marginRight = 'auto';
+  }
+})
+
+async function securityQuestionSubmit() {
+  let question = document.querySelector('#questionOpt').value
+  let answer = document.querySelector('#answer').value
+  if (question != 'Select a Question') {
+    if (answer != 'Choose') {
+      await database.ref(`/users/${urlParams.get('e')}/info/security/questions`).update ({
+        [question]: answer
+      })
+    }
+  }
 }

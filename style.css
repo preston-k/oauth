@@ -1496,3 +1496,7 @@ input:focus {
   background-color: white;
   cursor: pointer;
 }
+.disabled-textbox {
+  background-color: lightgrey;
+  border-radius: 5px 5px 0 0;
+}
