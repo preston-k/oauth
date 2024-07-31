@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins"/>
-    <link rel="icon" href="https://cdn.prestonkwei.com/personalwebsitefavicon.png">
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins'/>
+    <link rel='icon' href='https://cdn.prestonkwei.com/personalwebsitefavicon.png'>
     <script src='https://cdn.prestonkwei.com/ipblockcheck.js'></script>
     <link rel='stylesheet' href='https://cdn.prestonkwei.com/basecode/basecss.css'>		
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="script.js" type='module'></script>
+    <link href='style.css' rel='stylesheet' type='text/css' />
+    <script src='https://accounts.google.com/gsi/client' async defer></script>
+    <meta name='google-signin-client_id' content='550729750810-vdlfscip99lpv61stbfk3hqhdfkf8c19.apps.googleusercontent.com'>
+    <script src='googlesso.js' type='module'></script>
+    <script src='script.js' type='module'></script>
     <script src='login.js' type='module'></script>
     <script src='random.js' type='module'></script>
     <title>Login</title>
   </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0D1F9EEVYE"></script>
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-0D1F9EEVYE'></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -62,7 +65,33 @@
           <button type='submit' class='formbut' id='loginBut'>Login</button>
         </form>
         <hr class='half-hr'>
-        <a href='/loginv2.html'><button class='loginoption-button'>Login Without a Password</button></a>
+        <a href='/loginv2.html' class='pk-nm-t'><button class='loginoption-button'>Login Without a Password</button></a>
+        <div id='g_id_onload'
+             data-client_id='550729750810-vdlfscip99lpv61stbfk3hqhdfkf8c19.apps.googleusercontent.com'
+             data-context='signin'
+             data-ux_mode='popup'
+             data-login_uri='https://oauth.prestonkwei.com'
+             data-callback='handleCredentialResponse'
+             data-auto_prompt='false'>
+        </div>
+        
+        <div class='g_id_signin'
+             data-type='standard'
+             data-shape='rectangular'
+             data-theme='outline'
+             data-text='signup_with'
+             data-size='large'
+             data-logo_alignment='left'>
+        </div>
+        
+        <script src='https://accounts.google.com/gsi/client' async defer></script><script src='https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js'></script>
+        <script>
+          function handleCredentialResponse(response) {
+            let user = jwt_decode(response.credential)
+            window.location.replace(`/googlesso.html?goto=in&obj=${JSON.stringify(user)}`)
+          }
+        
+        </script>
         <a href='/signup.html' class='link'><span class='non-link'>Don't have an account?</span> <span class='hlink'>Create One!</span></a>
       </div>
     </div>
@@ -85,9 +114,33 @@
     <div id='info'>
       <!-- <p>Privacy Practices · ToS</p> -->
     </div>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-    <script src="classic.js"></script>
+    <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
+    <script src='classic.js'></script>
+    <script>
+      window.onload = function() {
+        google.accounts.id.initialize({
+          client_id: '550729750810-vdlfscip99lpv61stbfk3hqhdfkf8c19.apps.googleusercontent.com',
+          callback: handleCredentialResponse,
+          auto_select: false,
+          context: 'signin'
+        })
+        google.accounts.id.renderButton(
+          document.getElementById('signinGoogle'),
+          { theme: 'outline', size: 'large' }
+        )
+
+        google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed()) {
+            console.log(notification.getNotDisplayedReason())
+          } else if (notification.isSkippedMoment()) {
+            console.log(notification.getSkippedReason())
+          } else if (notification.isDismissedMoment()) {
+            console.log(notification.getDismissedReason())
+          }
+        })
+      }
+    </script>
   </body>
 </html>

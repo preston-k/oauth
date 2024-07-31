@@ -1495,8 +1495,18 @@ input:focus {
   font-family: 'Poppins', sans-serif;
   background-color: white;
   cursor: pointer;
+  color: black;
 }
 .disabled-textbox {
   background-color: lightgrey;
   border-radius: 5px 5px 0 0;
+}
+#signinGoogle {
+  width: 50%;
+  height: 35px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  cursor: pointer;
 }

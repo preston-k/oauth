@@ -98,6 +98,56 @@ async function authToken(email) {
   }
 }
 
+(async () => {
+  if (window.location.pathname === '/googlesso' || window.location.pathname === '/googlesso.html') {
+    let googleInfo = JSON.parse(urlParams.get('obj'))
+    console.log(googleInfo)
+    let googleEmail = googleInfo.email.replace(/\./g, ',').replace(/@/g, '_')
+    console.log(googleEmail)
+    let gId = googleInfo.sub
+    let pkId = self.crypto.randomUUID()
+    let gFn = googleInfo.given_name
+    let gLn = googleInfo.family_name
+    console.log(googleInfo.family_name == undefined)
+    if (gFn == undefined) {
+      gFn = ''
+    }
+    if (gLn == undefined) {
+      gLn = ''
+    }
+    try {
+      let snapshot = await database.ref(`/users/${googleEmail}/`).once('value')
+      if (snapshot.val() == null) {
+        await database.ref(`/users/${googleEmail}/`).update({
+          id: pkId,
+          method: 'Google',
+          gId: gId
+        })
+        await database.ref(`/users/${googleEmail}/info/`).update({
+          fn: gFn,
+          ln: gLn,
+          e: googleInfo.email
+        })
+        await authToken(googleEmail)
+        window.location.replace(`/account.html?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
+      } else {
+        let accountEmail
+        let data
+        await database.ref(`/users/${googleEmail}/info/e`).once('value').then(snapshot => {
+          accountEmail = snapshot.val().replace(/\./g, ',').replace(/@/g, '_')
+        })
+        await database.ref(`/users/${googleEmail}/`).once('value').then(snapshot => {
+          console.log(snapshot.val())
+          data = snapshot.val()
+        })
+        await authToken(accountEmail)
+        window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
+      }
+    } catch (error) {
+      console.error('Error accessing database:', error)
+    }
+  }
+})()
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('loginform').addEventListener('submit', async function login(event) {
       event.preventDefault()
