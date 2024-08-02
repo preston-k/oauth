@@ -386,6 +386,7 @@ async function passwordlessLogin(event) {
 }
 function badToken(reason) {
   console.log(reason)
+  document.querySelector('#expiredtoken').style.display = 'flex'
   document.querySelector('#expiredtoken').style.display = 'flex !important'
 }
 document.querySelector('#noPwLogin').addEventListener('submit', passwordlessLogin)

@@ -1510,3 +1510,9 @@ input:focus {
   background-color: white;
   cursor: pointer;
 }
+.googlesso-badge {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
