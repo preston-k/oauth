@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             sessionStorage.removeItem('target')
             window.location.replace(savedTarget + '?id=' + useruuid + '&e=' + firebaseEmail)
           } else {
-            window.location.replace('/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts=')
+            window.location.replace('/account.html?id=' + useruuid + '&e=' + firebaseEmail + '&ts='+ Date.now())
           }
           
         }
