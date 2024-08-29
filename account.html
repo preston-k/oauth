@@ -1,57 +1,86 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      rel='stylesheet'
-      href='https://fonts.googleapis.com/css2?family=Poppins'
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins"
     />
-    <link rel='icon' href='https://cdn.prestonkwei.com/personalwebsitefavicon.png'/>
-    <script src='https://cdn.prestonkwei.com/ipblockcheck.js' type='module'></script>
-    <link rel='stylesheet' href='https://cdn.prestonkwei.com/basecode/basecss.css'>		
-    <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js'></script>
-    <script src='https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
-    <script src='script.js'></script>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM'  crossorigin='anonymous'/>
+    <link
+      rel="icon"
+      href="https://cdn.prestonkwei.com/personalwebsitefavicon.png"
+    />
+    <script
+      src="https://cdn.prestonkwei.com/ipblockcheck.js"
+      type="module"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.prestonkwei.com/basecode/basecss.css"
+    />
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
     <title>Account Management</title>
-    <link href='style.css' rel='stylesheet' type='text/css' />
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0D1F9EEVYE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-0D1F9EEVYE"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
 
-  gtag('config', 'G-0D1F9EEVYE');
-</script>
-  
-  <body onload='urlparam()'>
-    <noscript class='pk-noscript'>
-      <div class='pk-noscriptinnerdiv'>
+    gtag('config', 'G-0D1F9EEVYE')
+  </script>
+
+  <body onload="urlparam()">
+    <noscript class="pk-noscript">
+      <div class="pk-noscriptinnerdiv">
         <div>
-          <h1 class='pk-fo-u'>Javascript Required</h1>
-          <p class='pk-noscript-p'>We know this isn't the page you were expecting, but your browser does not support Javascript. Our sites require Javascript to run, so you must enable it to continue viewing our sites.</p>
-          <p class='pk-nm-tb'>---</p>
-          <p class='pk-noscript-p'>Either your browser is too old, or you have accidentally disabled Javascript for our site.</p>
-          <p class='pk-nm-tb'>---</p>
-          <p class='pk-noscript-p'>You will <span class='pk-fo-u'>not</span> be able to continue without Javascript. We appologize for the inconvenience.</p>
+          <h1 class="pk-fo-u">Javascript Required</h1>
+          <p class="pk-noscript-p">
+            We know this isn't the page you were expecting, but your browser
+            does not support Javascript. Our sites require Javascript to run, so
+            you must enable it to continue viewing our sites.
+          </p>
+          <p class="pk-nm-tb">---</p>
+          <p class="pk-noscript-p">
+            Either your browser is too old, or you have accidentally disabled
+            Javascript for our site.
+          </p>
+          <p class="pk-nm-tb">---</p>
+          <p class="pk-noscript-p">
+            You will <span class="pk-fo-u">not</span> be able to continue
+            without Javascript. We appologize for the inconvenience.
+          </p>
         </div>
       </div>
     </noscript>
-    <div id='loaddivparent'>
-      <div id='pfploading'>
-        <span id='ub'><h1>Your Profile Photo is Uploading!</h1></span>
+    <div id="loaddivparent">
+      <div id="pfploading">
+        <span id="ub"><h1>Your Profile Photo is Uploading!</h1></span>
         <p>Please wait, this should only take a couple seconds.</p>
-        <div id='pfploaderparent'>
-          <div class='pfp-loader'></div>
+        <div id="pfploaderparent">
+          <div class="pfp-loader"></div>
         </div>
       </div>
     </div>
-    <i class='fa-solid fa-x fa-2x' id='danger-exit'></i>
-    <div id='danger-confirm-hold'>
+    <i class="fa-solid fa-x fa-2x" id="danger-exit"></i>
+    <div id="danger-confirm-hold">
       <!-- <div id='delete-final-confirm'>
         <h1>You Are About to Delete Your Account</h1>
         <u><p>To confirm, please acknowledge that:</p></u>
@@ -72,233 +101,355 @@
           </div>
         </form>
       </div> -->
-      <div id='danger-confirm'>
-        <h1 id='danger-confirm-title'>Are You Sure?</h1>
-        <p class='danger-confirm-message'>You are about to <span id='danger-confirm-about'></span>.</p>
-        <p id='danger-perm' style='font-size: 12px;'>This action is <span style='color: red;text-decoration: underline;'>permanent</span> and cannot be undone.</p>
-        <hr id='danger-hr'>
-        <p class='danger-confirm-message'>If you are absolutely sure you would like to proceed, type <span id='danger-confirm-type'></span> in the box below.</p>
-        <form id='danger-confirm-form'>
-          <input type='text' id='danger-confirm-textbox' autocapitalize='off' autocomplete='off'>
-          <button id='danger-proceed' type='submit-' disabled>Proceed</button>
+      <div id="danger-confirm">
+        <h1 id="danger-confirm-title">Are You Sure?</h1>
+        <p class="danger-confirm-message">
+          You are about to <span id="danger-confirm-about"></span>.
+        </p>
+        <p id="danger-perm" style="font-size: 12px">
+          This action is
+          <span style="color: red; text-decoration: underline">permanent</span>
+          and cannot be undone.
+        </p>
+        <hr id="danger-hr" />
+        <p class="danger-confirm-message">
+          If you are absolutely sure you would like to proceed, type
+          <span id="danger-confirm-type"></span> in the box below.
+        </p>
+        <form id="danger-confirm-form">
+          <input
+            type="text"
+            id="danger-confirm-textbox"
+            autocapitalize="off"
+            autocomplete="off"
+          />
+          <button id="danger-proceed" type="submit-" disabled>Proceed</button>
         </form>
       </div>
     </div>
-    <div id='qrlogin'>
-      <i class='fa-solid fa-x fa-2x' id='qr-exit'></i>
-      <h1 class='pk-fo-u'>Generate a QR Code</h1>
-      <p class='pk-nm-tb'>Quickly login using this QR code. Simply open the camera app on your phone, then scan this qr code.</p>
-      <div id='loginqr-holder'>
-        <img src='' id='login-qrcode'>
+    <div id="qrlogin">
+      <i class="fa-solid fa-x fa-2x" id="qr-exit"></i>
+      <h1 class="pk-fo-u">Generate a QR Code</h1>
+      <p class="pk-nm-tb">
+        Quickly login using this QR code. Simply open the camera app on your
+        phone, then scan this qr code.
+      </p>
+      <div id="loginqr-holder">
+        <img src="" id="login-qrcode" />
       </div>
       <p>This code will expire in 5 minutes.</p>
-      <p>Do <span class='pk-fo-u'>NOT</span> send this code to anybody. Only scan this code using devices you trust.</p>
-      <p>If you prefer, you can send this link to your devices. Click below to copy it!</p>
-      <div id='sso-link-copy'>
-        <p id='sso-linkcopy-content'>oauth.prestonkwei.com/instant?sso=fjaskdfjaksjdfk&loginHint=prestonkwei_gmail,com</p>
+      <p>
+        Do <span class="pk-fo-u">NOT</span> send this code to anybody. Only scan
+        this code using devices you trust.
+      </p>
+      <p>
+        If you prefer, you can send this link to your devices. Click below to
+        copy it!
+      </p>
+      <div id="sso-link-copy">
+        <p id="sso-linkcopy-content">
+          oauth.prestonkwei.com/instant?sso=fjaskdfjaksjdfk&loginHint=prestonkwei_gmail,com
+        </p>
       </div>
     </div>
-    <div id='security-options'>
-      <h1 class='no-margin' id='h1-security-bold'>Security Center</h1>
+    <div id="security-options">
+      <h1 class="no-margin" id="h1-security-bold">Security Center</h1>
       <p>Here are things you can do to protect your account.</p>
-      <img src='https://cdn.prestonkwei.com/security-checkmark-black.png' id='security-center-icon'>
-      <div id='securitycenter-questions'>
+      <img
+        src="https://cdn.prestonkwei.com/security-checkmark-black.png"
+        id="security-center-icon"
+      />
+      <div id="securitycenter-questions">
         <h3>Answer Security Questions</h3>
-        <p>In case you get locked out of your account, we may ask you for the answers to these security questions.</p>
-        <select id='questionOpt'>
-          <option disabled selected id='qPlaceholder'>Select a Question</option>
-          <option class='resetQuestion' value='vacation'>What is favorite type of vacation?</option>
-          <option class='resetQuestion' value='fruit'>What was your favorite fruit as a child?</option>
-          <option class='resetQuestion' value='vegetable'>What was your least favorite vegetable as a child?</option>
+        <p>
+          In case you get locked out of your account, we may ask you for the
+          answers to these security questions.
+        </p>
+        <select id="questionOpt">
+          <option disabled selected id="qPlaceholder">Select a Question</option>
+          <option class="resetQuestion" value="vacation">
+            What is favorite type of vacation?
+          </option>
+          <option class="resetQuestion" value="fruit">
+            What was your favorite fruit as a child?
+          </option>
+          <option class="resetQuestion" value="vegetable">
+            What was your least favorite vegetable as a child?
+          </option>
         </select>
-        <p id='squestion'></p>
-        <select id='answer'>
+        <p id="squestion"></p>
+        <select id="answer">
           <option disabled selected>Choose</option>
         </select>
         <p></p>
-        <button id='resetSubmit' onclick='securityQuestionSubmit()'>Save Answers</button>
+        <button id="resetSubmit" onclick="securityQuestionSubmit()">
+          Save Answers
+        </button>
       </div>
-      
-      <i class='fa-solid fa-x fa-2x' id='security-exit'></i>
+
+      <i class="fa-solid fa-x fa-2x" id="security-exit"></i>
     </div>
-    <div id='overlay-grey'></div> 
-    <div class='modal fade' id='loggedoutmod' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'
+    <div id="overlay-grey"></div>
+    <div
+      class="modal fade"
+      id="loggedoutmod"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
     >
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <h5 class='modal-title fs-5' id='staticBackdropLabel'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fs-5" id="staticBackdropLabel">
               <b>You've been logged out!</b>
             </h5>
           </div>
-          <div class='modal-body'>
+          <div class="modal-body">
             To protect your account, you've been logged out. Please sign in
             again!
           </div>
-          <div class='modal-footer'>
-            <p id='errorp' style='font-size: 12px'></p>
-            <a href='/'><button type='button' class='btn btn-primary' id='letgobut'>Log In!</button></a>
+          <div class="modal-footer">
+            <p id="errorp" style="font-size: 12px"></p>
+            <a href="/"
+              ><button type="button" class="btn btn-primary" id="letgobut">
+                Log In!
+              </button></a
+            >
           </div>
         </div>
       </div>
     </div>
-    <div id='stillthere'>
-      <div id='stillthere-content'> 
-        <h1 class='pk-fo-u'>Still There?</h1>
-        <p>We've noticed that you've been inactive for a while! <span class='pk-fo-u'>To protect your account,</span> we will automatically log you out in 30 seconds.</p>
-        <p>If you don't do anything, you will be logged out. Any unsaved changes will be lost.</p>
-        <h1 id='stillthere-countdown'>30</h1>
-        <div id='stillthere-options'>
-          <button class='stillthere-optionbut' onclick='stayin()'>Keep me logged in!</button>
-          <button class='stillthere-optionbut' onclick='logout()'>I'm done, log me out.</button>
+    <div id="stillthere">
+      <div id="stillthere-content">
+        <h1 class="pk-fo-u">Still There?</h1>
+        <p>
+          We've noticed that you've been inactive for a while!
+          <span class="pk-fo-u">To protect your account,</span> we will
+          automatically log you out in 30 seconds.
+        </p>
+        <p>
+          If you don't do anything, you will be logged out. Any unsaved changes
+          will be lost.
+        </p>
+        <h1 id="stillthere-countdown">30</h1>
+        <div id="stillthere-options">
+          <button class="stillthere-optionbut" onclick="stayin()">
+            Keep me logged in!
+          </button>
+          <button class="stillthere-optionbut" onclick="logout()">
+            I'm done, log me out.
+          </button>
         </div>
       </div>
     </div>
-    <div id='center'>
-      <div id='pfpstuff'>
-        <form id='pfpform'>
-          <input type='file' accept='.png, .jpg, .jpeg, .heic' id='pfpup' />
+    <div id="center">
+      <div id="pfpstuff">
+        <form id="pfpform">
+          <input type="file" accept=".png, .jpg, .jpeg, .heic" id="pfpup" />
         </form>
-        <img id='iconpng' src='https://cdn.prestonkwei.com/usericon.png' />
+        <img id="iconpng" src="https://cdn.prestonkwei.com/usericon.png" />
       </div>
-      <div id='main-content'>
+      <div id="main-content">
         <h2>Account Management</h2>
         <p>
           Click to edit any of the fields with a
-          <span id='blueunderline'>blue underline</span>.
+          <span id="blueunderline">blue underline</span>.
         </p>
-        <div id='personalinfo'>
-          <input type='text' class='pinfobox' placeholder='First Name' id='fnhtml' />
-          <input type='text' class='pinfobox' placeholder='Last Name' id='lnhtml' />
-          <input type='text' class='fullpinfobox disabled-textbox' placeholder='Email Address' id='email' disabled='true'/>
-          <p class='pk-nm-tb'>Please contact us to change your email.</p>
+        <div id="personalinfo">
+          <input
+            type="text"
+            class="pinfobox"
+            placeholder="First Name"
+            id="fnhtml"
+          />
+          <input
+            type="text"
+            class="pinfobox"
+            placeholder="Last Name"
+            id="lnhtml"
+          />
+          <input
+            type="text"
+            class="fullpinfobox disabled-textbox"
+            placeholder="Email Address"
+            id="email"
+            disabled="true"
+          />
+          <p class="pk-nm-tb">Please contact us to change your email.</p>
           <br />
-          <button id='savebut' onclick='updateInfo()'>Save Changes</button>
+          <button id="savebut" onclick="updateInfo()">Save Changes</button>
         </div>
-        <fieldset id='hotlinks'>
-          <legend id='hotlinks-legend'>Check Out These Websites!</legend>
-          <h4 class='h1-subtitle'>Here are some other sites that we have built!</h4>
-          <div id='card-holder-main'>
-            <a href='https://whiteboard.prestonkwei.com' class='card-link-tag' target='_blank'>
-              <div class='card-div-outline'>
-                <img src='https://cdn.prestonkwei.com/whiteboard-app-thumb.png' class='card-img-top'>
-                <div class='card-text-div'>
-                  <h1 class='card-header'>Whiteboard</h1>
-                  <p class='card-desc'>An easy way to collaborate with peers, coworkers, students, and more! Create unlimited boards to share ideas.</p>
+        <fieldset id="hotlinks">
+          <legend id="hotlinks-legend">Check Out These Websites!</legend>
+          <h4 class="h1-subtitle">
+            Here are some other sites that we have built!
+          </h4>
+          <div id="card-holder-main">
+            <a
+              href="https://whiteboard.prestonkwei.com"
+              class="card-link-tag"
+              target="_blank"
+            >
+              <div class="card-div-outline">
+                <img
+                  src="https://cdn.prestonkwei.com/whiteboard-app-thumb.png"
+                  class="card-img-top"
+                />
+                <div class="card-text-div">
+                  <h1 class="card-header">Whiteboard</h1>
+                  <p class="card-desc">
+                    An easy way to collaborate with peers, coworkers, students,
+                    and more! Create unlimited boards to share ideas.
+                  </p>
                 </div>
-                <a href='https://whiteboard.prestonkwei.com'><button class='card-button-bottom'>Go!</button></a>
+                <a href="https://whiteboard.prestonkwei.com"
+                  ><button class="card-button-bottom">Go!</button></a
+                >
               </div>
             </a>
-            <a href='https://go.prestonkwei.com' class='card-link-tag' target='_blank'>
-              <div class='card-div-outline'>
-                <img src='https://cdn.prestonkwei.com/.png' class='card-img-top'>
-                <div class='card-text-div'>
-                  <h1 class='card-header'>Link Tracker</h1>
-                  <p class='card-desc'>Create tracked links to see exactly when someone opens it! (if they even open it...)</p>
+            <a
+              href="https://go.prestonkwei.com"
+              class="card-link-tag"
+              target="_blank"
+            >
+              <div class="card-div-outline">
+                <img
+                  src="https://cdn.prestonkwei.com/.png"
+                  class="card-img-top"
+                />
+                <div class="card-text-div">
+                  <h1 class="card-header">Link Tracker</h1>
+                  <p class="card-desc">
+                    Create tracked links to see exactly when someone opens it!
+                    (if they even open it...)
+                  </p>
                 </div>
-                <a href='https://go.prestonkwei.com'><button class='card-button-bottom'>Go!</button></a>
+                <a href="https://go.prestonkwei.com"
+                  ><button class="card-button-bottom">Go!</button></a
+                >
               </div>
             </a>
           </div>
         </fieldset>
 
-
-        <p id='progress'></p>
-        <fieldset id='dangerzoneinner'>
-          <legend id='dztitle'>Danger Zone</legend>
-          <p class='dzp'>These settings can severely affect your account. Use caution when changing these settings.</p>
-          <div class='dangerzone-setting'>
-            <div class='dangerzone-left'>
-              <h1 class='danger-h1'>Delete Profile Picture</h1>
-              <p class='danger-p'>Deletes your uploaded profile photo from our servers. This action is permanent.</p>
+        <fieldset id="devices-loggedin">
+          <h2>Your Devices</h2>
+          <p>Here is where you are still logged in.</p>
+        </fieldset>
+        <p id="progress"></p>
+        <fieldset id="dangerzoneinner">
+          <legend id="dztitle">Danger Zone</legend>
+          <p class="dzp">
+            These settings can severely affect your account. Use caution when
+            changing these settings.
+          </p>
+          <div class="dangerzone-setting">
+            <div class="dangerzone-left">
+              <h1 class="danger-h1">Delete Profile Picture</h1>
+              <p class="danger-p">
+                Deletes your uploaded profile photo from our servers. This
+                action is permanent.
+              </p>
             </div>
-            <div class='dangerzone-right'>
-              <button class='danger-button' id='danger-deletepfp'>Delete Profile Photo</button>
+            <div class="dangerzone-right">
+              <button class="danger-button" id="danger-deletepfp">
+                Delete Profile Photo
+              </button>
             </div>
           </div>
-          <hr class='setting-seperator'>
-          
+          <hr class="setting-seperator" />
+
           <!-- DO NOT MOVE. NO SETTINGS BELOW THIS. -->
-          <div class='dangerzone-setting'>
-            <div class='dangerzone-left'>
-              <h1 class='danger-h1'>Delete Account</h1>
-              <p class='danger-p'>Deletes your account, and all associated information from our servers. This action is permanent.</p>
+          <div class="dangerzone-setting">
+            <div class="dangerzone-left">
+              <h1 class="danger-h1">Delete Account</h1>
+              <p class="danger-p">
+                Deletes your account, and all associated information from our
+                servers. This action is permanent.
+              </p>
             </div>
-            <div class='dangerzone-right'>
-              <button class='danger-button' id='danger-deleteacc'>Delete Account</button>
+            <div class="dangerzone-right">
+              <button class="danger-button" id="danger-deleteacc">
+                Delete Account
+              </button>
             </div>
           </div>
         </fieldset>
       </div>
     </div>
-    <div id='overlay'>
-      <div id='desktopTools'>
+    <div id="overlay">
+      <div id="desktopTools">
         <img
-          onclick='logout()'
-          src='https://cdn.prestonkwei.com/75b169a0-cbad-4ce8-9937-79a52a20dcb2.png'
-          title='Log Out'
-          class='toolbaricon'
+          onclick="logout()"
+          src="https://cdn.prestonkwei.com/75b169a0-cbad-4ce8-9937-79a52a20dcb2.png"
+          title="Log Out"
+          class="toolbaricon"
         />
-        <p class='toolbarsub' onclick='logout()'>Log Out</p>
-        <img onclick='securityOptions()'
-          src='https://cdn.prestonkwei.com/key.png'
-          title='Account Security'
-          class='toolbaricon'
+        <p class="toolbarsub" onclick="logout()">Log Out</p>
+        <img
+          onclick="securityOptions()"
+          src="https://cdn.prestonkwei.com/key.png"
+          title="Account Security"
+          class="toolbaricon"
         />
-        <p class='toolbarsub' onclick='securityOptions()'>Security</p>
-        <img onclick='generateQr()'
-          src='https://cdn.prestonkwei.com/qrcode-icon.png'
-          title='Generate a Login QR Code'
-          class='toolbaricon'
+        <p class="toolbarsub" onclick="securityOptions()">Security</p>
+        <img
+          onclick="generateQr()"
+          src="https://cdn.prestonkwei.com/qrcode-icon.png"
+          title="Generate a Login QR Code"
+          class="toolbaricon"
         />
-        <p class='toolbarsub' onclick='generateQr()'>QR Code</p>
-        <span id='policylink'
+        <p class="toolbarsub" onclick="generateQr()">QR Code</p>
+        <span id="policylink"
           ><img
-            src='https://cdn.prestonkwei.com/policies.png'
-            title='Policies'
-            class='toolbaricon'
+            src="https://cdn.prestonkwei.com/policies.png"
+            title="Policies"
+            class="toolbaricon"
           />
-          <p class='toolbarsub'>Policies</p></span
+          <p class="toolbarsub">Policies</p></span
         >
       </div>
     </div>
-    <div id='mOverlay'>
-      <div id='mobileTool'>
+    <div id="mOverlay">
+      <div id="mobileTool">
         <img
-          onclick='logout()'
-          src='https://cdn.prestonkwei.com/75b169a0-cbad-4ce8-9937-79a52a20dcb2.png'
-          title='Log Out'
-          class='toolbaricon'
+          onclick="logout()"
+          src="https://cdn.prestonkwei.com/75b169a0-cbad-4ce8-9937-79a52a20dcb2.png"
+          title="Log Out"
+          class="toolbaricon"
         />
       </div>
     </div>
-    <div id='noperms'>
+    <div id="noperms">
       <u
-        ><h1 id='ad'><b>Access Denied</b></h1></u
+        ><h1 id="ad"><b>Access Denied</b></h1></u
       >
       <h4>You don't have the required permissions to view this page.</h4>
-      <div id='optionbox'>
+      <div id="optionbox">
         <a
-          href='https://oauth.prestonkwei.com/login?f2fa=true'
-          class='optiondiv-link'
+          href="https://oauth.prestonkwei.com/login?f2fa=true"
+          class="optiondiv-link"
         >
           <img
-            class='optionimg'
-            src='https://cdn.prestonkwei.com/backarrow.png'
+            class="optionimg"
+            src="https://cdn.prestonkwei.com/backarrow.png"
           />
           <p>Go Back and Login</p>
         </a>
-        <a href='https://prestonkwei.com' class='optiondiv-link'>
-          <img class='optionimg' src='https://cdn.prestonkwei.com/home.png' />
+        <a href="https://prestonkwei.com" class="optiondiv-link">
+          <img class="optionimg" src="https://cdn.prestonkwei.com/home.png" />
           <p>Go To: PrestonKwei.com</p>
         </a>
       </div>
     </div>
-    <script src='https://kit.fontawesome.com/c947e2382a.js' crossorigin='anonymous'></script>
-    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
-    <script src='account.js'></script>
-    <script src='https://sdk.amazonaws.com/js/aws-sdk-2.1624.0.min.js'></script>
-    <script src='pfp.js'></script>
+    <script
+      src="https://kit.fontawesome.com/c947e2382a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="account.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1624.0.min.js"></script>
+    <script src="pfp.js"></script>
   </body>
 </html>

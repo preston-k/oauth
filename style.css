@@ -20,7 +20,7 @@ h1 {
   border: 2px solid black;
   border-radius: 10px;
   min-width: 300px;
-} 
+}
 #static {
   font-family: 'Poppins';
   font-size: 12px;
@@ -70,7 +70,6 @@ h1 {
   width: 100%;
   font-family: 'Poppins';
   text-align: center;
-  
 }
 #iconpng {
   width: 150px;
@@ -243,7 +242,7 @@ body {
   left: 0;
   width: 60px;
   height: 100%;
-  
+
   /* pointer-events: none; */
 }
 #securityOverlay {
@@ -568,14 +567,13 @@ input:focus {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
   user-select: none;
   display: none;
 }
 #blocked-content {
   display: block;
   margin-bottom: 50px;
-
 }
 #blocked {
   width: 80vw;
@@ -708,12 +706,12 @@ input:focus {
   margin-right: auto;
 }
 @keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 0.8;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
 }
 #overlay-grey {
   transition: 5s;
@@ -724,9 +722,9 @@ input:focus {
   opacity: 0.8;
   display: none;
   animation-name: fadeIn;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
 }
 #danger-confirm {
   width: 50vw;
@@ -750,7 +748,7 @@ input:focus {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
   user-select: none;
 }
 #danger-confirm-hold {
@@ -834,7 +832,6 @@ input:focus {
   min-width: 400px;
   background-color: white;
   border: 2px solid black;
-
 }
 .cb-delete {
   cursor: pointer;
@@ -871,7 +868,7 @@ input:focus {
   margin: 10px;
   z-index: -100;
 }
-.card-div-outline:hover{
+.card-div-outline:hover {
   transform: scale(1.01);
 }
 #card-holder-main {
@@ -889,7 +886,7 @@ input:focus {
   right: 20px;
   height: 40px;
   border-radius: 8px;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   font-family: 'Poppins';
   border: 2px solid black;
   cursor: pointer;
@@ -965,7 +962,7 @@ input:focus {
   border: 2px solid black;
   padding: 0 10px;
   font-size: 18px;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
 }
 .loading-overlay {
   width: 100vw;
@@ -985,15 +982,16 @@ input:focus {
 #login-loader {
   width: 50px;
   height: 50px;
-  background-color: #7EC8E3;
-  border: 5px solid #7EC8E3;
+  background-color: #7ec8e3;
+  border: 5px solid #7ec8e3;
   opacity: 1;
   border-radius: 50%;
   animation: expand-retract 2s infinite;
 }
 
 @keyframes expand-retract {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -1098,7 +1096,7 @@ input:focus {
   color: black;
 }
 #inline-href:hover {
-  color: #7EC8E3;
+  color: #7ec8e3;
   cursor: pointer;
 }
 .smallertext {
@@ -1110,7 +1108,7 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(0,0,0,.2);
+  background-color: rgb(0, 0, 0, 0.2);
   display: none;
 }
 #instant-confirm {
@@ -1126,7 +1124,7 @@ input:focus {
 #instant-confirm-button {
   width: 85%;
   height: 50px;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Poppins', sans-serif;
   border: 2px solid black;
   background-color: white;
   color: white;
@@ -1152,7 +1150,7 @@ input:focus {
   }
 }
 
-.buttonshade{
+.buttonshade {
   background: linear-gradient(to left, green 50%, transparent 50%);
   border-left: 20px solid green;
   background-size: 200% 100%;
@@ -1164,7 +1162,7 @@ input:focus {
   background-color: black;
   width: 85%;
   height: 50px;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Poppins', sans-serif;
   border: 2px solid black;
   background-color: white;
   margin: 5px;
@@ -1178,20 +1176,27 @@ input:focus {
   width: 75px;
   aspect-ratio: 1;
   --c: no-repeat linear-gradient(#000 0 0);
-  background: 
-    var(--c) 0%   50%,
-    var(--c) 50%  50%,
-    var(--c) 100% 50%;
+  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
   background-size: 20% 100%;
   animation: l1 1s infinite linear;
   display: none;
 }
 @keyframes l1 {
-  0%  {background-size: 20% 100%,20% 100%,20% 100%}
-  33% {background-size: 20% 10% ,20% 100%,20% 100%}
-  50% {background-size: 20% 100%,20% 10% ,20% 100%}
-  66% {background-size: 20% 100%,20% 100%,20% 10% }
-  100%{background-size: 20% 100%,20% 100%,20% 100%}
+  0% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
+  33% {
+    background-size: 20% 10%, 20% 100%, 20% 100%;
+  }
+  50% {
+    background-size: 20% 100%, 20% 10%, 20% 100%;
+  }
+  66% {
+    background-size: 20% 100%, 20% 100%, 20% 10%;
+  }
+  100% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
 }
 #loggedout-notif {
   height: 50px;
@@ -1225,7 +1230,7 @@ input:focus {
 }
 #loggedoutnotif-x:hover {
   background-color: #c3c3c3;
-  color: black
+  color: black;
 }
 #loggedout-content-message {
   height: 50px;
@@ -1256,7 +1261,7 @@ input:focus {
 #stillthere {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0,0,0,.3);
+  background-color: rgb(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -1293,7 +1298,7 @@ input:focus {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(0,0,0,.5);
+  background-color: rgb(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1377,7 +1382,7 @@ input:focus {
 .tb-sucess {
   height: 100px;
   width: 100vw;
-  color: white
+  color: white;
 }
 #tb-sucesstop {
   color: white;
@@ -1399,7 +1404,7 @@ input:focus {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(0,0,0,.3);
+  background-color: rgb(0, 0, 0, 0.3);
   z-index: 999999999999999;
   justify-content: center;
   align-items: center;
@@ -1420,7 +1425,7 @@ input:focus {
 #newToken {
   width: 50%;
   height: 50px;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   border: 2px solid black;
   border-radius: 10px;
   font-family: 'Poppins';
@@ -1438,7 +1443,7 @@ input:focus {
 .login-right {
   width: 50vw;
   height: 100vh;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1452,7 +1457,7 @@ input:focus {
   height: 100vh;
   left: 0;
   top: 0;
-  background-color: #7EC8E3;
+  background-color: #7ec8e3;
   flex-direction: column;
   position: fixed;
   display: flex;
@@ -1515,4 +1520,12 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#devices-loggedin {
+  border: 2px solid black;
+  width: 80vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
 }
