@@ -1,5 +1,8 @@
 /** @type {typeof import("./static.json")} */
 const data = await fetch("/static.json").then((x) => x.json())
+if (window.location.href.includes('oauth.prestonkwei.com')) {
+  console.log = function() {}
+}
 const urlParams = new URLSearchParams(window.location.search);
 let version = data.version
 let sessid = self.crypto.randomUUID();

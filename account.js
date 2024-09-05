@@ -9,6 +9,10 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
+if (window.location.href.includes('oauth.prestonkwei.com')) {
+  console.log = function() {}
+}
+
 // Initialize User Information
 let urlUserId
 let urlEmail

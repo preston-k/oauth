@@ -9,7 +9,9 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
-
+if (window.location.href.includes('oauth.prestonkwei.com')) {
+  console.log = function() {}
+}
 let currentUrl = window.location.href
 if (currentUrl.includes('%26')) {
   let updatedUrl = currentUrl.replace(/%26/g, '&')

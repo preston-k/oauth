@@ -1,6 +1,8 @@
 import firebaseConfig from './obfuscaedfirebaseconfig.js'
 firebase.initializeApp(firebaseConfig)
-
+if (window.location.href.includes('oauth.prestonkwei.com')) {
+  console.log = function() {}
+}
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
 const urlParams = new URLSearchParams(window.location.search)
