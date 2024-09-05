@@ -1528,4 +1528,48 @@ input:focus {
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.loggedin-devicediv {
+  width: 90%;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 15px;
+  display: flex;
+}
+#loggedindiv-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loggedindiv-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #EBD494;
+  border-radius: 15px;
+}
+.loggedindiv-text {
+  display: inline-block;
+  width: max-content;
+  margin-left: 15px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+}
+.loggedindiv-toptext {
+  width: max-content;
+  margin: 0;
+  font-weight: 800;
+  text-decoration: underline;
+  font-size: 18px;
+}
+.loggedindiv-bottomtext {
+  width: max-content;
+  margin: 0;
+  font-size: 12px;
 }

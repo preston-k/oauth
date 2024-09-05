@@ -67,7 +67,10 @@ async function hashPassword(password) {
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('')
 }
-
+async function setlogin(accountEmail, accountId) {
+  console.log(accountEmail)
+  console.log(accountId)
+}
 let d = new Date().toString().replace(/ /g, '').replace(/GMT/g, 'UTC')
 let ipAuthToken = ''
 let emailAuthToken = ''

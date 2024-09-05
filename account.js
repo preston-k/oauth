@@ -27,7 +27,7 @@ function denyaccess() {
   // document.getElementById('noperms').style.display = 'block'
   
   document.querySelectorAll('div').forEach(div => div.innerHTML='')
-  document.body.insertAdjacentHTML('beforeend', `<u><h1 id="ad"><b>Access Denied</b></h1></u> <h4>You don't have the required permissions to view this page.</h4> <div id="optionbox"> <a href="https://oauth.prestonkwei.com/login?f2fa=true" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/backarrow.png"> <p>Go Back and Login</p> </a> <a href="https://prestonkwei.com" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/home.png"> <p>Go To: PrestonKwei.com</p> </a> </div>`)
+  document.body.insertAdjacentHTML('beforeend', `<u><h1 id="ad"><b>Access Denied</b></h1></u> <h4>You don't have the required permissions to view this page.</h4> <div id="optionbox"> <a href="/" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/backarrow.png"> <p>Go Back and Login</p> </a> <a href="https://prestonkwei.com" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/home.png"> <p>Go To: PrestonKwei.com</p> </a> </div>`)
 }
 function getCookie(name) {
   let cookieArr = document.cookie.split(';')
