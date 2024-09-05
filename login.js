@@ -147,9 +147,15 @@ async function authToken(email) {
           e: googleInfo.email,
         })
         await authToken(googleEmail)
-        window.location.replace(
-          `/account.html?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`
-        )
+        let target = sessionStorage.getItem('target')
+        console.log(target)
+        if (target == '' || target == null) {
+          window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
+        } else {
+          window.location.replace(`${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
+
+        }
+        
       } else {
         let accountEmail
         let data
@@ -167,11 +173,14 @@ async function authToken(email) {
             data = snapshot.val()
           })
         await authToken(accountEmail)
-        window.location.replace(
-          `/account.html?id=${
-            data.id
-          }&e=${accountEmail}&s=true&ts=${Date.now()}`
-        )
+
+        let target = sessionStorage.getItem('target')
+        if (target == '' || target == null) {
+          window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
+        } else {
+          window.location.replace(`${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
+
+        }
       }
     } catch (error) {
       console.error('Error accessing database:', error)
