@@ -562,17 +562,11 @@ if (
         } else {
           let data = snapshot.val()
           let list = data['shapes']['list']
-          document.querySelector(
-            '#shape1-img'
-          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
+          document.querySelector('#shape1-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
           document.querySelector('#shape1-label').innerHTML = list[0]
-          document.querySelector(
-            '#shape2-img'
-          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[1]}.png`
+          document.querySelector('#shape2-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[1]}.png`
           document.querySelector('#shape2-label').innerHTML = list[1]
-          document.querySelector(
-            '#shape3-img'
-          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[2]}.png`
+          document.querySelector('#shape3-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[2]}.png`
           document.querySelector('#shape3-label').innerHTML = list[2]
           let correct = data['shapes']['correct']
           let correctId = data['shapes']['list'].indexOf(correct) + 1
@@ -584,6 +578,9 @@ if (
               document.querySelector('#nopw-sucess').style.display = 'flex'
             } else {
               console.log('Incorrect Shape')
+              database.ref(`noPw/${urlParams.get('id')}`).update({
+                status: 'used',
+              })
               window.location.replace('/loginv2.html')
             }
           })
