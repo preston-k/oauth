@@ -75,21 +75,17 @@ async function setlogin(accountEmail, accountId) {
 }
 async function newDevice(email) {
   console.log(email)
-  let where
-  let ip
+  let where = ''
+  let ip = ''
   fetch('https://api.ipify.org?format=json') .then(response => response.json()) .then(data => { fetch(`https://ipwhois.app/json/${data.ip}`) .then(response => response.json()) .then(locationData => { 
     console.log(81)
     console.log('Location:', locationData.city, locationData.region, locationData.country)
-    where = `${locationData.city}, ${locationData.region}, ${locationData.country}`
+    // where = `${locationData.city}, ${locationData.region}, ${locationData.country}`
     console.log(where)
     console.log(data.ip)
-    console.log({id: deviceId,
-      location: where,
-      ip: ip,
-      ts: new Date()})
   }) }) .catch(error => console.error('Error fetching location:', error))
   console.log(90)
-  let deviceId = self.crypto.randomUUID()=
+  let deviceId = self.crypto.randomUUID()
   await database.ref(`/users/${email}/devices/${deviceId}`).update({
     id: deviceId,
     location: where,
