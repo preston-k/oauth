@@ -73,6 +73,30 @@ async function setlogin(accountEmail, accountId) {
   console.log(accountEmail)
   console.log(accountId)
 }
+async function newDevice(email) {
+  console.log(email)
+  let where
+  let ip
+  fetch('https://api.ipify.org?format=json') .then(response => response.json()) .then(data => { fetch(`https://ipwhois.app/json/${data.ip}`) .then(response => response.json()) .then(locationData => { 
+    console.log(81)
+    console.log('Location:', locationData.city, locationData.region, locationData.country)
+    where = `${locationData.city}, ${locationData.region}, ${locationData.country}`
+    console.log(where)
+    console.log(data.ip)
+    console.log({id: deviceId,
+      location: where,
+      ip: ip,
+      ts: new Date()})
+  }) }) .catch(error => console.error('Error fetching location:', error))
+  console.log(90)
+  let deviceId = self.crypto.randomUUID()=
+  await database.ref(`/users/${email}/devices/${deviceId}`).update({
+    id: deviceId,
+    location: where,
+    ip: ip,
+    ts: new Date()
+  })
+}
 let d = new Date().toString().replace(/ /g, '').replace(/GMT/g, 'UTC')
 let ipAuthToken = ''
 let emailAuthToken = ''
@@ -153,8 +177,10 @@ async function authToken(email) {
         let target = sessionStorage.getItem('target')
         console.log(target)
         if (target == '' || target == null) {
+          await newDevice(googleEmail)
           window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
         } else {
+          await newDevice(googleEmail)
           window.location.replace(`${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
 
         }
@@ -226,14 +252,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
               window.location.replace(
-                target +
-                  '?id=' +
-                  uid +
-                  '&e=' +
-                  firebaseEmail +
-                  '&s=true' +
-                  '&ts=' +
-                  time
+                target +'?id=' + uid +'&e=' +  firebaseEmail +'&s=true' +'&ts=' +time
               )
             } else {
               await authToken(email)
@@ -242,6 +261,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
               if (force2fa == 'true') {
                 localStorage.setItem('sent-2fa', true)
                 localStorage.setItem('newdevice', false)
+                await newDevice(firebaseEmail)
                 window.location.replace(
                   'https://emailserver.prestonkwei.com/referrer?id=' +
                     uid +
@@ -264,17 +284,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (prompt2FA()) {
                   localStorage.setItem('sent-2fa', true)
                   localStorage.setItem('newdevice', false)
-                  window.location.replace(
-                    'https://emailserver.prestonkwei.com/referrer?id=' +
-                      uid +
-                      '&e=' +
-                      firebaseEmail +
-                      '&s=true' +
-                      '&ts=' +
-                      time
-                  )
+                  window.location.replace('https://emailserver.prestonkwei.com/referrer?id=' +uid +'&e=' +firebaseEmail + '&s=true' +'&ts=' +time)
                 } else {
                   localStorage.setItem('newdevice', false)
+                  await newDevice(firebaseEmail)
                   window.location.replace(
                     '/account.html?id=' +
                       uid +
@@ -498,6 +511,7 @@ async function passwordlessLogin(event) {
   database.ref(`noPw/${linkid}/status`).on('value', async function (snapshot) {
     console.log(snapshot.val())
     if (snapshot.val() == 'sucess') {
+      await newDevice(firebaseEmail)
       await authToken(
         document
           .querySelector('#noPwEmailbox')

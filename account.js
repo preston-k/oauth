@@ -596,3 +596,29 @@ function logoutAll() {
 document.querySelector('#logoutall').addEventListener('click', () => {
   logoutAll()
 })
+
+let userAgent = navigator.userAgent.toLowerCase()
+if (userAgent.includes('iphone')) {
+  console.log('iPhone')
+} else if (userAgent.includes('android')) {
+  console.log('Android')
+} else if (userAgent.includes('ipad')) {
+  console.log('iPad')
+} else if (userAgent.includes('mac')) {
+  console.log('MacBook')
+} else if (userAgent.includes('windows')) {
+  console.log('Windows')
+} else {
+  console.log('Unknown device')
+}
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    fetch(`https://ipwhois.app/json/${data.ip}`)
+      .then(response => response.json())
+      .then(locationData => {
+        console.log('Location:', locationData.city, locationData.country)
+      })
+  })
+  .catch(error => console.error('Error fetching location:', error))
+console.log(new Date())

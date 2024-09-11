@@ -82,3 +82,12 @@ document.querySelector('#loggedoutnotif-x').addEventListener('click', () => {
   document.querySelector('#loggedout-notif').style.display='none'
   window.location.replace('/')
 })
+
+let deviceId = self.crypto.randomUUID()
+let storedDeId = localStorage.getItem('oauthDeviceId')
+console.log(storedDeId)
+console.log(89)
+if (storedDeId = null || storedDeId == '' || storedDeId == undefined) {
+  localStorage.setItem('oauthDeviceId', deviceId)
+}
+
