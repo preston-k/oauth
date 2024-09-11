@@ -77,6 +77,9 @@ let tsCookie = ''
 let statusCookie = ''
 let eCookie = ''
 const urlParams = new URLSearchParams(window.location.search)
+
+let firebaseEmail = urlParams.get('e').replace(/\./g, ',').replace(/@/g, '_')
+console.log(firebaseEmail)
 async function checkAuthStat() {
   let cookieData = getCookie('auth-token')
   let cookieUrl = new URL('https://oauth.prestonkwei.com/account')
@@ -86,6 +89,7 @@ async function checkAuthStat() {
   let eCookie = cookieUrl.searchParams.get('e')
   let statusCookie = cookieUrl.searchParams.get('e')
   let tsCookie = cookieUrl.searchParams.get('ts')
+  console.log(idCookie) // LISTEN IN DATBAASE FOR UPDATES IF DELETED LOG OUT!
   console.log(ipCookie, idCookie, tsCookie, statusCookie, eCookie)
   firebase
     .database()
@@ -550,3 +554,45 @@ async function securityQuestionSubmit() {
     }
   }
 }
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    console.log('left')
+  } else {
+    database.ref(`/users/${firebaseEmail}/logoutNow`).once('value').then((snapshot) => {
+      console.log(snapshot.val())
+      if (snapshot.val() == true) {
+        document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))
+        window.location.replace('/login.html?snackbar=loggedout')
+      } else {
+        console.log('stay')
+      }
+    })
+    
+    console.log('back on page')
+  }
+})
+
+database.ref(`/users/${firebaseEmail}/logoutNow`).on('value', (snapshot) => {
+  console.log(snapshot.val())
+  if (snapshot.val() == true) {
+    document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))
+    window.location.replace('/login.html?snackbar=loggedout')
+  } else {
+    console.log('stay')
+  }
+})
+
+function logoutAll() {
+  database.ref(`/users/${firebaseEmail}/`).update({
+    logoutNow: false
+  })
+  database.ref(`/users/${firebaseEmail}/`).update({
+    logoutNow: true
+  })
+  database.ref(`/users/${firebaseEmail}/`).update({
+    logoutNow: false
+  })
+}
+document.querySelector('#logoutall').addEventListener('click', () => {
+  logoutAll()
+})

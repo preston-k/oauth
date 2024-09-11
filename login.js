@@ -95,6 +95,7 @@ async function authToken(email) {
       ts: tsAuthToken,
       email: emailAuthToken,
       ip: ipAuthToken,
+      now: new Date()
     })
     document.cookie =
       'auth-token=id=' +

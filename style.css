@@ -570,6 +570,8 @@ input:focus {
   -ms-user-select: none;
   user-select: none;
   display: none;
+  position: fixed;
+  z-index: 999999999999999999999999999999999999999999999999999999999999999999 !important;
 }
 #blocked-content {
   display: block;
@@ -1572,4 +1574,10 @@ input:focus {
   width: max-content;
   margin: 0;
   font-size: 12px;
+}
+#logoutall {
+  color: red;
+  /* margin: none; */
+  text-decoration: underline;
+  cursor: pointer;
 }
