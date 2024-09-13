@@ -480,10 +480,7 @@ async function passwordlessLogin(event) {
     })
   let expiration = Date.now() + 900000
   database.ref(`noPw/${linkid}`).update({
-    email: document
-      .querySelector('#noPwEmailbox')
-      .value.replace(/@/g, '_')
-      .replace(/\./g, ','),
+    email: document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','),
     uId: userId,
     status: 'unused',
     expires: expiration,
@@ -507,19 +504,9 @@ async function passwordlessLogin(event) {
   database.ref(`noPw/${linkid}/status`).on('value', async function (snapshot) {
     console.log(snapshot.val())
     if (snapshot.val() == 'sucess') {
-      await newDevice(firebaseEmail)
-      await authToken(
-        document
-          .querySelector('#noPwEmailbox')
-          .value.replace(/@/g, '_')
-          .replace(/\./g, ',')
-      )
-      window.location.replace(
-        `/account.html?id=${userId}&e=${document
-          .querySelector('#noPwEmailbox')
-          .value.replace(/@/g, '_')
-          .replace(/\./g, ',')}&s=true&ts=${Date.now()}`
-      )
+      await newDevice(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
+      await authToken(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
+      window.location.replace(`/account.html?id=${userId}&e=${document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ',')}&s=true&ts=${Date.now()}`)
     }
   })
 }
