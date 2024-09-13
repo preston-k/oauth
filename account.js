@@ -668,3 +668,12 @@ fetch('https://api.ipify.org?format=json')
   })
   .catch(error => console.error('Error fetching location:', error))
 console.log(new Date())
+document.querySelector('#security-exit').addEventListener('click', () => {
+  console.log('existsecurityy')
+  document.querySelector('#security-options').style.display = 'none'
+})
+document.querySelector('#qr-exit').addEventListener('click', () => {
+  console.log('exit qr')
+  document.querySelector('#qrlogin').style.display = 'none'
+  document.querySelector('#center').style.display = 'block'
+})
