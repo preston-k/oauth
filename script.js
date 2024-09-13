@@ -91,3 +91,12 @@ if (storedDeId = null || storedDeId == '' || storedDeId == undefined) {
   localStorage.setItem('oauthDeviceId', deviceId)
 }
 
+if (window.location.href.includes('.com')) {
+  const url = window.location.href
+  const baseUrl = window.location.origin + window.location.pathname
+
+  if (baseUrl.endsWith('.html')) {
+    const newUrl = baseUrl.slice(0, -5) + window.location.search + window.location.hash
+    window.history.pushState({}, '', newUrl)
+  }
+}

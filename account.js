@@ -78,7 +78,40 @@ let statusCookie = ''
 let eCookie = ''
 const urlParams = new URLSearchParams(window.location.search)
 
-let firebaseEmail = urlParams.get('e').replace(/\./g, ',').replace(/@/g, '_')
+let dev = false
+if (urlParams.get('dev') == 1) {
+  console.log('dev mode')
+  dev = true
+}
+let emailUrl = urlParams.get('e') || sessionStorage.getItem('emailUrl')
+let idUrl = urlParams.get('id') || sessionStorage.getItem('idUrl')
+let tsUrl = urlParams.get('ts') || sessionStorage.getItem('tsUrl')
+let sUrl = urlParams.get('s') || sessionStorage.getItem('sUrl')
+const url = new URL(window.location)
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (emailUrl) sessionStorage.setItem('emailUrl', emailUrl)
+  if (idUrl) sessionStorage.setItem('idUrl', idUrl)
+  if (tsUrl) sessionStorage.setItem('tsUrl', tsUrl)
+  if (sUrl) sessionStorage.setItem('sUrl', sUrl)
+
+  url.searchParams.delete('e')
+  url.searchParams.delete('id')
+  url.searchParams.delete('ts')
+  url.searchParams.delete('s')
+  window.history.replaceState({}, '', url)
+})
+
+console.log(emailUrl, idUrl, tsUrl, sUrl)
+
+window.addEventListener('beforeunload', () => {
+  url.searchParams.set('id', idUrl)
+  url.searchParams.set('e', emailUrl)
+  url.searchParams.set('s', sUrl)
+  url.searchParams.set('ts', tsUrl)
+  history.replaceState(null, '', url.toString())
+})
+let firebaseEmail = emailUrl.replace(/\./g, ',').replace(/@/g, '_')
 console.log(firebaseEmail)
 async function checkAuthStat() {
   let cookieData = getCookie('auth-token')
@@ -103,7 +136,7 @@ async function checkAuthStat() {
           if (ts == tsCookie) {
             if (email == eCookie) {
               if (id == idCookie) {
-                if (urlParams.get('e') != eCookie) {
+                if (emailUrl != eCookie) {
                   // denyaccess()
                 }
               }
@@ -123,7 +156,7 @@ let useremail = ''
 let userid = ''
 function urlparam() {
   const urlParams = new URLSearchParams(window.location.search)
-  let userId = urlParams.get('id')
+  let userId = idUrl
   if (userId != null) {
     console.log('UserID: ' + userId)
   } else {
@@ -147,25 +180,25 @@ function logoutmod(reason) {
 function checkURL() {
   console.log('Checking URL')
   const urlParams = new URLSearchParams(window.location.search)
-  let e = urlParams.get('e')
-  let id = urlParams.get('id')
+  let e = emailUrl
+  let id = idUrl
   console.log('URL CHECK INIT COMPLETE')
   if (e == null || e == '' || id == null || id == '') {
     logoutmod('Missing Perms')
   }
 }
 checkURL()
-let timesincelogin = Date.now() - urlParams.get('ts') > 21600000
-if (Date.now() - urlParams.get('ts') > 21600000) {
+let timesincelogin = Date.now() - tsUrl > 21600000
+if (Date.now() - tsUrl > 21600000) {
   console.log('More than 6 hours since login')
   denyaccess()
 } else {
-  let tslToM = parseInt(Date.now() - urlParams.get('ts'))/ 60000
+  let tslToM = parseInt(Date.now() - tsUrl)/ 60000
   console.log('timesincelogin: '+tslToM)
 }
 function tscheck() {
   const urlParams = new URLSearchParams(window.location.search)
-  const timestampParam = urlParams.get('ts')
+  const timestampParam = tsUrl
 
   if (timestampParam) {
     let decodedTimestamp = decodeURIComponent(timestampParam)
@@ -210,7 +243,7 @@ tscheck()
 function onload() {
   console.log('Onload')
   const urlParams = new URLSearchParams(window.location.search)
-  let emailParam = urlParams.get('e')
+  let emailParam = emailUrl
   if (emailParam) {
     let email = emailParam
     firebase
@@ -245,7 +278,7 @@ function updateInfo() {
   let fnbox = document.getElementById('fnhtml').value
   let lnbox = document.getElementById('lnhtml').value
   const urlParams = new URLSearchParams(window.location.search)
-  let emailParam = urlParams.get('e')
+  let emailParam = emailUrl
 
   if (!emailParam) {
     console.error('Email parameter not found in URL.')
@@ -309,6 +342,10 @@ function logout() {
           c.trim().split('=')[0] +
           '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
     )
+    sessionStorage.clear('emailUrl')
+    sessionStorage.clear('idUrl')
+    sessionStorage.clear('tsUrl')
+    sessionStorage.clear('sUrl')
   window.location.replace('/')
 }
 
@@ -319,7 +356,7 @@ document.querySelector('#policylink').addEventListener('click', () => {
 document.addEventListener('sendpfp', async (event) => {
   console.log('Sendpfp')
   console.log('Data:', event.detail)
-  await database.ref('users/' + urlParams.get('e') + '/info/').update({
+  await database.ref('users/' + emailUrl + '/info/').update({
     pfp: event.detail,
   })
   location.reload()
@@ -384,28 +421,28 @@ document.querySelector('#danger-confirm-form').addEventListener('submit', async 
   console.log('Form Submitted')
   dangerOverlayHide()
   if (textvalue == 'deletepfp') {
-    const snapshot = await firebase.database().ref(`users/${urlParams.get('e')}/info/pfp`).once('value')
+    const snapshot = await firebase.database().ref(`users/${emailUrl}/info/pfp`).once('value')
     let value = snapshot.val()
     console.log(value)
     let ts = new Date()
-    let newPfp = firebase.database().ref(`users/${urlParams.get('e')}/info/oldpfps/${ts.toString()}/`)
+    let newPfp = firebase.database().ref(`users/${emailUrl}/info/oldpfps/${ts.toString()}/`)
     await newPfp.set(value)
-    await firebase.database().ref(`users/${urlParams.get('e')}/info/pfp`).remove()
+    await firebase.database().ref(`users/${emailUrl}/info/pfp`).remove()
     alert('Success! We have successfully deleted your profile picture. Upload a new one by clicking on the profile photo placeholder.')
     window.location.replace(window.location.href)
   }
   if (textvalue == 'deleteaccount') {
     // DELETE ACCOUNT
     let accountInfo
-    await database.ref(`/users/${urlParams.get('e')}/`).once('value').then(snapshot => {
+    await database.ref(`/users/${emailUrl}/`).once('value').then(snapshot => {
       accountInfo = snapshot.val()
     })
-    await database.ref(`/deleted/${urlParams.get('e')}><${Date.now()}/`).update ({
+    await database.ref(`/deleted/${emailUrl}><${Date.now()}/`).update ({
       accountInfo
     })
-    await database.ref(`/users/${urlParams.get('e')}/`).remove()
+    await database.ref(`/users/${emailUrl}/`).remove()
     const data = new FormData()
-          data.set('sendto', urlParams.get('e').replace(/\,/g, '.').replace(/_/g, '@'))
+          data.set('sendto', emailUrl.replace(/\,/g, '.').replace(/_/g, '@'))
           data.set('subject', 'Sorry to see you go!')
           data.set('html', `<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <title>Sorry to see you go!</title> </head> <body style='width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #7EC8E3; font-family: "Trebuchet MS"; margin: 0;'> <table width='100%' height='100%' align='center' bgcolor='#7EC8E3' style='margin: 0; padding: 0;'> <tr> <td align='center'> <table width='80%' min-width='300px' bgcolor='white' style='padding: 50px; text-align: center;'> <tr> <td> <h1 style='margin: 0;'>Thanks for Creating an Account!</h1> <div style='text-align: left;'> <strong><p>Hi there!</p></strong> <p>We noticed that you just submitted a request to delete your account. </p> <img src='https://cdn.prestonkwei.com/newaccountclipart.png' alt='Image of a new account' style='width: 250px; display: block; margin-left: auto; margin-right: auto;'> <p>Have you explored all of our apps? Check out our <a href='https://chat.prestonkwei.com' style='color: #000080;'>chat app</a> and <a href='https://whiteboard.prestonkwei.com' style='color: #000080;'>collaborative whiteboard</a>!</p> <br> <p>If you did NOT create an account on our website, please <a href='mailto:help@prestonkwei.com' style='color: #000080;'>contact us</a> immediately.</p> </div> <br> <div style='text-align: right;'> <strong><p>Best regards,</p></strong> <p>The team at prestonkwei.com</p> </div> <div style='font-size: 10px;'> <hr style='border: 1px solid #000080;'> <p>You are receiving this email because you signed up for an account on our website.</p> <p>PrestonKwei.com ⋅ PO Box 20987 ⋅ Oakland, CA 94620</p> <p>This is an unmonitored email address. Responses will not be received.</p> <a href='https://prestonkwei.com' style='color: #000080;'>prestonkwei.com</a> </div> </td> </tr> </table> </td> </tr> </table> </body> </html>`)
           data.set('content', `Hi there! We noticed that you recently created an account for the prestonkwei.com suite of apps. The email and password combination that you used to sign up will be your single login to ALL of our apps. We highly recommend storing your login information in your browser or password manager to login faster. If you did NOT create an account on our website, please email help@prestonkwei.com to contact us. Thank you!`)
@@ -431,12 +468,12 @@ async function generateQr() {
   await database.ref(`sso/${ssoUuid}`).update({
     ssoId: ssoUuid,
     expires: expTime,
-    email: urlParams.get('e'),
-    accUuid: urlParams.get('id'),
+    email: emailUrl,
+    accUuid: idUrl,
     status:'new'
   })
-  console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`)
-  document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${urlParams.get('e')}`
+  console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`)
+  document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
 }
 function autologout() {
 
@@ -490,7 +527,7 @@ function stayin() {
   isLoggedOut = false
   document.querySelector('#stillthere').style.display = 'none'
 }
-database.ref(`users/${urlParams.get('e')}/info/e`).once('value').then(snapshot => {
+database.ref(`users/${emailUrl}/info/e`).once('value').then(snapshot => {
   document.querySelector('#email').value = snapshot.val()
 })
 
@@ -548,7 +585,7 @@ async function securityQuestionSubmit() {
   let answer = document.querySelector('#answer').value
   if (question != 'Select a Question') {
     if (answer != 'Choose') {
-      await database.ref(`/users/${urlParams.get('e')}/info/security/questions`).update ({
+      await database.ref(`/users/${emailUrl}/info/security/questions`).update ({
         [question]: answer
       })
     }
