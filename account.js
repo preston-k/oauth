@@ -468,6 +468,7 @@ function securityOptions() {
   console.log('securityoptions')
   document.querySelector('#security-options').style.display = 'block'
 }
+let genQr = false
 async function generateQr() {
   console.log(Date.now())
   let expTime = Date.now()+ 5 * 60 * 1000
@@ -483,6 +484,7 @@ async function generateQr() {
   })
   console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`)
   document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
+  
 }
 function autologout() {
 
