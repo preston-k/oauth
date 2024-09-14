@@ -1581,3 +1581,6 @@ input:focus {
   text-decoration: underline;
   cursor: pointer;
 }
+#bottom-spacer {
+  height: 30px;
+}
