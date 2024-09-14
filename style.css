@@ -1240,7 +1240,7 @@ input:focus {
   align-items: center;
 }
 #sso-link-copy {
-  width: 300px;
+  width: 500px;
   height: 40px;
   border: 2px solid black;
   border-radius: 15px;

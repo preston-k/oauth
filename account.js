@@ -485,6 +485,7 @@ async function generateQr() {
   console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`)
   document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
   
+  document.querySelector('#sso-linkcopy-content').innerHTML = `https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
 }
 function autologout() {
 

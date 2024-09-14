@@ -32,7 +32,12 @@ function rateLimit() {
   let newRateLimit = rl + 1
   document.cookie = `ratelimit=${newRateLimit}; max-age=300; path=/`
 }
-
+const url = new URL(window.location)
+let hint = urlParams.get('loginHint')
+if (hint != null && hint != '') {
+  document.querySelector('#email').value = hint
+ url.searchParams.delete('loginHint')
+}
 function createCookie(name, value, days) {
   let expires = ''
   if (days) {
@@ -512,6 +517,7 @@ async function passwordlessLogin(event) {
 }
 function badToken(reason) {
   console.log(reason)
+  document.querySelector('#shapes').style.display = 'none'
   document.querySelector('#expiredtoken').style.display = 'flex'
   document.querySelector('#expiredtoken').style.display = 'flex !important'
 }
