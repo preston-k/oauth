@@ -5,12 +5,36 @@ if (window.location.href.includes('oauth.prestonkwei.com')) {
 }
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
+
+const url = new URL(window.location)
 const urlParams = new URLSearchParams(window.location.search)
 let goto = ''
 if (urlParams.get('redir') != null) {
   goto = urlParams.get('redir')
   sessionStorage.setItem('target', goto)
 }
+
+let hide
+try {
+  hide = JSON.parse(urlParams.get('hide'))
+  if (hide.nopw) {
+    document.querySelector('#method-nopw').style.display = 'none'
+  }
+  if (hide.google) {
+    document.querySelector('#method-google').style.display = 'none'
+  }
+  if (hide.magic) {
+    document.querySelector('#method-magic').style.display = 'none'
+  }
+  if (hide.magic && hide.nopw && hide.google) {
+    document.querySelector('#method-divide').style.display = 'none'
+  }
+  url.searchParams.delete('hide')
+} catch (error) {
+  hide = {}
+}
+console.log(hide)
+
 
 console.log('target added')
 console.log(sessionStorage.getItem('target'))
@@ -32,7 +56,6 @@ function rateLimit() {
   let newRateLimit = rl + 1
   document.cookie = `ratelimit=${newRateLimit}; max-age=300; path=/`
 }
-const url = new URL(window.location)
 let hint = urlParams.get('loginHint')
 if (hint != null && hint != '') {
   document.querySelector('#email').value = hint

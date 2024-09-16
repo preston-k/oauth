@@ -1584,3 +1584,7 @@ input:focus {
 #bottom-spacer {
   height: 30px;
 }
+#method-google {
+  display: flex; 
+  justify-content: center;
+}
