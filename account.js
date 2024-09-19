@@ -484,7 +484,7 @@ async function generateQr() {
   })
   console.log(`https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`)
   document.querySelector('#login-qrcode').src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
-  
+
   document.querySelector('#sso-linkcopy-content').innerHTML = `https://oauth.prestonkwei.com/instant.html?sso=${ssoUuid}%26loginHint=${emailUrl}`
 }
 function autologout() {
@@ -625,6 +625,7 @@ database.ref(`/users/${firebaseEmail}/logoutNow`).on('value', (snapshot) => {
   console.log(snapshot.val())
   if (snapshot.val() == true) {
     document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))
+    localStorage.removeItem('newdevice')
     window.location.replace('/login.html?snackbar=loggedout')
   } else {
     console.log('stay')
