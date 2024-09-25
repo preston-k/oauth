@@ -1588,3 +1588,13 @@ input:focus {
   display: flex; 
   justify-content: center;
 }
+#tosaccept {
+  all: unset;
+  font-size: 10px;
+}
+.tosaccept-link {
+  all: unset;
+  color: #7ec8e3;
+  text-decoration: underline;
+  cursor: pointer;
+}
