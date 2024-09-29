@@ -1,20 +1,20 @@
-/** @type {typeof import("./static.json")} */
-const data = await fetch("/static.json").then((x) => x.json())
+/** @type {typeof import('./static.json')} */
+const data = await fetch('/static.json').then((x) => x.json())
 if (window.location.href.includes('oauth.prestonkwei.com')) {
   console.log = function() {}
 }
 const urlParams = new URLSearchParams(window.location.search);
 let version = data.version
 let sessid = self.crypto.randomUUID();
-document.getElementById("static").innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid;
+document.getElementById('static').innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid;
 function makeCookie(cname, cvalue, days) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  let expires = 'expires='+ d.toUTCString();
+  document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 }
 function getCookie(cname) {
-  let name = cname + "=";
+  let name = cname + '=';
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for(let i = 0; i <ca.length; i++) {
@@ -26,7 +26,7 @@ function getCookie(cname) {
       return c.substring(name.length, c.length);
     }
   }
-  return "";
+  return '';
 } 
 
 let finalRedir =  null
