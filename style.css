@@ -1620,3 +1620,46 @@ input:focus {
   /* height: calc(1em + 30px); */
   animation: textGlow 3s ease-in-out infinite;
 }
+#main-choices {
+  width: 100vw;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.main-choices-choice {
+  width: 200px;
+  height: 200px;
+  /* border: 2px solid black; */
+  background: rgb(126,200,227); 
+  background: linear-gradient(0deg, rgba(126,200,227,.5) 0%, rgba(255,255,255, .5) 50%);
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+} 
+.main-choices-choice:hover {
+  transform: scale(1.02);
+}
+
+.greeting-under-h3 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.main-choices-choicetext {
+  margin: 0;
+  margin-top: 5px;
+  /* margin-top: 10px; */
+  font-weight: 700;
+}
+.main-choices-choiceimg {
+  width: 150px;
+  height: 150px;
+  /* background-color: black; */
+}
