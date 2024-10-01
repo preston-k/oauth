@@ -308,6 +308,9 @@ body {
   }
 }
 @media screen and (max-width: 1000px) {
+  .greeting {
+    font-size: 60px !important;
+  }
   .optionbox {
     display: block !important;
     margin-left: auto !important;
@@ -1597,4 +1600,23 @@ input:focus {
   color: #7ec8e3;
   text-decoration: underline;
   cursor: pointer;
+}
+@keyframes textGlow {
+  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } 
+}
+
+.greeting {
+  font-weight: 800;
+  font-size: 100px;
+  background: rgb(88,111,218);
+  background: linear-gradient(90deg, rgba(88,111,218,1) 0%, rgba(252,70,249,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 10px;
+  line-height: 1.5;
+  /* height: calc(1em + 30px); */
+  animation: textGlow 3s ease-in-out infinite;
 }

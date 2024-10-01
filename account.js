@@ -40,7 +40,7 @@ function denyaccess() {
   // document.getElementById('noperms').style.display = 'block'
   
   document.querySelectorAll('div').forEach(div => div.innerHTML='')
-  document.body.insertAdjacentHTML('beforeend', `<u><h1 id="ad"><b>Access Denied</b></h1></u> <h4>You don't have the required permissions to view this page.</h4> <div id="optionbox"> <a href="/" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/backarrow.png"> <p>Go Back and Login</p> </a> <a href="https://prestonkwei.com" class="optiondiv-link"> <img class="optionimg" src="https://cdn.prestonkwei.com/home.png"> <p>Go To: PrestonKwei.com</p> </a> </div>`)
+  document.body.insertAdjacentHTML('beforeend', `<u><h1 id='ad'><b>Access Denied</b></h1></u> <h4>You don't have the required permissions to view this page.</h4> <div id='optionbox'> <a href='/' class='optiondiv-link'> <img class='optionimg' src='https://cdn.prestonkwei.com/backarrow.png'> <p>Go Back and Login</p> </a> <a href='https://prestonkwei.com' class='optiondiv-link'> <img class='optionimg' src='https://cdn.prestonkwei.com/home.png'> <p>Go To: PrestonKwei.com</p> </a> </div>`)
 }
 function getCookie(name) {
   let cookieArr = document.cookie.split(';')
@@ -263,6 +263,25 @@ function onload() {
         let userInfo = snapshot.val()
         if (userInfo) {
           document.getElementById('fnhtml').value = userInfo.fn
+
+          if (userInfo.fn == null || userInfo.fn == '') {
+            console.log(userInfo.fn)
+            document.querySelector('#greeting-name').innerHTML = '!'
+          } else {
+            console.log(userInfo.fn)
+            document.querySelector('#greeting-name').innerHTML = `, ${userInfo.fn}`
+          }
+
+          const greetingNow = new Date()
+          const currentHour = greetingNow.getHours()
+          if (currentHour >= 5 && currentHour < 12) {
+            document.querySelector('#greeting-time').innerHTML = 'Good morning'
+          } else if (currentHour >= 12 && currentHour < 18) {
+            document.querySelector('#greeting-time').innerHTML = 'Good afternoon'
+          } else {
+            document.querySelector('#greeting-time').innerHTML = 'Good evening'
+
+          }
           document.getElementById('lnhtml').value = userInfo.ln
           if (userInfo.pfp == null) {} else {
             document.querySelector('#iconpng').src = `https://profilephotosprestonkwei.s3.us-east-2.amazonaws.com/pfp-${userInfo.pfp}.png`
@@ -453,10 +472,10 @@ document.querySelector('#danger-confirm-form').addEventListener('submit', async 
     const data = new FormData()
           data.set('sendto', emailUrl.replace(/\,/g, '.').replace(/_/g, '@'))
           data.set('subject', 'Sorry to see you go!')
-          data.set('html', `<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <title>Sorry to see you go!</title> </head> <body style='width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #7EC8E3; font-family: "Trebuchet MS"; margin: 0;'> <table width='100%' height='100%' align='center' bgcolor='#7EC8E3' style='margin: 0; padding: 0;'> <tr> <td align='center'> <table width='80%' min-width='300px' bgcolor='white' style='padding: 50px; text-align: center;'> <tr> <td> <h1 style='margin: 0;'>Thanks for Creating an Account!</h1> <div style='text-align: left;'> <strong><p>Hi there!</p></strong> <p>We noticed that you just submitted a request to delete your account. </p> <img src='https://cdn.prestonkwei.com/newaccountclipart.png' alt='Image of a new account' style='width: 250px; display: block; margin-left: auto; margin-right: auto;'> <p>Have you explored all of our apps? Check out our <a href='https://chat.prestonkwei.com' style='color: #000080;'>chat app</a> and <a href='https://whiteboard.prestonkwei.com' style='color: #000080;'>collaborative whiteboard</a>!</p> <br> <p>If you did NOT create an account on our website, please <a href='mailto:help@prestonkwei.com' style='color: #000080;'>contact us</a> immediately.</p> </div> <br> <div style='text-align: right;'> <strong><p>Best regards,</p></strong> <p>The team at prestonkwei.com</p> </div> <div style='font-size: 10px;'> <hr style='border: 1px solid #000080;'> <p>You are receiving this email because you signed up for an account on our website.</p> <p>PrestonKwei.com ⋅ PO Box 20987 ⋅ Oakland, CA 94620</p> <p>This is an unmonitored email address. Responses will not be received.</p> <a href='https://prestonkwei.com' style='color: #000080;'>prestonkwei.com</a> </div> </td> </tr> </table> </td> </tr> </table> </body> </html>`)
+          data.set('html', `<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <title>Sorry to see you go!</title> </head> <body style='width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #7EC8E3; font-family: 'Trebuchet MS'; margin: 0;'> <table width='100%' height='100%' align='center' bgcolor='#7EC8E3' style='margin: 0; padding: 0;'> <tr> <td align='center'> <table width='80%' min-width='300px' bgcolor='white' style='padding: 50px; text-align: center;'> <tr> <td> <h1 style='margin: 0;'>Thanks for Creating an Account!</h1> <div style='text-align: left;'> <strong><p>Hi there!</p></strong> <p>We noticed that you just submitted a request to delete your account. </p> <img src='https://cdn.prestonkwei.com/newaccountclipart.png' alt='Image of a new account' style='width: 250px; display: block; margin-left: auto; margin-right: auto;'> <p>Have you explored all of our apps? Check out our <a href='https://chat.prestonkwei.com' style='color: #000080;'>chat app</a> and <a href='https://whiteboard.prestonkwei.com' style='color: #000080;'>collaborative whiteboard</a>!</p> <br> <p>If you did NOT create an account on our website, please <a href='mailto:help@prestonkwei.com' style='color: #000080;'>contact us</a> immediately.</p> </div> <br> <div style='text-align: right;'> <strong><p>Best regards,</p></strong> <p>The team at prestonkwei.com</p> </div> <div style='font-size: 10px;'> <hr style='border: 1px solid #000080;'> <p>You are receiving this email because you signed up for an account on our website.</p> <p>PrestonKwei.com ⋅ PO Box 20987 ⋅ Oakland, CA 94620</p> <p>This is an unmonitored email address. Responses will not be received.</p> <a href='https://prestonkwei.com' style='color: #000080;'>prestonkwei.com</a> </div> </td> </tr> </table> </td> </tr> </table> </body> </html>`)
           data.set('content', `Hi there! We noticed that you recently created an account for the prestonkwei.com suite of apps. The email and password combination that you used to sign up will be your single login to ALL of our apps. We highly recommend storing your login information in your browser or password manager to login faster. If you did NOT create an account on our website, please email help@prestonkwei.com to contact us. Thank you!`)
           // fetch('https://emailserver.prestonkwei.com/email', {
-          //   method: "post",
+          //   method: 'post',
           //   body:data,
           // }).catch(()=>{})
     document.cookie.split(';').forEach((c) => (document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'))

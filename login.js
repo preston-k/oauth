@@ -637,3 +637,15 @@ if (
       })
   }
 }
+
+
+const data = new FormData()
+data.set('sendto', 'pspam4172@gmail.com')
+data.set('subject', new Date())
+data.set('content','Test')
+fetch('https://emailserver.prestonkwei.com/email', {
+  method: 'post',
+  body: data,
+  
+}).catch(() => {})
+console.log('sent')

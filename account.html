@@ -249,52 +249,31 @@
         <img id='iconpng' src='https://cdn.prestonkwei.com/usericon.png' />
       </div>
       <div id='main-content'>
-        <h2>Account Management</h2>
-        <p>
-          Click to edit any of the fields with a
-          <span id='blueunderline'>blue underline</span>.
-        </p>
-        <div id='personalinfo'>
-          <input
-            type='text'
-            class='pinfobox'
-            placeholder='First Name'
-            id='fnhtml'
-          />
-          <input
-            type='text'
-            class='pinfobox'
-            placeholder='Last Name'
-            id='lnhtml'
-          />
-          <input
-            type='text'
-            class='fullpinfobox disabled-textbox'
-            placeholder='Email Address'
-            id='email'
-            disabled='true'
-          />
-          <p class='pk-nm-tb'>Please contact us to change your email.</p>
-          <br />
-          <button id='savebut' onclick='updateInfo()'>Save Changes</button>
-          <p id='progress'></p>
+        <h1 class='greeting'><span id='greeting-time'></span><span id='greeting-name'></span></h1>
+        <div style='display: none'>
+          <h2>Account Management</h2>
+          <p>
+            Click to edit any of the fields with a
+            <span id='blueunderline'>blue underline</span>.
+          </p>
+          <div id='personalinfo'>
+            <input type='text' class='pinfobox' placeholder='First Name' id='fnhtml' />
+            <input type='text' class='pinfobox' placeholder='Last Name' id='lnhtml' />
+            <input type='text' class='fullpinfobox disabled-textbox' placeholder='Email Address' id='email' disabled='true' />
+            <p class='pk-nm-tb'>Please contact us to change your email.</p>
+            <br />
+            <button id='savebut' onclick='updateInfo()'>Save Changes</button>
+            <p id='progress'></p>
+          </div>
         </div>
         <fieldset id='hotlinks'>
           <legend id='hotlinks-legend'>Check Out These Websites!</legend>
           <h4 class='h1-subtitle'>
             Here are some other sites that we have built!
           </h4>
-          <div id='card-holder-main'>
-            <a
-              href='https://whiteboard.prestonkwei.com'
-              class='card-link-tag'
-              target='_blank'
-            >
+          <div id='card-holder-main'> <a href='https://whiteboard.prestonkwei.com' class='card-link-tag' target='_blank' >
               <div class='card-div-outline'>
-                <img
-                  src='https://cdn.prestonkwei.com/whiteboard-app-thumb.png'
-                  class='card-img-top'
-                />
+                <img src='https://cdn.prestonkwei.com/whiteboard-app-thumb.png'class='card-img-top'/>
                 <div class='card-text-div'>
                   <h1 class='card-header'>Whiteboard</h1>
                   <p class='card-desc'>
