@@ -1645,7 +1645,7 @@ input:focus {
 } 
 @media only screen and (max-width: 600px) {
   .main-choices-choice {
-    width: 375px;
+    width: 350px;
   }
 }
 .main-choices-choice:hover {
