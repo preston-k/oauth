@@ -1606,7 +1606,6 @@ input:focus {
   50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
   100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } 
 }
-
 .greeting {
   font-weight: 800;
   font-size: 100px;
@@ -1628,7 +1627,6 @@ input:focus {
   gap: 30px;
   flex-wrap: wrap;
 }
-
 .main-choices-choice {
   width: 200px;
   height: 200px;
@@ -1647,11 +1645,13 @@ input:focus {
   .main-choices-choice {
     width: 350px;
   }
+  #main-choices {
+    gap: 15px;
+  }
 }
 .main-choices-choice:hover {
   transform: scale(1.02);
 }
-
 .greeting-under-h3 {
   margin: 0;
   margin-bottom: 20px;

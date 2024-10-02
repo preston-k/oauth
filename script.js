@@ -4,9 +4,17 @@ if (window.location.href.includes('oauth.prestonkwei.com')) {
   console.log = function() {}
 }
 const urlParams = new URLSearchParams(window.location.search);
+let dev = false
+if (urlParams.get('dev') == '1') {
+  console.log('dev')
+  dev = true
+}
+console.log(dev)
 let version = data.version
-let sessid = self.crypto.randomUUID();
-document.getElementById('static').innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid;
+let sessid = self.crypto.randomUUID()
+if (dev) {
+  document.getElementById('static').innerHTML = 'Version ' + version + ' · ' + 'Session ID: ' + sessid
+}
 function makeCookie(cname, cvalue, days) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
