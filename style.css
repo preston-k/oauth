@@ -1632,9 +1632,9 @@ input:focus {
 .main-choices-choice {
   width: 200px;
   height: 200px;
-  /* border: 2px solid black; */
-  background: rgb(126,200,227); 
-  background: linear-gradient(0deg, rgba(126,200,227,.5) 0%, rgba(255,255,255, .5) 50%);
+  border: 2px solid black;
+  /* background: rgb(126,200,227); 
+  background: linear-gradient(0deg, rgba(126,200,227,.5) 0%, rgba(255,255,255, .5) 50%); */
   border-radius: 15px;
   cursor: pointer;
   display: flex;
@@ -1643,6 +1643,11 @@ input:focus {
   flex-direction: column;
   user-select: none;
 } 
+@media only screen and (max-width: 600px) {
+  .main-choices-choice {
+    width: 450px;
+  }
+}
 .main-choices-choice:hover {
   transform: scale(1.02);
 }
