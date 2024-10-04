@@ -639,7 +639,7 @@ input:focus {
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 #dztitle {
   all: unset;
@@ -1723,6 +1723,15 @@ input:focus {
   display: none;
   padding: 20px;
 }
+#security-settings {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  padding: 20px;
+}
 .devmode-settingsbold {
   text-decoration: underline;
   font-weight: 800;
@@ -1732,4 +1741,12 @@ input:focus {
   border: 2px solid black;
   border-radius: 10px;
   display: none;
+}
+.legalnotice-bottom {
+  all: unset;
+}
+a.legalnotice-bottom {
+  color: #7ec8e3;
+  cursor: pointer;
+  text-decoration: underline;
 }

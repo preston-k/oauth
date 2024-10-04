@@ -702,6 +702,14 @@ document.querySelector('#qr-exit').addEventListener('click', () => {
   document.querySelector('#center').style.display = 'block'
 })
 
+document.querySelector('#choice-home-security').addEventListener('click', () => {
+  document.querySelector('#security-settings').style.display = 'flex'
+  document.querySelector('#main-content').style.display = 'none'
+})
+document.querySelector('#close-security-button').addEventListener('click', () => {
+  document.querySelector('#security-settings').style.display = 'none'
+  document.querySelector('#main-content').style.display = 'block'
+})
 document.querySelector('#choice-home-notif').addEventListener('click', () => {
   document.querySelector('#notif-list').style.display = 'flex'
   document.querySelector('#main-content').style.display = 'none'

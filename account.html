@@ -262,6 +262,46 @@
             <button id='savebut' onclick='updateInfo()'>Save Changes</button>
             <p id='progress'></p>
           </div>
+          <br>
+          <fieldset id='dangerzoneinner'>
+            <legend id='dztitle'>Danger Zone</legend>
+            <p class='dzp'>
+              These settings can severely affect your account. Use caution when
+              changing these settings.
+            </p>
+            <div class='dangerzone-setting'>
+              <div class='dangerzone-left'>
+                <h1 class='danger-h1'>Delete Profile Picture</h1>
+                <p class='danger-p'>
+                  Deletes your uploaded profile photo from our servers. This
+                  action is permanent.
+                </p>
+              </div>
+              <div class='dangerzone-right'>
+                <button class='danger-button' id='danger-deletepfp'>
+                  Delete Profile Photo
+                </button>
+              </div>
+            </div>
+            <hr class='setting-seperator' />
+  
+            <!-- DO NOT MOVE. NO SETTINGS BELOW THIS. -->
+            <div class='dangerzone-setting'>
+              <div class='dangerzone-left'>
+                <h1 class='danger-h1'>Delete Account</h1>
+                <p class='danger-p'>
+                  Deletes your account, and all associated information from our
+                  servers. This action is permanent.
+                </p>
+              </div>
+              <div class='dangerzone-right'>
+                <button class='danger-button' id='danger-deleteacc'>
+                  Delete Account
+                </button>
+              </div>
+            </div>
+          </fieldset>
+          <p class='legalnotice-bottom'>By using our sites, services, or your account, you agree to our <a target='_blank' href='https://legal.prestonkwei.com/policies/tos' class='legalnotice-bottom'>terms of service</a> and <a target='_blank' href='https://legal.prestonkwei.com/policies/privacy' class='legalnotice-bottom'>privacy policy.</a></p>
       </div>
       <div id='device-settings'>
         <img src='https://cdn.prestonkwei.com/x-icon-black-outline-thick.png' class='close-icon-img' id='close-devicesettings-button'>
@@ -269,7 +309,27 @@
         <div id='devicesettings-maininfo'></div>
         <div id='devicesettings-devmode'></div>
 
-    </div>
+      </div>
+      <div id='security-settings'>
+        <img src='https://cdn.prestonkwei.com/x-icon-black-outline-thick.png' class='close-icon-img' id='close-security-button'>
+        <h3>Account Security</h3>
+        <div id='devices-loggedin'>
+          <h2>Your Devices</h2>
+          <p class='pk-nm-b'>Here is where you are still logged in.</p>
+          <p id='logoutall'>Logout from all devices.</p>
+          <!-- <div id='loggedindiv-wrapper'>
+            <div class='loggedin-devicediv'>
+              <div class='loggedindiv-icon'></div>
+              <div class='loggedindiv-text'>
+                <p class='loggedindiv-toptext'>iPhone 15</p>
+                <p class='loggedindiv-bottomtext'>Aug 15, 2024: 05:00 in Oakland, California.</p>
+              </div>
+            </div>
+          </div> -->
+          
+        </div>
+        <p id='progress'></p>
+      </div>
       <div id='notif-list'>
           <img src='https://cdn.prestonkwei.com/x-icon-black-outline-thick.png' class='close-icon-img' id='close-notif-button'>
           <h3>Notifications</h3>
@@ -287,13 +347,14 @@
             <img src='https://cdn.prestonkwei.com/user-icon-black-outline.png' draggable='false' class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Account Settings</p>
           </div>
-          <div class='main-choices-choice disabled-homebutton'>
+          <div class='main-choices-choice' id='choice-home-security' >
             <img src='https://cdn.prestonkwei.com/security-icon-black-outline.png' draggable='false'  class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Security</p>
           </div>
           <div class='main-choices-choice' id='choice-home-device'>
             <img src='https://cdn.prestonkwei.com/device-icon-black-outline.png' draggable='false'  class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Device Settings</p>
+            
           </div>
           <div class='main-choices-choice' id='choice-home-notif'>
             <img src='https://cdn.prestonkwei.com/notification-icon-black-outline.png'  draggable='false' class='main-choices-choiceimg'>
@@ -316,7 +377,7 @@
             <p id='progress'></p>
           </div>
         </div>
-        <fieldset id='hotlinks'>
+        <fieldset id='hotlinks' style='display: none;'>
           <legend id='hotlinks-legend'>Check Out These Websites!</legend>
           <h4 class='h1-subtitle'>
             Here are some other sites that we have built!
@@ -360,61 +421,7 @@
             </a>
           </div>
         </fieldset>
-
-        <div id='devices-loggedin'>
-          <h2>Your Devices</h2>
-          <p class='pk-nm-b'>Here is where you are still logged in.</p>
-          <p id='logoutall'>Logout from all devices.</p>
-          <!-- <div id='loggedindiv-wrapper'>
-            <div class='loggedin-devicediv'>
-              <div class='loggedindiv-icon'></div>
-              <div class='loggedindiv-text'>
-                <p class='loggedindiv-toptext'>iPhone 15</p>
-                <p class='loggedindiv-bottomtext'>Aug 15, 2024: 05:00 in Oakland, California.</p>
-              </div>
-            </div>
-          </div> -->
-          
-        </div>
-        <p id='progress'></p>
-        <fieldset id='dangerzoneinner'>
-          <legend id='dztitle'>Danger Zone</legend>
-          <p class='dzp'>
-            These settings can severely affect your account. Use caution when
-            changing these settings.
-          </p>
-          <div class='dangerzone-setting'>
-            <div class='dangerzone-left'>
-              <h1 class='danger-h1'>Delete Profile Picture</h1>
-              <p class='danger-p'>
-                Deletes your uploaded profile photo from our servers. This
-                action is permanent.
-              </p>
-            </div>
-            <div class='dangerzone-right'>
-              <button class='danger-button' id='danger-deletepfp'>
-                Delete Profile Photo
-              </button>
-            </div>
-          </div>
-          <hr class='setting-seperator' />
-
-          <!-- DO NOT MOVE. NO SETTINGS BELOW THIS. -->
-          <div class='dangerzone-setting'>
-            <div class='dangerzone-left'>
-              <h1 class='danger-h1'>Delete Account</h1>
-              <p class='danger-p'>
-                Deletes your account, and all associated information from our
-                servers. This action is permanent.
-              </p>
-            </div>
-            <div class='dangerzone-right'>
-              <button class='danger-button' id='danger-deleteacc'>
-                Delete Account
-              </button>
-            </div>
-          </div>
-        </fieldset>
+        
         <div id='bottom-spacer'></div>
       </div>
     </div>
