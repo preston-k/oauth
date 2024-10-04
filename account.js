@@ -700,3 +700,21 @@ document.querySelector('#qr-exit').addEventListener('click', () => {
   document.querySelector('#qrlogin').style.display = 'none'
   document.querySelector('#center').style.display = 'block'
 })
+
+document.querySelector('#choice-home-notif').addEventListener('click', () => {
+  document.querySelector('#notif-list').style.display = 'flex'
+  document.querySelector('#main-content').style.display = 'none'
+})
+document.querySelector('#close-notif-button').addEventListener('click', () => {
+  document.querySelector('#notif-list').style.display = 'none'
+  document.querySelector('#main-content').style.display = 'block'
+})
+document.querySelector('#choice-home-account').addEventListener('click', () => {
+  document.querySelector('#account-settings').style.display = 'flex'
+  document.querySelector('#main-content').style.display = 'none'
+})
+document.querySelector('#close-accountsettings-button').addEventListener('click', () => {
+  document.querySelector('#account-settings').style.display = 'none'
+  document.querySelector('#main-content').style.display = 'block'
+})
+

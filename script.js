@@ -3,6 +3,7 @@ const data = await fetch('/static.json').then((x) => x.json())
 if (window.location.href.includes('oauth.prestonkwei.com')) {
   console.log = function() {}
 }
+
 const urlParams = new URLSearchParams(window.location.search);
 let dev = false
 if (urlParams.get('dev') == '1') {

@@ -242,29 +242,53 @@
       </div>
     </div>
     <div id='center'>
-      <div id='pfpstuff'>
-        <form id='pfpform'>
-          <input type='file' accept='.png, .jpg, .jpeg, .heic' id='pfpup' />
-        </form>
-        <img id='iconpng' src='https://cdn.prestonkwei.com/usericon.png' />
+      <div id='account-settings'>
+        <img src='https://cdn.prestonkwei.com/x-icon-black-outline-thick.png' class='close-icon-img' id='close-accountsettings-button'>
+        <h3>Account Settings</h3>
+        <div id='pfpstuff'>
+          <form id='pfpform'>
+            <input type='file' accept='.png, .jpg, .jpeg, .heic' id='pfpup' />
+          </form>
+          <img id='iconpng' src='https://cdn.prestonkwei.com/usericon.png' />
+        </div>
+        <p>Click to edit any of the fields with a <span id='blueunderline'>blue underline</span>.</p>
+          
+          <div id='personalinfo'>
+            <input type='text' class='pinfobox' placeholder='First Name' id='fnhtml' />
+            <input type='text' class='pinfobox' placeholder='Last Name' id='lnhtml' />
+            <input type='text' class='fullpinfobox disabled-textbox' placeholder='Email Address' id='email' disabled='true' />
+            <p class='pk-nm-tb'>Please contact us to change your email.</p>
+            <br />
+            <button id='savebut' onclick='updateInfo()'>Save Changes</button>
+            <p id='progress'></p>
+          </div>
       </div>
+      <div id='notif-list'>
+          <img src='https://cdn.prestonkwei.com/x-icon-black-outline-thick.png' class='close-icon-img' id='close-notif-button'>
+          <h3>Notifications</h3>
+          <div class='notification-div'>
+            <h3 class='notification-head'>Your Account Will Be Deleted in 3 Days</h3>
+          </div>
+      </div>
+
       <div id='main-content'>
+        
         <h1 class='greeting'><span id='greeting-time'></span><span id='greeting-name'></span></h1>
         <h3 class='greeting-under-h3'>What would you like to do today?</h3>
         <div id='main-choices'>
-          <div class='main-choices-choice'>
+          <div class='main-choices-choice' id='choice-home-account'>
             <img src='https://cdn.prestonkwei.com/user-icon-black-outline.png' draggable='false' class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Account Settings</p>
           </div>
-          <div class='main-choices-choice'>
+          <div class='main-choices-choice disabled-homebutton'>
             <img src='https://cdn.prestonkwei.com/security-icon-black-outline.png' draggable='false'  class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Security</p>
           </div>
-          <div class='main-choices-choice'>
+          <div class='main-choices-choice disabled-homebutton'>
             <img src='https://cdn.prestonkwei.com/device-icon-black-outline.png' draggable='false'  class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Device Settings</p>
           </div>
-          <div class='main-choices-choice'>
+          <div class='main-choices-choice' id='choice-home-notif'>
             <img src='https://cdn.prestonkwei.com/notification-icon-black-outline.png'  draggable='false' class='main-choices-choiceimg'>
             <p class='main-choices-choicetext'>Notifications</p>
           </div>

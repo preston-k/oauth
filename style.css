@@ -434,7 +434,9 @@ input:focus {
   font-weight: 1000;
   display: none;
 }
-
+#email {
+  font-size: 14px;
+}
 #nomatch {
   color: red;
   font-size: 12px;
@@ -1667,4 +1669,52 @@ input:focus {
   width: 150px;
   height: 150px;
   /* background-color: black; */
+}
+#notif-list {
+  width: 100vw;
+  height: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  display: none;
+  padding: 20px;
+}
+.close-icon-img {
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.notification-div {
+  width: 80%;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.notification-head {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  margin-left: 5px;
+  margin-top: 5px;
+  text-align: left;
+  text-decoration: underline;
+}
+#account-settings {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  display: none;
+  padding: 20px;
+}
+
+.disabled-homebutton {
+  background-color: lightgrey !important;
+  pointer-events: none;
 }
