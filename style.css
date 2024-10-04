@@ -1499,6 +1499,7 @@ input:focus {
 .loginoption-button {
   width: 50%;
   height: 35px;
+  min-width: 250px;
   border: 2px solid black;
   border-radius: 10px;
   font-family: 'Poppins', sans-serif;
