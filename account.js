@@ -9,6 +9,7 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
+
 if (window.location.href.includes('oauth.prestonkwei.com')) {
   console.log = function() {}
 }
@@ -722,9 +723,24 @@ document.querySelector('#close-accountsettings-button').addEventListener('click'
 document.querySelector('#choice-home-device').addEventListener('click', () => {
   document.querySelector('#device-settings').style.display = 'flex'
   document.querySelector('#main-content').style.display = 'none'
+  if (urlParams.get('dev') == '1') {
+    document.querySelector('#devicesettings-devmode').style.display = 'block'
+  }
 })
 document.querySelector('#close-devicesettings-button').addEventListener('click', () => {
   document.querySelector('#device-settings').style.display = 'none'
   document.querySelector('#main-content').style.display = 'block'
 })
+let localAll
+Object.keys(localStorage).forEach(key => localAll +=`${key}/${localStorage.getItem(key)} || `)
+let sessionAll
+Object.keys(sessionStorage).forEach(key => sessionAll +=`${key}/${sessionStorage.getItem(key)} || `)
+document.querySelector('#devicesettings-maininfo').innerHTML =  `
+  <p>Site Version:</p>
+`
+document.querySelector('#devicesettings-devmode').innerHTML =  `
+  <p><span class='devmode-settingsbold'>Device ID:</span> ${localStorage.getItem('oauthDeviceId')}</p>
+  <p><span class='devmode-settingsbold'>Local:</span> ${localAll}</p>
+  <p><span class='devmode-settingsbold'>Session:</span> ${sessionAll}</p>
+`
 

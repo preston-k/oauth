@@ -1723,3 +1723,13 @@ input:focus {
   display: none;
   padding: 20px;
 }
+.devmode-settingsbold {
+  text-decoration: underline;
+  font-weight: 800;
+}
+#devicesettings-devmode {
+  max-width: 90vw;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: none;
+}
