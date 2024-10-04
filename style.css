@@ -1709,7 +1709,6 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   display: none;
   padding: 20px;
 }
@@ -1717,4 +1716,13 @@ input:focus {
 .disabled-homebutton {
   background-color: lightgrey !important;
   pointer-events: none;
+}
+#device-settings {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  padding: 20px;
 }

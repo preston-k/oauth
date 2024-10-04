@@ -718,3 +718,13 @@ document.querySelector('#close-accountsettings-button').addEventListener('click'
   document.querySelector('#main-content').style.display = 'block'
 })
 
+
+document.querySelector('#choice-home-device').addEventListener('click', () => {
+  document.querySelector('#device-settings').style.display = 'flex'
+  document.querySelector('#main-content').style.display = 'none'
+})
+document.querySelector('#close-devicesettings-button').addEventListener('click', () => {
+  document.querySelector('#device-settings').style.display = 'none'
+  document.querySelector('#main-content').style.display = 'block'
+})
+
