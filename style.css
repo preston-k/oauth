@@ -434,9 +434,6 @@ input:focus {
   font-weight: 1000;
   display: none;
 }
-#email {
-  font-size: 14px;
-}
 #nomatch {
   color: red;
   font-size: 12px;
