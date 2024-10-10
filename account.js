@@ -291,6 +291,8 @@ function onload() {
           console.log(`https://profilephotosprestonkwei.s3.us-east-2.amazonaws.com/pfp-${userInfo.pfp}.png`)
         } else {
           console.error('User info not found in database for email: ' + email)
+          document.querySelector('#criticalerror').style.display = 'flex'
+          document.querySelector('#criticalerror-id').innerHTML = 'DB-DEL-U'
         }
       })
       .catch(function (error) {
