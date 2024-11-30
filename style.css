@@ -1553,7 +1553,7 @@ input:focus {
 .loggedindiv-icon {
   width: 50px;
   height: 50px;
-  background-color: #EBD494;
+  background-color: #ebd494;
   border-radius: 15px;
 }
 .loggedindiv-text {
@@ -1588,7 +1588,7 @@ input:focus {
   height: 30px;
 }
 #method-google {
-  display: flex; 
+  display: flex;
   justify-content: center;
 }
 #tosaccept {
@@ -1602,15 +1602,25 @@ input:focus {
   cursor: pointer;
 }
 @keyframes textGlow {
-  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } 
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
 }
 .greeting {
   font-weight: 800;
   font-size: 100px;
-  background: rgb(88,111,218);
-  background: linear-gradient(90deg, rgba(88,111,218,1) 0%, rgba(252,70,249,1) 100%);
+  background: rgb(88, 111, 218);
+  background: linear-gradient(
+    90deg,
+    rgba(88, 111, 218, 1) 0%,
+    rgba(252, 70, 249, 1) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1640,7 +1650,7 @@ input:focus {
   align-items: center;
   flex-direction: column;
   user-select: none;
-} 
+}
 @media only screen and (max-width: 600px) {
   .main-choices-choice {
     width: 350px;
@@ -1755,7 +1765,7 @@ a.legalnotice-bottom {
 #criticalerror {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0,0,0,.5);
+  background-color: rgb(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -1782,11 +1792,20 @@ a.legalnotice-bottom {
 #errorid-bottom {
   position: absolute;
   bottom: 0;
-  
 }
 #error-robot {
   width: 45%;
 }
 .mailto {
   all: unset;
+}
+#pw-feedback {
+  font-size: 10px;
+  line-height: 10px;
+  width: max-content;
+  margin: 5px 0;
+  justify-self: center;
+  padding: 0 10px;
+  display: none;
+  color: red;
 }

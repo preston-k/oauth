@@ -47,10 +47,16 @@
         <h1>Sign Up</h1>
         <input type='email' placeholder='Email' class='loginbox' id='signupemail'></input>
         <input type='password' placeholder='Password' class='loginbox' id='signuppw'></input>
+        <div id='pw-feedback'>
+          <p id='pw-length'>Password must be at least 8 characters long.</p>
+          <p id='pw-letters'>Password must contain at least one letter.</p>
+          <p id='pw-numbers'>Password must contain at least one number.</p>
+          <p id='pw-special'>Password must contain at least one special character.</p>
+        </div>
   
         <div class='g-recaptcha' id='captcha' data-sitekey='6LcNVF8pAAAAABOE0DCykNQ-Zmni7UjgDOgDDaxL' background-color='white'></div>
         <p id='tosaccept'>By creating an account, you agree that you have read and accept our <a href='https://legal.prestonkwei.com/policies/tos' target='_blank' class='tosaccept-link'>terms of service</a> and <a href='https://legal.prestonkwei.com/policies/privacy' target='_blank' class='tosaccept-link'>privacy policy</a>.</p>
-        <button class='formbut' id='signupBut' type='submit'>Sign Up!</button>
+        <button class='formbut' id='signupBut' type='submit' disabled>Sign Up!</button>
       </form>
       <hr class='half-hr'>
       <div style='display: flex; justify-content: center;'>

@@ -1,7 +1,7 @@
 import firebaseConfig from './obfuscaedfirebaseconfig.js'
 firebase.initializeApp(firebaseConfig)
 if (window.location.href.includes('oauth.prestonkwei.com')) {
-  console.log = function() {}
+  console.log = function () {}
 }
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
@@ -35,7 +35,6 @@ try {
 }
 console.log(hide)
 
-
 console.log('target added')
 console.log(sessionStorage.getItem('target'))
 function rateLimit() {
@@ -59,7 +58,7 @@ function rateLimit() {
 let hint = urlParams.get('loginHint')
 if (hint != null && hint != '') {
   document.querySelector('#email').value = hint
- url.searchParams.delete('loginHint')
+  url.searchParams.delete('loginHint')
 }
 function createCookie(name, value, days) {
   let expires = ''
@@ -105,20 +104,32 @@ async function newDevice(email) {
   console.log(email)
   let where = ''
   let ip = ''
-  fetch('https://api.ipify.org?format=json') .then(response => response.json()) .then(data => { fetch(`https://ipwhois.app/json/${data.ip}`) .then(response => response.json()) .then(locationData => { 
-    console.log(81)
-    console.log('Location:', locationData.city, locationData.region, locationData.country)
-    // where = `${locationData.city}, ${locationData.region}, ${locationData.country}`
-    console.log(where)
-    console.log(data.ip)
-  }) }) .catch(error => console.error('Error fetching location:', error))
+  fetch('https://api.ipify.org?format=json')
+    .then((response) => response.json())
+    .then((data) => {
+      fetch(`https://ipwhois.app/json/${data.ip}`)
+        .then((response) => response.json())
+        .then((locationData) => {
+          console.log(81)
+          console.log(
+            'Location:',
+            locationData.city,
+            locationData.region,
+            locationData.country
+          )
+          // where = `${locationData.city}, ${locationData.region}, ${locationData.country}`
+          console.log(where)
+          console.log(data.ip)
+        })
+    })
+    .catch((error) => console.error('Error fetching location:', error))
   console.log(90)
   let deviceId = self.crypto.randomUUID()
   await database.ref(`/users/${email}/devices/${deviceId}`).update({
     id: deviceId,
     location: where,
     ip: ip,
-    ts: new Date()
+    ts: new Date(),
   })
 }
 let d = new Date().toString().replace(/ /g, '').replace(/GMT/g, 'UTC')
@@ -143,7 +154,7 @@ async function authToken(email) {
       ts: tsAuthToken,
       email: emailAuthToken,
       ip: ipAuthToken,
-      now: new Date()
+      now: new Date(),
     })
     document.cookie =
       'auth-token=id=' +
@@ -202,13 +213,17 @@ async function authToken(email) {
         console.log(target)
         if (target == '' || target == null) {
           await newDevice(googleEmail)
-          window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
+          window.location.replace(
+            `/account.html?id=${
+              data.id
+            }&e=${accountEmail}&s=true&ts=${Date.now()}`
+          )
         } else {
           await newDevice(googleEmail)
-          window.location.replace(`${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
-
+          window.location.replace(
+            `${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`
+          )
         }
-        
       } else {
         let accountEmail
         let data
@@ -229,10 +244,15 @@ async function authToken(email) {
 
         let target = sessionStorage.getItem('target')
         if (target == '' || target == null) {
-          window.location.replace(`/account.html?id=${data.id}&e=${accountEmail}&s=true&ts=${Date.now()}`)
+          window.location.replace(
+            `/account.html?id=${
+              data.id
+            }&e=${accountEmail}&s=true&ts=${Date.now()}`
+          )
         } else {
-          window.location.replace(`${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`)
-
+          window.location.replace(
+            `${target}?id=${pkId}&e=${googleEmail}&s=true&ts=${Date.now()}`
+          )
         }
       }
     } catch (error) {
@@ -276,7 +296,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
               window.location.replace(
-                target +'?id=' + uid +'&e=' +  firebaseEmail +'&s=true' +'&ts=' +time
+                target +
+                  '?id=' +
+                  uid +
+                  '&e=' +
+                  firebaseEmail +
+                  '&s=true' +
+                  '&ts=' +
+                  time
               )
             } else {
               await authToken(email)
@@ -308,7 +335,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (prompt2FA()) {
                   localStorage.setItem('sent-2fa', true)
                   localStorage.setItem('newdevice', false)
-                  window.location.replace('https://emailserver.prestonkwei.com/referrer?id=' +uid +'&e=' +firebaseEmail + '&s=true' +'&ts=' +time)
+                  window.location.replace(
+                    'https://emailserver.prestonkwei.com/referrer?id=' +
+                      uid +
+                      '&e=' +
+                      firebaseEmail +
+                      '&s=true' +
+                      '&ts=' +
+                      time
+                  )
                 } else {
                   localStorage.setItem('newdevice', false)
                   await newDevice(firebaseEmail)
@@ -376,6 +411,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       document.getElementById('signuppw').disabled = true
       let email = document.getElementById('signupemail').value
       let pw = document.getElementById('signuppw').value
+      console.log(email, pw)
+      if (email == '' || pw == '') {
+        alert('Please complete out all fields.')
+        window.location.reload()
+      }
       let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_')
       try {
         const snapshot = await database
@@ -393,7 +433,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             fn: '',
             ln: '',
             e: email,
-            tsCreate: Date.now()
+            tsCreate: Date.now(),
           })
           const data = new FormData()
           data.set('sendto', email)
@@ -439,6 +479,55 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     })
 })
+
+let pwgood = { length: false, letter: false, special: false, number: false }
+if (window.location.pathname.includes('/signup')) {
+  console.log('signuppage')
+  document.querySelector('#signuppw').addEventListener('input', () => {
+    if (document.querySelector('#signuppw').value.length >= 8) {
+      document.querySelector('#pw-length').style.color = 'green'
+      pwgood.length = true
+    } else {
+      document.querySelector('#pw-length').style.color = 'red'
+      pwgood.length = false
+    }
+    if (
+      /[!@#$%^&*(),.?":{}|<>]/g.test(document.querySelector('#signuppw').value)
+    ) {
+      document.querySelector('#pw-special').style.color = 'green'
+      pwgood.special = true
+    } else {
+      document.querySelector('#pw-special').style.color = 'red'
+      pwgood.special = false
+    }
+    if (/[1234567890]/g.test(document.querySelector('#signuppw').value)) {
+      document.querySelector('#pw-numbers').style.color = 'green'
+      pwgood.number = true
+    } else {
+      document.querySelector('#pw-numbers').style.color = 'red'
+      pwgood.number = false
+    }
+    if (
+      /[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]/g.test(
+        document.querySelector('#signuppw').value
+      )
+    ) {
+      document.querySelector('#pw-letters').style.color = 'green'
+      pwgood.letter = true
+    } else {
+      document.querySelector('#pw-letters').style.color = 'red'
+      pwgood.letter = false
+    }
+    document.querySelector('#pw-feedback').style.display = 'block'
+    if (pwgood.length && pwgood.letter && pwgood.special && pwgood.number) {
+      document.querySelector('#pw-feedback').style.display = 'none'
+      document.querySelector('#signupBut').disabled = false
+    } else {
+      document.querySelector('#pw-feedback').style.display = 'block'
+      document.querySelector('#signupBut').disabled = true
+    }
+  })
+}
 function resetKnown() {
   preventDefault()
   console.log('Reset-Known')
@@ -463,6 +552,7 @@ let shapeGuide = {
   16: 'Triangle-Green',
   17: 'Triangle-Red',
 }
+
 let emailSelect
 async function passwordlessLogin(event) {
   event.preventDefault()
@@ -509,7 +599,10 @@ async function passwordlessLogin(event) {
     })
   let expiration = Date.now() + 900000
   database.ref(`noPw/${linkid}`).update({
-    email: document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','),
+    email: document
+      .querySelector('#noPwEmailbox')
+      .value.replace(/@/g, '_')
+      .replace(/\./g, ','),
     uId: userId,
     status: 'unused',
     expires: expiration,
@@ -533,9 +626,24 @@ async function passwordlessLogin(event) {
   database.ref(`noPw/${linkid}/status`).on('value', async function (snapshot) {
     console.log(snapshot.val())
     if (snapshot.val() == 'sucess') {
-      await newDevice(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
-      await authToken(document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ','))
-      window.location.replace(`/account.html?id=${userId}&e=${document.querySelector('#noPwEmailbox').value.replace(/@/g, '_').replace(/\./g, ',')}&s=true&ts=${Date.now()}`)
+      await newDevice(
+        document
+          .querySelector('#noPwEmailbox')
+          .value.replace(/@/g, '_')
+          .replace(/\./g, ',')
+      )
+      await authToken(
+        document
+          .querySelector('#noPwEmailbox')
+          .value.replace(/@/g, '_')
+          .replace(/\./g, ',')
+      )
+      window.location.replace(
+        `/account.html?id=${userId}&e=${document
+          .querySelector('#noPwEmailbox')
+          .value.replace(/@/g, '_')
+          .replace(/\./g, ',')}&s=true&ts=${Date.now()}`
+      )
     }
   })
 }
@@ -590,11 +698,17 @@ if (
         } else {
           let data = snapshot.val()
           let list = data['shapes']['list']
-          document.querySelector('#shape1-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
+          document.querySelector(
+            '#shape1-img'
+          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[0]}.png`
           document.querySelector('#shape1-label').innerHTML = list[0]
-          document.querySelector('#shape2-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[1]}.png`
+          document.querySelector(
+            '#shape2-img'
+          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[1]}.png`
           document.querySelector('#shape2-label').innerHTML = list[1]
-          document.querySelector('#shape3-img').src = `https://cdn.prestonkwei.com/2fa-shapes/${list[2]}.png`
+          document.querySelector(
+            '#shape3-img'
+          ).src = `https://cdn.prestonkwei.com/2fa-shapes/${list[2]}.png`
           document.querySelector('#shape3-label').innerHTML = list[2]
           let correct = data['shapes']['correct']
           let correctId = data['shapes']['list'].indexOf(correct) + 1
@@ -638,4 +752,3 @@ if (
       })
   }
 }
-
