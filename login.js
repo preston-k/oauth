@@ -6,6 +6,40 @@ if (window.location.href.includes('oauth.prestonkwei.com')) {
 let database = firebase.database()
 // DO NOT EDIT ANYTHING ABOVE^^^
 
+async function encryptString(string, password) {
+  const encoder = new TextEncoder()
+  const data = encoder.encode(string)
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(password),
+    { name: 'PBKDF2' },
+    false,
+    ['deriveKey']
+  )
+  const key = await crypto.subtle.deriveKey(
+    {
+      name: 'PBKDF2',
+      salt: encoder.encode('salt'),
+      iterations: 100000,
+      hash: 'SHA-256',
+    },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt']
+  )
+  const iv = crypto.getRandomValues(new Uint8Array(12))
+  const encrypted = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    data
+  )
+  const ivBase64 = btoa(String.fromCharCode(...iv))
+  const encryptedBase64 = btoa(
+    String.fromCharCode(...new Uint8Array(encrypted))
+  )
+  return `${ivBase64}:${encryptedBase64}`
+}
 const url = new URL(window.location)
 const urlParams = new URLSearchParams(window.location.search)
 let goto = ''
@@ -13,7 +47,9 @@ if (urlParams.get('redir') != null) {
   goto = urlParams.get('redir')
   sessionStorage.setItem('target', goto)
 }
-
+window.recaptcha = function () {
+  console.log('reCAPTCHA')
+}
 let hide
 try {
   hide = JSON.parse(urlParams.get('hide'))
@@ -295,16 +331,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let time = d.getTime()
             createCookie('loggedin=true', uid, 0.1666666)
             if (target != null) {
-              window.location.replace(
-                target +
-                  '?id=' +
-                  uid +
-                  '&e=' +
-                  firebaseEmail +
-                  '&s=true' +
-                  '&ts=' +
-                  time
+              let addKey = crypto.randomUUID().slice(0, 6)
+              let add = await encryptString(
+                `?id=${uid}&e=${firebaseEmail}&s=true&ts=${time}`,
+                addKey
               )
+              console.log(`${target}${add}`)
+              window.location.replace(`${target}/?k=${addKey}&go=${add}`)
             } else {
               await authToken(email)
               let force2fa = urlParams.get('f2fa')
@@ -407,6 +440,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
               c.trim().split('=')[0] +
               '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/')
         )
+      let recaptcha = grecaptcha.getResponse()
+      console.log(recaptcha)
       document.getElementById('signupemail').disabled = true
       document.getElementById('signuppw').disabled = true
       let email = document.getElementById('signupemail').value
@@ -416,6 +451,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         alert('Please complete out all fields.')
         window.location.reload()
       }
+
       let firebaseEmail = email.replace(/\./g, ',').replace(/@/g, '_')
       try {
         const snapshot = await database
@@ -457,7 +493,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           if (savedTarget != null) {
             sessionStorage.removeItem('target')
             window.location.replace(
-              savedTarget + '?id=' + useruuid + '&e=' + firebaseEmail
+              savedTarget + encryptString(`id=${useruuid}&e=${firebaseEmail}`)
             )
           } else {
             window.location.replace(
