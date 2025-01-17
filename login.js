@@ -336,6 +336,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 `?id=${uid}&e=${firebaseEmail}&s=true&ts=${time}`,
                 addKey
               )
+              add = encodeURIComponent(add)
               console.log(`${target}${add}`)
               window.location.replace(`${target}/?k=${addKey}&go=${add}`)
             } else {
